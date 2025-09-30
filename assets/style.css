@@ -271,7 +271,7 @@
      height: 100vh;
      overflow: hidden;
      background: #E6D7C4;
-     color: #fff;
+     color: #020202;
      padding: 2rem;
  }
 
@@ -584,8 +584,7 @@
 
  /* Left big heading */
  .faq-hero {
-     font-family: 'Playfair Display', serif;
-     font-size: clamp(2.6rem, 6vw, 4.8rem);
+     font-family: 'Playfair Display', serif; 
      font-weight: 400;
      line-height: 1;
      padding-top: 0.4rem;
@@ -613,10 +612,10 @@
  }
 
  /* Accordion styles to match screenshot minimal lines */
- .accordion .accordion-item {
-     border: none;
-     border-bottom: 1px solid rgb(36, 36, 36) !important;
- }
+.accordion .accordion-item {
+    border: none;
+    border-bottom: 1px solid rgb(181 181 181) !important;
+}
 
  .accordion-button {
      background: transparent;
@@ -644,6 +643,7 @@
 
  .accordion-button:not(.collapsed) {
      background: transparent;
+     box-shadow: none;
  }
 
  /* right-aligned icon (plus / minus) */
