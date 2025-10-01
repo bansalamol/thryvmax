@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 //Lenis
 const lenis = new Lenis({
-    duration: 1.5,
+    duration: 3,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
     smoothTouch: false,
@@ -33,19 +33,27 @@ gsap.utils.toArray(".parallax").forEach(layer => {
 
 // TEXT REVEAL
 gsap.fromTo(".Ban-text",
-    { opacity: 0, y: 50 }, // start hidden + moved down
+    {
+        opacity: 0,
+        y: 10,
+        rotationX: 90,         // flipped forward
+        transformPerspective: 800, // depth effect
+        transformOrigin: "center top" // pivot point
+    },
     {
         opacity: 1,
         y: 0,
+        rotationX: 0,          // flat/normal
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
             trigger: ".Ban-text",
-            start: "top 90%", // when text hits center of screen
+            start: "top 90%",
             toggleActions: "play none none reverse"
         }
     }
 );
+
 
 //  BANNER HEAD + SUBHEAD
 gsap.fromTo(".banner-head, .banner-sub-head",
@@ -85,7 +93,7 @@ gsap.fromTo(".banner-head, .banner-sub-head",
 // Rotate the center image continuously while pinned
 gsap.to(".center-image", {
     rotation: 180,
-    scale: 1.4,
+    scale: 1.6,
     ease: "none",
     scrollTrigger: {
         trigger: ".scroll-section",
@@ -276,7 +284,7 @@ gsap.utils.toArray(".section-5 .content h3 span h6").forEach((textAnim) => {
             duration: 1, // optional but good to control timing
             scrollTrigger: {
                 trigger: textAnim,
-                start: "top 95%", 
+                start: "top 95%",
                 toggleActions: "play none none reverse" // optional, smoother UX
             }
         }

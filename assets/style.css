@@ -199,7 +199,7 @@
  /*  */
  .scroll-section {
      position: relative;
-     height: 120vh;
+     height: 100vh;
      background: #ffffff;
      overflow: hidden;
      display: flex;
@@ -365,7 +365,7 @@
      justify-content: center;
      gap: 10px;
      background-color: #F7F7F7;
-     width: fit-content ;
+     width: fit-content;
      margin: auto;
      font-size: 14px;
      margin: 20px auto;
@@ -383,8 +383,8 @@
 
 
  .section-6 .tabs button.active {
-     background-color: white; 
-     border-radius: 20px; 
+     background-color: white;
+     border-radius: 20px;
  }
 
  .section-6 .container {
@@ -431,7 +431,7 @@
      height: 0px;
      transform: translate(-50%, -50%);
      font-size: 14px;
-     white-space: nowrap; 
+     white-space: nowrap;
  }
 
 
@@ -566,14 +566,27 @@
      height: 100%;
  }
 
+ .curve-container .top-head {
+     width: fit-content;
+     margin-bottom: 20px;
+     font-size: 13px;
+     font-weight: 500;
+     color: #171717;
+     border: 1px solid #b6b6b6;
+     padding: 8px 20px;
+     border-radius: 30px;
+ }
+
  .curve-container svg {
      /* display: none; */
  }
 
  .curve-container .wheel__card {
-     width: 230px;
+     width: 260px;
      height: 300px;
      margin: 0px 30px;
+     border-radius: 10px;
+     overflow: hidden;
  }
 
  .curve-container .wheel__card img {
@@ -584,7 +597,7 @@
 
  /* Left big heading */
  .faq-hero {
-     font-family: 'Playfair Display', serif; 
+     font-family: 'Playfair Display', serif;
      font-weight: 400;
      line-height: 1;
      padding-top: 0.4rem;
@@ -612,10 +625,10 @@
  }
 
  /* Accordion styles to match screenshot minimal lines */
-.accordion .accordion-item {
-    border: none;
-    border-bottom: 1px solid rgb(181 181 181) !important;
-}
+ .accordion .accordion-item {
+     border: none;
+     border-bottom: 1px solid rgb(181 181 181) !important;
+ }
 
  .accordion-button {
      background: transparent;
