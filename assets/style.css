@@ -65,13 +65,12 @@
  .navbar-container {
      width: 100%;
      position: fixed;
-     border-radius: 20px;
      padding: 7px 20px;
      z-index: 9999;
  }
 
  .navbar-container .logo {
-     width: 40px;
+     width: 120px;
  }
 
  .navbar-container .navbar-collapse {
@@ -84,6 +83,23 @@
      background-color: var(--primary-color);
      color: white;
  }
+
+
+ .navbar-container.scrolled {
+     background-color: white;
+ }
+
+
+
+ .navbar-container.scrolled .nav-link {
+     color: black !important;
+ }
+
+ .navbar-container.scrolled .btn {
+     background-color: #00357a;
+     color: white;
+ }
+
 
  /* BANNER */
  .banner {}

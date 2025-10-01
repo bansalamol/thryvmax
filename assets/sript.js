@@ -1,3 +1,18 @@
+// NAVBAR
+
+window.addEventListener("scroll", function () {
+  const nav = document.getElementById("navcontainer");
+  if (window.scrollY > 80) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+});
+
+
+
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 //Lenis
