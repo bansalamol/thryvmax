@@ -81,11 +81,10 @@
      border-radius: 7px;
      padding: 7px 30px;
      background-color: var(--primary-color);
-     color: white;
+     color: rgb(0, 0, 0);
      
  }
-
-
+s
  .navbar-container.scrolled {
      background-color: white;
  }
