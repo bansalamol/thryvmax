@@ -203,46 +203,38 @@
                 <div class="col-6 offset-1">
 
                     <div class="contact">
-                        <form>
-                            <h2 class="mb-3">Reach Out to us</h2>
-
+                        <form method="POST" action="careermail.php">
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1">
+                                <label class="form-label">Name</label>
+                                <input type="text" name="name" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Number</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1">
+                                <label class="form-label">Number</label>
+                                <input type="text" name="number" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label class="form-label">Email address</label>
+                                <input type="email" name="email" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="fsdf" class="form-label">position</label>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle w-100 text-start" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Select position
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Angular</a></li>
-                                        <li><a class="dropdown-item" href="#">Java</a></li>
-                                        <li><a class="dropdown-item" href="#">CRM</a></li>
-                                    </ul>
-                                </div>
+                                <label class="form-label">Position</label>
+                                <select name="position" class="form-select" required>
+                                    <option value="">Select position</option>
+                                    <option value="Angular">Angular</option>
+                                    <option value="Java">Java</option>
+                                    <option value="CRM">CRM</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label class="form-label">Message</label>
+                                <textarea name="message" class="form-control" rows="3" required></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-dark w-100 text-white mt-4 py-3">Submit</button>
+                            <button type="submit" class="btn btn-dark w-100 py-3">Submit</button>
                         </form>
                     </div>
                 </div>
