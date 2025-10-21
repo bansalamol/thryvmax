@@ -61,53 +61,16 @@
      background-color: white;
  }
 
- /* NAVBAR */
- .navbar-container {
-     width: 100%;
-     position: fixed;
-     padding: 7px 20px;
-     z-index: 9999;
- }
-
- .navbar-container .logo {
-     width: 120px;
- }
-
- .navbar-container .navbar-collapse {
-     flex-grow: 0;
- }
-
- .navbar-container button.btn {
-     border-radius: 7px;
-     padding: 7px 30px;
-     background-color: var(--primary-color);
-     color: rgb(0, 0, 0);
-     
- }
-
- .navbar-container.scrolled {
-     background-color: white;
- }
-
-
-
- .navbar-container.scrolled .nav-link {
-     color: black !important;
- }
-
- .navbar-container.scrolled .btn {
-     background-color: #00357a;
-     color: white;
- }
 
 
  /* BANNER */
- .banner {}
+ .banner {
+ }
 
  .banner .section-head {
      position: absolute;
      left: 50%;
-     top: 10%;
+     top: 14%;
      transform: translate(-50%, 0%);
      max-width: 800px;
      width: 100%;
@@ -115,13 +78,13 @@
      text-align: center;
  }
 
- .banner .banner-head {
+ .banner .main-banner-head {
      /* font-weight: 600; */
      line-height: 1.1;
      margin-bottom: 20px;
  }
 
- .banner .banner-sub-head {
+ .banner .main-banner-sub-head {
      color: rgb(60, 60, 60);
      font-size: 15px;
      max-width: 500px;
@@ -730,44 +693,4 @@
          right: 0.6rem;
          top: -0.2rem;
      }
- }
-
- /* // FOOTER */
- footer {
-     background-color: #040836;
-     background-image: url(https://crafto.themezaa.com/marketing/wp-content/uploads/sites/10/2023/11/demo-marketing-footer-dot.svg);
-     color: #fff;
-     font-family: 'Segoe UI', sans-serif;
-     padding-top: 80px;
-
-     .logo {
-         width: 100%;
-         max-width: 150px;
-         border-radius: 20px;
-     }
-
-     .social-icon {
-         width: 40px;
-     }
-
-     .btn-lime {
-         background-color: #d5ff5d;
-         color: black;
-         font-weight: 500;
-         border-radius: 30px;
-         padding: 10px 25px;
-         text-decoration: none;
-         display: inline-block;
-     }
-
-     .btn-lime:hover {
-         background-color: #c8f048;
-         text-decoration: none;
-         color: black;
-     }
-
-     .bg-lime {
-         background-color: #d5ff5d !important;
-     }
-
  }

@@ -1,0 +1,154 @@
+/* SECTION 3 */
+.section-3 {
+    padding-block: 80px;
+}
+
+.section-3 .img-container {
+    background-image: url('https://craftohtml.themezaa.com/images/demo-branding-studio-services-01.jpg');
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 80vh;
+}
+
+.section-4 .circle {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    font-size: 100px;
+    background-color: black;
+    color: white;
+}
+
+
+.section-4 .cardd {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .08);
+    background: linear-gradient(360deg, rgba(254, 243, 240, 0.5) 0%, #fff6f3 100%);
+    border-radius: 12px;
+}
+
+.section-4 .cardd img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.section-4 .cardd .content {
+    padding: 20px 30px;
+}
+
+.section-4 .cardd .content h6 {
+    font-size: 1.8vw;
+    font-weight: 500;
+}
+
+.section-4 .cardd .content p {
+    font-size: 1vw;
+}
+
+.section-4 .cardd .arrow {
+    width: 3.5vw;
+    height: 3.5vw;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    background: #FF6036;
+    color: white;
+    border-radius: 50%;
+    rotate: -45deg;
+}
+
+/*  */
+
+.section-5 {
+    padding-block: 100px;
+}
+
+/*  */
+.section-6 {
+    padding-bottom: 100px;
+}
+
+.section-6 button {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.274);
+    padding: 7px 20px;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.section-6 .cardd {
+    align-items: start;
+}
+
+.section-6 .cardd img {
+    width: 4vw;
+}
+
+.section-6 .cardd p {
+    font-size: 1vw;
+}
+
+.section-6 .cardd:first-child {
+    padding-bottom: 20px;
+}
+
+.section-6 .cardd:not(:first-child) {
+    padding-block: 20px;
+}
+
+.section-6 .cardd:not(:last-child) {
+    border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+/* SECTION 7 */
+.section-7 {}
+
+.contact-us {
+    padding-block: 100px;
+    background-color: #FFF6F3;
+
+}
+
+.contact-info img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    flex: 0;
+}
+
+.contact-info h6 {
+    font-size: 1.6vw;
+    font-weight: 500;
+}
+
+.contact {
+    padding: 50px;
+    box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.09);
+    border-radius: 20px;
+    background-color: white;
+}
+
+
+.contact button {
+    background: #1F242E;
+}
+
+.contact .dropdown button {
+    background: none !important;
+    border: 1px solid #dbdbdb;
+}
+
+.contact  .dropdown-toggle::after { 
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    translate: -50% -50%;
+}
+
+.contact .dropdown-menu {
+    width: 100%;
+}

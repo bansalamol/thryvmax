@@ -15,29 +15,56 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/aboutus.html">About Us</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#whyus">Why Us</a>
+                        <div class="dropdown">
+                            <button class=" nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Services
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class=" dropdown-item" href="/service1.html">Services</a>
+                                </li>
+                                <li>
+                                    <a class=" dropdown-item" href="/ERP_AND_CRM.html">ERP / CRM</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/webdevelopement.html">Web Development</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/bussiness-automation.html">Buisness Automation
+                                        Solution</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/blogs.html">Blogs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contactus.html">Contact Us</a>
+                        <a class="nav-link" href="/carrer.html">Carrer</a>
                     </li>
                 </ul>
                 <!-- Login Button small-->
-                <button href="#" class="btn d-block d-lg-none">Login</button>
+                <a class="nav-link" href="/contactus.html">
+                    <button href="#" class="btn d-block d-lg-none">Contact Us</button>
+                </a>
 
             </div>
 
 
             <!-- Login Button large-->
-            <button href="#" class="btn ms-3 d-none d-lg-block">Login</button>
+            <a class="nav-link" href="/contactus.html">
+
+                <button href="#" class="btn ms-3 d-none d-lg-block">Contact Us</button>
+            </a>
 
         </div>
     </nav>

@@ -1,17 +1,13 @@
 // NAVBAR
 
 window.addEventListener("scroll", function () {
-  const nav = document.getElementById("navcontainer");
-  if (window.scrollY > 80) {
-    nav.classList.add("scrolled");
-  } else {
-    nav.classList.remove("scrolled");
-  }
-});
-
-
-
-
+    const nav = document.getElementById("navcontainer");
+    if (window.scrollY > 80) {
+        nav.classList.add("scrolled");
+    } else {
+        nav.classList.remove("scrolled");
+    }
+}); 
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,7 +67,7 @@ gsap.fromTo(".Ban-text",
 
 
 //  BANNER HEAD + SUBHEAD
-gsap.fromTo(".banner-head, .banner-sub-head",
+gsap.fromTo(".main-banner-head, .main-banner-sub-head",
     { opacity: 0, y: 100, scale: 0.5 },
     {
         opacity: 1,

@@ -1,42 +1,16 @@
-.main-head {
-    font-size: 1.1vw;
-    font-weight: 600;
-    background: rgba(52, 60, 217, 1);
-    background: linear-gradient(87.96deg, rgba(52, 60, 217, 0.10) 0.25%, rgba(52, 60, 217, 0) 100.25%);
-    width: fit-content;
-    padding: 7px 20px;
-    border-radius: 20px;
-}
-
-.sub-head {
-    font-size: 3vw;
-    font-weight: 600;
-}
-
-
 /* BANNNER */
-.about-banner {
-    padding-top: 160px;
-    background-image: url('../assets/images/about-us/banner/about-banner.jpg');
-    background-size: cover;
-    padding-bottom: 80px;
-}
 
-.about-banner .banner-head{
-    color: #0246a0;
-    font-size: 0.9vw;
-    font-weight: 600;
-}
 
 /*  */
 .section-2 {
     padding-block: 100px;
 }
 
-/*  */ 
-.section-3{
-    padding-block:100px;
+/*  */
+.section-3 {
+    padding-block: 100px;
 }
+
 .feature-card {
     background: #f1f2fc;
     /* light green shade */
@@ -50,9 +24,9 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-.icon-box { 
+.icon-box {
     width: 50px;
-    height: 50px; 
+    height: 50px;
     background: #ededfc;
     border-radius: 12px;
     display: grid;
@@ -60,7 +34,7 @@
     margin-bottom: 20px;
 }
 
-.icon-box  img{
+.icon-box img {
     width: 35px;
     height: 50px;
     object-fit: contain;
@@ -72,18 +46,34 @@
 }
 
 /*  */
-.section-4{
-    padding-block: 100px;
-    background: #040836;
-    color: white;
+.section-4 {
+    padding-bottom: 100px;
+    /* background: #040836; */
+    /* color: white; */
 }
 
-.section-4 h6{
+.section-4 h6 {
     font-size: 1.6vw;
     font-weight: 600;
 }
+ 
 
+.section-4 .image-container {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px; 
+}
 
-.section-4 img{
-    border-radius: 10px;
+.section-4 img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    transition: all 0.4s linear;
+    scale: 1; 
+}
+
+.section-4 .cardd:hover img {
+    scale: 1.2;
 }
