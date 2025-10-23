@@ -51,7 +51,7 @@ gsap.utils.toArray(".sub-head").forEach((el) => {
         y: 20,
         opacity: 0.4,
         scale: 0.9,
-        duration:2,
+        duration: 2,
         ease: "power3.out",
         scrollTrigger: {
             trigger: el,
@@ -112,6 +112,24 @@ gsap.to(cards, {
         pin: false,
     }
 });
+
+// 
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.fromTo('.widning-image-section .img-container',
+    { width: '40%' },
+    {
+        width: '90%',
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".widning-image-section",
+            start: "top 90%",
+            end: "bottom center",
+            scrub: true,
+        }
+    }
+);
+
 
 
 // 

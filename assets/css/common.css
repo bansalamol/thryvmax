@@ -142,6 +142,17 @@
 } */
 
  /*  */
+ .widning-image-section {
+     padding-block: 80px;
+ }
+
+ .widning-image-section .img-container {
+     background-image: url('https://craftohtml.themezaa.com/images/demo-branding-studio-services-01.jpg');
+     background-size: cover;
+     background-position: top;
+     width: 100%;
+     height: 80vh;
+ }
 
  /* NAVBAR */
  .navbar-container {
@@ -163,6 +174,17 @@
  .navbar-container .logo {
      width: 120px;
  }
+
+ .navbar-container .dropdown .dropdown-menu {
+
+     display: none;
+ }
+
+ .navbar-container .dropdown:hover .dropdown-menu {
+     display: block;
+ }
+
+
 
  .navbar-container .navbar-collapse {
      flex-grow: 0;

@@ -48,7 +48,9 @@
      padding: 6px 20px;
  }
 
- .section-head-container .sub-head {}
+ .section-sub-head {
+     font-weight: 500;
+ }
 
  .section-head-container .sub-text {
      font-size: 16px;
@@ -64,8 +66,7 @@
 
 
  /* BANNER */
- .banner {
- }
+ .banner {}
 
  .banner .section-head {
      position: absolute;
@@ -212,7 +213,7 @@
 
  /*  */
  .pin-section {
-     background: #D66F50;
+     background: #00357a;
      position: relative;
      z-index: 1;
      height: 100vh;
@@ -259,6 +260,7 @@
      margin-top: 80px;
      margin-bottom: 2rem;
      position: relative;
+     color: #978d80;
  }
 
  .parallax-section .cards {
@@ -327,7 +329,7 @@
  }
 
  .section-5 .content h3 span h6 {
-     line-height: 35px;
+     line-height: 50px;
      margin-bottom: 0px;
  }
 
@@ -480,9 +482,23 @@
      cursor: pointer;
  }
 
- .section-10 .carousel-wrapper .card img {
-     width: 150px;
-     height: 150px;
+  .section-10  .top-btm-text{
+    font-size: 2.5vw;
+    font-weight: 500;
+  }
+
+ .section-10 .carousel-wrapper .card .person-img {
+     width: 130px;
+     height: 130px;
+     margin: auto;
+     object-fit: contain;
+     border-radius: 50%;
+     margin-bottom: 20px;
+ }
+
+ .section-10 .carousel-wrapper .card .linkedin-img {
+     width: 30px;
+     height: 30px;
      margin: auto;
      object-fit: contain;
      border-radius: 50%;
@@ -561,7 +577,7 @@
 
  .curve-container .wheel__card {
      width: 260px;
-     height: 300px;
+     height: 320px;
      margin: 0px 30px;
      border-radius: 10px;
      overflow: hidden;
@@ -571,6 +587,7 @@
      width: 100%;
      height: 100%;
      object-fit: cover;
+     rotate: 180deg;
  }
 
  /* Left big heading */
@@ -610,6 +627,8 @@
 
  .accordion-button {
      background: transparent;
+     align-items: start;
+     gap: 20px;
      padding: 1.15rem 1rem;
      font-size: 1.25rem;
      color: var(--accent);
@@ -640,7 +659,7 @@
  /* right-aligned icon (plus / minus) */
  .toggle-icon {
      margin-left: auto;
-     font-weight: 700;
+     font-weight: 500;
      font-size: 1.4rem;
      color: var(--accent);
      line-height: 1;
