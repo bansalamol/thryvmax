@@ -53,16 +53,20 @@
 }
 
 .section-4 h6 {
-    font-size: 1.6vw;
+    font-size: 1.3vw;
     font-weight: 600;
 }
- 
+
+.section-4 p {
+    font-size: 0.9vw; 
+}
+
 
 .section-4 .image-container {
     height: 200px;
     width: 100%;
     overflow: hidden;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .section-4 img {
@@ -71,7 +75,7 @@
     object-fit: cover;
     display: block;
     transition: all 0.4s linear;
-    scale: 1; 
+    scale: 1;
 }
 
 .section-4 .cardd:hover img {
