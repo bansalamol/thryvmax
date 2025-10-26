@@ -12,7 +12,7 @@
  .main-head {
      font-size: 1.1vw;
      font-weight: 600;
-     background-color: #FF6036;
+     background-color: #00357a;
      color: white;
      /* background: rgba(52, 60, 217, 1);
     background: linear-gradient(87.96deg, rgba(52, 60, 217, 0.10) 0.25%, rgba(52, 60, 217, 0) 100.25%); */
@@ -47,8 +47,8 @@
      font-size: 1vw;
      font-weight: 600;
      /* background: #040836; */
-     /* background-color: #246BFD; */
-     background-color: #FF6036;
+     background-color: #00357a;
+     /* background-color: #FF6036; */
      color: white;
      width: fit-content;
      padding: 7px 20px;
@@ -120,7 +120,7 @@
      font-size: 4vw;
      padding-block: 10px;
      padding-right: 50px;
-     background: #FF6036;
+     background: #00357a;
      color: white;
      position: relative;
      /* transform: rotate(3deg); */
