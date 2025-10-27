@@ -3,8 +3,8 @@
     padding-block: 80px;
 }
 
-.section-3 .img-container {
-    background-image: url('https://craftohtml.themezaa.com/images/demo-branding-studio-services-01.jpg');
+.section-3 .img-container { 
+    background-image: url('../images/Career.jpg') !important;
     background-size: cover;
     background-position: top;
     width: 100%;
@@ -142,7 +142,7 @@
     border: 1px solid #dbdbdb;
 }
 
-.contact  .dropdown-toggle::after { 
+.contact .dropdown-toggle::after {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -152,3 +152,5 @@
 .contact .dropdown-menu {
     width: 100%;
 }
+
+ 
