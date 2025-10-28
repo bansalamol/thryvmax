@@ -42,7 +42,7 @@
      font-weight: 600;
      margin-bottom: 10px;
      width: fit-content;
-     background: #E92861;
+     background: #f5b11f;
      border-radius: 30px;
      color: white;
      padding: 6px 20px;
@@ -438,9 +438,33 @@
      background-color: #E6D7C4;
  }
 
+ .section-9 .hero-card {
+     overflow: hidden;
+     transition: all 0.3s ease;
+     border-radius: 20px;
+ }
+
+ .section-9 .hero-card:hover {
+     scale: 0.9;
+ }
+
+ .section-9 .hero-card img {
+     transition: transform 0.5s ease;
+ }
+
+ .section-9 .hero-card:hover img {
+     transform: scale(1.1);
+ }
+
+
  .section-9 .side-list .item {
      border-bottom: 1px solid rgb(255, 255, 255);
      padding-block: 20px;
+     transition: margin-left 0.3s ease;
+ }
+
+ .section-9 .side-list .item:hover {
+     margin-left: 10px;
  }
 
  .section-9 .side-list .item h6 {
@@ -482,10 +506,10 @@
      cursor: pointer;
  }
 
-  .section-10  .top-btm-text{
-    font-size: 2.5vw;
-    font-weight: 500;
-  }
+ .section-10 .top-btm-text {
+     font-size: 2.5vw;
+     font-weight: 500;
+ }
 
  .section-10 .carousel-wrapper .card .person-img {
      width: 130px;
