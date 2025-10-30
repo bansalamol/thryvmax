@@ -38,18 +38,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
         <div style='text-align:center; margin-top:50px; font-family:sans-serif;'>
             <h2 style='color:green;'>✅ Message sent successfully!</h2>
-            <a href='carrer.html' style='text-decoration:none; color:#333;'>Go back</a>
+            <a href='career.html' style='text-decoration:none; color:#333;'>Go back</a>
         </div>";
     } else {
         echo "
         <div style='text-align:center; margin-top:50px; font-family:sans-serif;'>
             <h2 style='color:red;'>❌ Failed to send message.</h2>
-            <a href='carrer.html' style='text-decoration:none; color:#333;'>Try again</a>
+            <a href='career.html' style='text-decoration:none; color:#333;'>Try again</a>
         </div>";
     }
 } else {
     // Prevent direct access
-    header("Location: /carrer.html");
+    header("Location: /career.html");
     exit;
 }
 ?>

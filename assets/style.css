@@ -249,7 +249,7 @@
      position: relative;
      height: 100vh;
      overflow: hidden;
-     background: #E6D7C4;
+     background: #F1F7FF;
      color: #020202;
      padding: 2rem;
  }
@@ -284,7 +284,7 @@
  .parallax-section .cards .card:nth-child(1) {
      top: 10%;
      left: 5%;
-     background: #420B20;
+     background: #00357a;
  }
 
  .parallax-section .cards .card:nth-child(2) {
@@ -302,7 +302,7 @@
  .parallax-section .cards .card:nth-child(4) {
      top: 80%;
      right: 0%;
-     background-color: #2b2f4a;
+     background-color: #00357a;
  }
 
  .parallax-section .cards .card .btm-card {
@@ -313,7 +313,7 @@
  /*  */
  .section-5 {
      padding-block: 100px;
-     background: #420B20;
+     background: #040836;
      color: white;
  }
 
@@ -435,7 +435,8 @@
  /*  */
  .section-9 {
      padding-block: 80px;
-     background-color: #E6D7C4;
+     background-color: #00357a;
+     color: white;
  }
 
  .section-9 .hero-card {
@@ -478,7 +479,7 @@
 
  /*  */
  .section-10 {
-     padding-block: 100px;
+     padding-block: 80px;
  }
 
  .section-10 h2 {}
@@ -587,7 +588,7 @@
  .curve-container .top-head {
      width: fit-content;
      margin-bottom: 20px;
-     font-size: 13px;
+     font-size: 1.1vw;
      font-weight: 500;
      color: #171717;
      border: 1px solid #b6b6b6;
