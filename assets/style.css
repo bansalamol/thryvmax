@@ -83,6 +83,10 @@
      /* font-weight: 600; */
      line-height: 1.1;
      margin-bottom: 20px;
+     color: #001a3c;
+     font-weight: 500;
+     text-shadow: 0px 0px 5px #ffffff;
+     font-size: 2.5vw;
  }
 
  .banner .main-banner-sub-head {
@@ -148,20 +152,17 @@
  }
 
  .layer-bg {
-     background-image: url('../assets/images/home/banner-bg.webp');
-     background-position: center top;
+     background-image: url('../assets/images/home/demo.jpg');
+     /* background-position: top top; */ 
      background-repeat: no-repeat;
      background-size: 100% auto;
+
  }
 
  .layer-1 {
      background-image: url('./images/home/man-standing-image.webp');
      background-position: center 40%;
      background-size: 100% auto;
- }
-
- .layer-overlay {
-     background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/ilu_overlay.png');
  }
 
  @media only screen and (max-width: 768px) {
@@ -290,13 +291,13 @@
  .parallax-section .cards .card:nth-child(2) {
      top: 30%;
      right: 5%;
-     background-color: #2b2f4a;
+     background-color: #00357a;
  }
 
  .parallax-section .cards .card:nth-child(3) {
      top: 60%;
      left: 7%;
-     background-color: #2b2f4a;
+     background-color: #00357a;
  }
 
  .parallax-section .cards .card:nth-child(4) {
@@ -469,7 +470,7 @@
  }
 
  .section-9 .side-list .item h6 {
-     color: #d66f50;
+     color: #fafafa;
  }
 
 
