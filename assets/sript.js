@@ -317,11 +317,11 @@ const centerText = document.querySelector(".center-text");
 
 // Example text data for each tab
 const tabData = {
-    doctor: "Doctors provide expert medical guidance.",
-    coach: "Health coaches keep you motivated and consistent.",
-    scientist: "Data scientists analyze patterns for better care.",
-    nutritionist: "Nutritionists design personalized food plans.",
-    concierge: "Care concierge handles your appointments easily."
+    doctor: "Smart and scalable systems",
+    coach: "Delightful user experiences",
+    scientist: " Actionable business insights",
+    nutritionist: "Measurable business impact",
+    concierge: "Resilient, future-ready tech"
 };
 
 // Position items in a circle
