@@ -19,7 +19,14 @@
     border-radius: 12px;
     padding: 20px;
     color: white;
+    transition: all .3s ease;
 }
+
+.section-4 .cardd:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 70px rgba(52, 52, 52, 0.537);
+}
+
 
 .section-4 .cardd .img-container {
     background-color: white;
