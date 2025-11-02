@@ -3,7 +3,7 @@
     padding-block: 80px;
 }
 
-.section-3 .img-container { 
+.section-3 .img-container {
     background-image: url('../images/Career.jpg') !important;
     background-size: cover;
     background-position: top;
@@ -153,4 +153,45 @@
     width: 100%;
 }
 
- 
+
+
+
+
+@media screen and (max-width : 992px) {
+    .section-3 .img-container {
+        height: 350px;
+    }
+
+}
+
+
+@media screen and (max-width : 786px) {
+    .section-3 .img-container {
+        height: 300px;
+    }
+
+
+    /*  */
+    .section-6 .cardd p {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width : 576px) {
+    .section-3 .img-container {
+        height: 250px;
+    }
+
+    .section-4 .circle {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        font-size: 50px;
+    }
+
+    /*  */
+    .section-6 .cardd p {
+        font-size: 3vw;
+    }
+}

@@ -261,3 +261,79 @@
  .bg-lime {
      background-color: #d5ff5d !important;
  }
+
+
+ /*  */
+ @media screen and (max-width : 992px) {
+     .widning-image-section .img-container {
+         height: 350px;
+     }
+
+     .section-4 .cardd .content h6 {
+         font-size: 2.5vw !important;
+     }
+
+
+     .section-4 .cardd .content p {
+         font-size: 1.6vw !important;
+     }
+
+     .navbar-container {
+         background: white;
+     }
+
+     .navbar-container .nav-link {
+         font-size: 2vw;
+     }
+ }
+
+
+ @media screen and (max-width : 768px) {
+     .common-banner {
+         padding-top: 130px;
+     }
+
+     .sub-head {
+         font-size: 3.5vw;
+     }
+
+     /*  */
+     .widning-image-section .img-container {
+         height: 300px;
+     }
+
+
+     .section-4 .cardd .content h6 {
+         font-size: 4vw !important;
+     }
+
+     .section-4 .cardd .content p {
+         font-size: 3vw !important;
+     }
+
+     .navbar-container .nav-link {
+         font-size: 3   vw;
+     }
+ }
+
+
+ @media screen and (max-width : 576px) {
+     .common-banner {
+         padding-top: 90px;
+         padding-left: 3vw;
+     }
+
+
+     .sub-head {
+         font-size: 5vw;
+     }
+
+
+     .widning-image-section .img-container {
+         height: 250px;
+     }
+
+     .navbar-container .nav-link {
+         font-size: 4vw;
+     }
+ }

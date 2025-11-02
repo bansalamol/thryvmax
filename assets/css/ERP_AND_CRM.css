@@ -110,3 +110,42 @@
 .widning-image-section .img-container {
     background-image: url('../images/crm-erp/CRM-ERP.jpg');
 }
+
+
+
+@media screen and (max-width : 992px) {
+    .section-3 .img-container {
+        height: 350px;
+    }
+
+
+    .section-4 .cardd .content h6 {
+        font-size: 2.5vw;
+    }
+
+    .section-4 .cardd .content p {
+        font-size: 1.6vw;
+    }
+
+}
+
+
+@media screen and (max-width : 786px) {
+    .section-3 .img-container {
+        height: 300px;
+    }
+
+    .section-4 .cardd .content h6 {
+        font-size: 4vw;
+    }
+
+    .section-4 .cardd .content p {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width : 576px) {
+    .section-3 .img-container {
+        height: 250px;
+    }
+}

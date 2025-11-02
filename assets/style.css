@@ -311,6 +311,51 @@
  }
 
 
+ /* paraalllex sm section */
+
+ .parallax-sm-section {
+     position: relative;
+     overflow: hidden;
+     background: #F1F7FF;
+     color: #020202;
+     padding: 2rem;
+     padding-block: 80px;
+ }
+
+ .parallax-sm-section .header {
+     text-align: center;
+     font-size: 2.5rem;
+     margin-bottom: 5rem;
+     position: relative;
+     color: #978d80;
+ }
+
+ .parallax-sm-section .cards {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 50px;
+ }
+
+ .parallax-sm-section .card {
+     color: white;
+     font-size: 14px;
+     border-radius: 10px;
+     width: 100%;
+     margin-top: 00px;
+     padding: 20px;
+     z-index: 2;
+     background: #00357a;
+
+
+ }
+
+
+ .parallax-sm-section .cards .card .btm-card {
+     margin-top: 100px;
+ }
+
+
+
  /*  */
  .section-5 {
      padding-block: 100px;
@@ -739,3 +784,99 @@
          top: -0.2rem;
      }
  }
+
+ @media screen and (max-width : 992px) {
+
+     #hero,
+     .layer {
+         height: 600px;
+         overflow: hidden;
+     }
+
+     #content {
+         position: absolute;
+         left: 0;
+         bottom: 70px;
+         width: 100%;
+         height: auto;
+         color: white;
+     }
+
+     .Ban-text h6 {
+         font-size: 1.6vw;
+     }
+
+     .layer-1 {
+         background-position: center 40% !important;
+     }
+
+
+     /*  */
+     .text-container {
+         font-size: 25px;
+     }
+ }
+
+
+ @media screen and (max-width : 576px) {
+
+     #hero,
+     .layer {
+         height: 800px;
+         overflow: hidden;
+     }
+
+     #content {
+         position: absolute;
+         left: 0;
+         bottom: 70px;
+         width: 100%;
+         height: auto;
+         color: white;
+     }
+
+     .Ban-text h6 {
+         font-size: 4vw;
+     }
+
+     .layer-1 {
+         background-image: url('./images/home/man-standing-image.webp');
+         background-position: center 40% !important;
+         background-size: 210% auto;
+     }
+
+     .layer-bg {
+         background-repeat: no-repeat;
+         background-size: 180% auto;
+         background-position: center top !important;
+
+     }
+
+     .banner .main-banner-head {
+         font-size: 5vw;
+     }
+
+
+     /*  */
+     .text-container {
+         font-size: 20px;
+     }
+
+     /*  */
+     .parallax-sm-section .cards { 
+         grid-template-columns: repeat(1, 1fr); 
+     }
+
+     .parallax-sm-section .header{
+        font-size: 6vw;
+     }
+
+     .section-10 .top-btm-text{
+        font-size: 4vw;
+     }
+  
+     
+
+
+ }
+ 

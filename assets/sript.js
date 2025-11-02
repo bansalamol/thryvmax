@@ -222,7 +222,7 @@ ScrollTrigger.create({
 });
 
 // Background/header moves slower
-gsap.to(".header", {
+gsap.to(".parallax-section .header", {
     y: -100,
     ease: "none",
     scrollTrigger: {
@@ -234,7 +234,7 @@ gsap.to(".header", {
 });
 
 // Cards move faster
-gsap.to(".cards", {
+gsap.to(".parallax-section .cards", {
     y: -1000,
     ease: "none",
     scrollTrigger: {
