@@ -7,7 +7,7 @@ window.addEventListener("scroll", function () {
     } else {
         nav.classList.remove("scrolled");
     }
-}); 
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -452,4 +452,31 @@ ScrollTrigger.create({
     end: '+=1000',
     scrub: 2,
     animation: tlcurve,
+});
+
+
+// 
+var swiper = new Swiper(".cardSwiper", {
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    grabCursor: true,
+    centeredSlides: true,
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+
+    breakpoints: {
+        0: { slidesPerView: 1 },
+        576: { slidesPerView: 2 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+    }
 });

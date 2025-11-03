@@ -11,6 +11,10 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/css/common.css">
@@ -121,7 +125,7 @@
             </section>
 
             <!-- This section overlaps while scrolling -->
-            <section class="overlap-section">
+            <section class="overlap-section d-none d-xl-block">
                 <div class="curve-container">
                     <div class="curve-slider">
                         <h3 class="top-head">Our services</h3>
@@ -169,6 +173,48 @@
                 </div>
             </section>
         </div>
+
+        <div class="curve-container-sm d-xl-none d-block">
+            <div class="text-center mb-5">
+                <h3 class="top-head mx-auto">Our services</h3>
+                <h2 class="text-dark display-5 section-sub-head">Explore How Thryvmax Can Help You</h2>
+            </div>
+
+            <div class="swiper cardSwiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide swiper-slide-card"> <a href="/custom-erp-crm-software-development.html">
+                            <div class="ok"><img src="assets/images/home/sllide/slide-1.jpg" class="img-fluid" />
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide swiper-slide-card">
+                        <a href="/custom-erp-crm-software-development.html">
+                            <div class=""><img src="assets/images/home/sllide/sldei-2.jpg"
+                                    class="img-fluid" /></div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide swiper-slide-card">
+                        <a href="/custom-web-application -software-development.html">
+                            <div class=""><img src="assets/images/home/sllide/slide-3.jpg"
+                                    class="img-fluid" /></div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide swiper-slide-card">
+                        <a href="/custom-buisness-automation-solutions.html">
+                            <div class=""><img src="assets/images/home/sllide/slide-4.jpg"
+                                    class="img-fluid" /></div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+
+        </div>
+
 
         <section class="section-5">
             <div class="container">
@@ -771,6 +817,9 @@
     <script src="assets/sript.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/component-manage.js"></script>
+
+
+
 
 
 </body>

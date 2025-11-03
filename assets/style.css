@@ -661,6 +661,55 @@
      rotate: 180deg;
  }
 
+
+ /* curve-container-sm */
+
+ .curve-container-sm {
+     padding-block: 80px;
+ }
+
+ .curve-container-sm .top-head {
+     width: fit-content;
+     margin-bottom: 20px;
+     font-size: 1.1vw;
+     font-weight: 500;
+     color: #171717;
+     border: 1px solid #b6b6b6;
+     padding: 8px 20px;
+     border-radius: 30px;
+ }
+
+
+ .curve-container-sm .swiper {
+     width: 100%;
+     max-width: 900px;
+     padding-inline: 20px;
+ }
+
+ .curve-container-sm .swiper-slide-card {
+     background: #fff;
+     border-radius: 16px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+     font-size: 22px;
+     font-weight: 600;
+     border-radius: 20px;
+     overflow: hidden;
+ }
+
+ .swiper-button-prev,  .swiper-button-next {
+     background:#040836;
+     height: 40px;
+     width: 40px;
+     border-radius: 50%;
+ }
+
+ .swiper-button-prev:after,
+  .swiper-button-next:after { 
+     color: white;
+     font-size: 15px;
+ }
+
+
  /* Left big heading */
  .faq-hero {
      font-family: 'Playfair Display', serif;
@@ -863,20 +912,22 @@
      }
 
      /*  */
-     .parallax-sm-section .cards { 
-         grid-template-columns: repeat(1, 1fr); 
+     .parallax-sm-section .cards {
+         grid-template-columns: repeat(1, 1fr);
      }
 
-     .parallax-sm-section .header{
-        font-size: 6vw;
+     .parallax-sm-section .header {
+         font-size: 6vw;
      }
 
-     .section-10 .top-btm-text{
-        font-size: 4vw;
+     .section-10 .top-btm-text {
+         font-size: 4vw;
      }
-  
-     
+
+
 
 
  }
- 
+
+
+ /*  */
