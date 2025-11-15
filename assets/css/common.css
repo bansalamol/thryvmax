@@ -4,6 +4,49 @@
      font-family: "Poppins", sans-serif;
  }
 
+
+
+
+
+ body {
+     margin: 0;
+     padding: 0;
+     overflow-x: hidden;
+     /* stop scrolling until page loads */
+ }
+
+
+ /* Loader full screen */
+ .page-loader {
+     position: fixed;
+     inset: 0;
+     background: #292B84;
+     /* loader background */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 99999;
+ }
+
+ /* Circle animation */
+ .loader-circle {
+     padding: 20px;
+     width: 10vw;
+     height: 10vw;
+     border-radius: 50%;
+     background: #ffffff;
+     background-image: url('../images/logo.png');
+     background-size: 90% auto;
+     background-position: center;
+     background-repeat: no-repeat;
+
+ }
+
+ /* Hide page content initially */
+ .page-content {
+     opacity: 0;
+ }
+
  a {
      text-decoration: none;
      color: black;
@@ -312,7 +355,15 @@
      }
 
      .navbar-container .nav-link {
-         font-size: 3   vw;
+         font-size: 3 vw;
+     }
+
+
+     /* Circle animation */
+     .loader-circle {
+         width: 20vw;
+         height: 20vw;
+
      }
  }
 
@@ -321,6 +372,13 @@
      .common-banner {
          padding-top: 90px;
          padding-left: 3vw;
+     }
+
+     /* Circle animation */
+     .loader-circle {
+         width: 30vw;
+         height: 30vw;
+
      }
 
 

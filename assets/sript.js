@@ -1,7 +1,8 @@
 // NAVBAR
 
 window.addEventListener("scroll", function () {
-    const nav = document.getElementById("navcontainer");
+    const nav = document.getElementById("    <script src="assets/js/common.js"></script>
+    <script src="assets/js/nav-manage.js"></script>");
     if (window.scrollY > 80) {
         nav.classList.add("scrolled");
     } else {
@@ -308,7 +309,6 @@ gsap.utils.toArray(".section-5 .content h3 span h6").forEach((textAnim) => {
 
 
 
-
 // SECTION 6
 const tabs = document.querySelectorAll(".tabs button");
 const leftCircle = document.querySelector(".left .circle-content");
@@ -319,7 +319,7 @@ const centerText = document.querySelector(".center-text");
 const tabData = {
     doctor: "Smart and scalable systems",
     coach: "Delightful user experiences",
-    scientist: " Actionable business insights",
+    scientist: "Actionable business insights",
     nutritionist: "Measurable business impact",
     concierge: "Resilient, future-ready tech"
 };
@@ -342,6 +342,11 @@ arrangeCircleItems(leftCircle);
 
 // right starts at Math.PI to make first item on left
 arrangeCircleItems(rightCircle, 150, Math.PI);
+
+// --- INITIAL BLUR STATE ---
+gsap.set(".circle-item", { filter: "blur(2px)" });
+gsap.set(".left .circle-item:nth-child(1)", { filter: "blur(0px)" });
+gsap.set(".right .circle-item:nth-child(1)", { filter: "blur(0px)" });
 
 let leftRotation = 0;
 let rightRotation = 0;
@@ -366,8 +371,8 @@ tabs.forEach(tab => {
         tab.classList.add("active");
 
         // Rotate circles
-        leftRotation = -tabIndex * anglePerItem; // anticlockwise
-        rightRotation = tabIndex * anglePerItem; // clockwise
+        leftRotation = -tabIndex * anglePerItem;
+        rightRotation = tabIndex * anglePerItem;
 
         gsap.to(leftCircle, { rotation: leftRotation, duration: 1, ease: "power2.inOut" });
         gsap.to(rightCircle, { rotation: -rightRotation, duration: 1, ease: "power2.inOut" });
@@ -378,11 +383,29 @@ tabs.forEach(tab => {
             duration: 1,
             ease: "power2.inOut"
         });
-
         gsap.to(".section-6 .right .circle-content .circle-item", {
             rotation: rightRotation,
             duration: 1,
             ease: "power2.inOut"
+        });
+
+        // === BLUR EFFECT ===
+
+        // Blur all items
+        gsap.to(".circle-item", {
+            filter: "blur(1px)",
+            duration: 0.4,
+            ease: "power2.inOut"
+        });
+
+        // Remove blur from active items
+        gsap.to(`.left .circle-item:nth-child(${tabIndex + 1})`, {
+            filter: "blur(0px)",
+            duration: 0.4
+        });
+        gsap.to(`.right .circle-item:nth-child(${tabIndex + 1})`, {
+            filter: "blur(0px)",
+            duration: 0.4
         });
 
         // Animate center text
@@ -397,6 +420,7 @@ tabs.forEach(tab => {
         });
     });
 });
+
 
 
 

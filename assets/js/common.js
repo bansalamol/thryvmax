@@ -1,14 +1,23 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // 
-window.addEventListener("scroll", function () {
-    const nav = document.getElementById("navcontainer");
-    if (window.scrollY > 80) {
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
-});
+ 
+
+function checkScroll() {
+  const nav = document.getElementById("navcontainer");
+
+  if (window.scrollY > 80) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+}
+
+// Check on scroll
+window.addEventListener("scroll", checkScroll);
+
+// Check on refresh/load
+window.addEventListener("load", checkScroll);
 
 
 gsap.registerPlugin(ScrollTrigger);
