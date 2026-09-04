@@ -1,7 +1,5 @@
 # Thryvmax
 
-Freelance project — PROVIDED BY: Mayur (Webplat)
-
 Static marketing website for **Thryvmax**, built with plain HTML/CSS/JS and a
 couple of PHP mail handlers for the contact and career forms.
 
