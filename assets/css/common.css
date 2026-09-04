@@ -6,7 +6,7 @@
 
  a {
      text-decoration: none;
-     color: black;
+     color: #15367b;
  }
 
  .main-head {
@@ -153,6 +153,31 @@
      width: 100%;
      height: 80vh;
  }
+
+ .widning-image-section .img-container-mobile-application {
+     background-image: url('../../assets/images/mobile-application-development.jpg') !important;
+ }
+
+
+ .widning-image-section .img-container-zoho-implementation {
+     background-image: url('../../assets/images/zoho-one-implementation.jpg') !important;
+ }
+
+
+ .widning-image-section .img-container-zoho-customization {
+     background-image: url('../../assets/images/zoho-customization-services.jpg') !important;
+ }
+
+
+ .widning-image-section .img-container-seo-digital-marketing {
+     background-image: url('../../assets/images/seo-digital-marketing-services.jpg') !important;
+ }
+
+
+ .widning-image-section .img-container-odoo-customization {
+     background-image: url('../../assets/images/odoo-customization-services.jpg') !important;
+ }
+
 
  /* NAVBAR */
  .navbar-container {
@@ -312,7 +337,7 @@
      }
 
      .navbar-container .nav-link {
-         font-size: 3   vw;
+         font-size: 3 vw;
      }
  }
 
