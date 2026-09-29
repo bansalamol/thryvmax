@@ -71,62 +71,27 @@ if (!reduceMotion) {
 // );
 
 // SECOND SEC
-// Rotate the center image continuously while pinned (the pin stays under Reduce Motion so the text sequence keeps its scroll distance)
-gsap.to(".center-image", {
-    ...motion({ rotation: 90, scale: 1.3 }),
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".scroll-section",
-        start: "top top",
-        end: "bottom top", // scroll distance
-        scrub: true,
-        pin: true
-    }
-});
-
-// Timeline for text animations
-const sec2 = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".scroll-section",
-        start: "top 20%",
-        end: "bottom top",
-        scrub: true,
-    }
-});
-
-// First text reveal
-sec2.fromTo(
-    ".text1",
-    { opacity: 0, ...motion({ y: 24, scale: 0.96 }) },
-    { opacity: 1, ...motion({ y: 0, scale: 1 }), duration: 1.5, ease: "power2.out" }
-)
-    .to(
-        ".text1",
-        { opacity: 0, ...motion({ y: -24, scale: 0.96 }), duration: 1, delay: 1, ease: "power2.inOut" }
-    );
-
-// Second text reveal
-sec2.fromTo(
-    ".text2",
-    { opacity: 0, ...motion({ y: 24, scale: 0.96 }) },
-    { opacity: 1, ...motion({ y: 0, scale: 1 }), duration: 1.5, ease: "power2.out" }
-)
-    .to(
-        ".text2",
-        { opacity: 0, ...motion({ y: -24, scale: 0.96 }), duration: 1, delay: 1, ease: "power2.inOut" }
-    );
-
-
-
-
+// A static statement: both sentences stay on screen together. One quiet fade-in when it enters view.
+if (!reduceMotion) {
+    const statements = gsap.utils.toArray(".scroll-section .text-container");
+    gsap.set(statements, { opacity: 0, y: 12 });
+    const statementObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            statementObserver.unobserve(entry.target);
+            gsap.to(entry.target, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", delay: entry.target.classList.contains("text2") ? 0.08 : 0 });
+        });
+    }, { rootMargin: "0px 0px -10% 0px" });
+    statements.forEach((el) => statementObserver.observe(el));
+}
 
 // ABOUT US
 // Pin the dark section
 ScrollTrigger.create({
     trigger: ".pin-section",
     start: "top top",
-    endTrigger: ".overlap-section", // stop pinning when this starts
-    end: "top top",                 // unpin when overlap-section hits top
+    endTrigger: ".services-showcase", // stop pinning when the services grid arrives
+    end: "top top",                 // unpin when the services grid hits the top
     pin: true,
     pinSpacing: false
 });
@@ -376,88 +341,6 @@ tabs.forEach(tab => {
 
 
 
-
-//
-// Under Reduce Motion the CSS shows the swipe carousel (.curve-container-sm) instead of the scroll-driven wheel
-if (!reduceMotion) {
-    gsap.registerPlugin(MotionPathPlugin);
-
-    const cards2 = document.querySelectorAll(".wheel__card"); // Select all cards2
-    const path = "#path"; // Path selector
-
-    const tlcurve = gsap.timeline({
-        defaults: {
-            ease: "none"
-        }
-    });
-
-    // Set motion paths for all cards2
-    cards2.forEach((wheel__card, index) => {
-
-        const cardWidth = wheel__card.offsetWidth;
-        const totalDistance = cardWidth + 0;
-
-        gsap.set(wheel__card, {
-            motionPath: {
-                path: path,
-                align: path,
-                alignOrigin: [0.5, 1],
-                autoRotate: true,
-                start: 1,
-                end: 1,
-            }
-        });
-
-        // Define the timeline animation for each card
-        tlcurve.to(wheel__card, {
-            motionPath: {
-                path: path,
-                align: path,
-                alignOrigin: [0.5, 1],
-                autoRotate: true,
-                start: 1,
-                end: 0,
-            },
-            immediateRender: true,
-        }, (totalDistance / 1000) * index / 3); // Adjust delay based on index
-    });
-
-    // Create the ScrollTrigger to control the timeline
-    ScrollTrigger.create({
-        trigger: ".curve-slider",
-        start: "top 50%",
-        end: '+=1000',
-        scrub: 0.5,
-        animation: tlcurve,
-    });
-}
-
-
-//
-var swiper = new Swiper(".cardSwiper", {
-    slidesPerView: 3,
-    spaceBetween: 20,
-    loop: true,
-    grabCursor: true,
-    centeredSlides: true,
-
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-
-    breakpoints: {
-        0: { slidesPerView: 1 },
-        576: { slidesPerView: 2 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 }
-    }
-});
 
 // Lazy images change the page height after load; recalculate scroll-trigger positions when they arrive
 let scrollRefreshTimer;

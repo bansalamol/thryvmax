@@ -24,8 +24,6 @@
  .navbar-toggler,
  .accordion-button,
  .section-6 .tabs button,
- .swiper-button-prev,
- .swiper-button-next,
  .arrow {
      -webkit-user-select: none;
      user-select: none;
@@ -35,16 +33,12 @@
  /* press feedback: the interface answers on press, not on release */
  .btn,
  .section-6 .tabs button,
- .swiper-button-prev,
- .swiper-button-next,
  .arrow {
      transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
  }
 
  .btn:active,
  .section-6 .tabs button:active,
- .swiper-button-prev:active,
- .swiper-button-next:active,
  .arrow:active {
      transform: scale(0.97);
  }
@@ -202,6 +196,7 @@
  .marquee-text-left {
      display: inline-block;
      font-size: clamp(1.5rem, 4vw, 3.6rem);
+     font-weight: 500;
      padding-block: 10px;
      padding-right: 50px;
      background: #00357a;
@@ -327,11 +322,7 @@
      flex-grow: 0;
  }
 
- .navbar-container .dropdown-item:active {
-     color: var(--bs-dropdown-link-active-color);
-     text-decoration: none;
-     background-color: #00357A;
- }
+
 
  .navbar-container .btn {
      border-radius: 10px;
@@ -372,7 +363,6 @@
      background-color: #040836;
      background-image: url(https://crafto.themezaa.com/marketing/wp-content/uploads/sites/10/2023/11/demo-marketing-footer-dot.svg);
      color: #fff;
-     font-family: 'Segoe UI', sans-serif;
      padding-top: 80px;
 
  }
@@ -501,8 +491,6 @@
 
      .btn:active,
      .section-6 .tabs button:active,
-     .swiper-button-prev:active,
-     .swiper-button-next:active,
      .arrow:active {
          transform: none;
      }
@@ -540,8 +528,7 @@
          background: #fff;
      }
 
-     :root .curve-container .top-head,
-     :root .curve-container-sm .top-head {
+     :root .services-showcase .top-head {
          border-color: #333;
      }
 
@@ -587,8 +574,7 @@
      :root body,
      :root .remianin-sections,
      :root .scroll-section,
-     :root .overlap-section,
-     :root .curve-container-sm {
+     :root .services-showcase {
          background-color: var(--tm-bg);
          color: var(--tm-text);
      }
@@ -639,18 +625,9 @@
          color: var(--tm-text);
      }
 
-     :root .motionPath {
-         fill: none;
-     }
-
-     :root .curve-container .top-head,
-     :root .curve-container-sm .top-head {
+     :root .services-showcase .top-head {
          color: var(--tm-text);
          border-color: var(--tm-border);
-     }
-
-     :root .curve-container-sm .swiper-slide-card {
-         background: var(--tm-surface);
      }
 
      :root .section-6 .tabs {
@@ -665,12 +642,10 @@
          color: #040836;
      }
 
-     :root .parallax-section,
      :root .parallax-sm-section {
          background: var(--tm-surface);
      }
 
-     :root .parallax-section .header,
      :root .parallax-sm-section .header {
          color: var(--tm-text);
      }
@@ -760,8 +735,7 @@
      :root .main-head,
      :root .banner-head,
      :root .section-4 .cardd .arrow,
-     :root .swiper-button-prev,
-     :root .swiper-button-next {
+     :root .hero-btn-primary {
          background-color: #2563c9;
      }
 
@@ -858,5 +832,261 @@
          background: rgba(21, 27, 48, 0.9);
          color: #e8eaf2;
          border-color: #2e3656;
+     }
+ }
+
+ /* ================= Type scale: one family (Poppins), three weights =================
+    400 body · 500 headings, buttons · 600 labels, card titles */
+ b,
+ strong {
+     font-weight: 600;
+ }
+
+ .fw-bold {
+     font-weight: 600 !important;
+ }
+
+ .fw-light,
+ .fw-lighter {
+     font-weight: 400 !important;
+ }
+
+ .display-1,
+ .display-2,
+ .display-3,
+ .display-4,
+ .display-5,
+ .display-6 {
+     font-weight: 500;
+ }
+
+ .lead {
+     font-weight: 400;
+ }
+
+ .btn {
+     font-weight: 500;
+ }
+
+ /* page title (h1): the same size on the home hero and every inner page */
+ .banner .main-banner-head,
+ .banner-sub-head {
+     font-size: clamp(2rem, 1.2rem + 2.4vw, 3rem);
+     font-weight: 500;
+     line-height: 1.15;
+ }
+
+ /* card and list titles */
+ body .section-4 .cardd .content h6,
+ body .section-4 .cardd h6,
+ body .blogs .cardd .content h6,
+ body .section-6 .cardd h6,
+ body .feature-card h6,
+ body .contact-info h6 {
+     font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+     font-weight: 600;
+     line-height: 1.35;
+ }
+
+ /* "How it Works" step titles sit below the section title, not level with it */
+ body .section-5 .content h3 .step-line {
+     font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+     font-weight: 500;
+ }
+
+ body .accordion-button {
+     font-size: 1.125rem;
+     font-weight: 500;
+ }
+
+ footer h6 {
+     font-weight: 600;
+ }
+
+ /* ================= Navigation: current page ================= */
+ .navbar-container .nav-link.active {
+     color: #00357a !important;
+ }
+
+ @media (max-width: 991.98px) {
+     .navbar-container .nav-link.nav-sublink {
+         padding-left: 16px;
+         font-size: 15px;
+         color: #4a5068 !important;
+     }
+
+     .navbar-container .nav-link.nav-sublink[aria-current="page"] {
+         color: #00357a !important;
+     }
+ }
+
+ /* ================= Services menu: two labelled groups, centred under its trigger ================= */
+ .navbar-container .dropdown .services-menu {
+     top: calc(100% + 10px);
+     left: 50%;
+     width: 600px;
+     max-width: calc(100vw - 32px);
+     margin: 0;
+     padding: 10px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 2px 8px;
+     border: 1px solid rgba(4, 8, 54, 0.08);
+     border-radius: 14px;
+     background: #fff;
+     box-shadow: 0 4px 12px rgba(4, 8, 54, 0.06), 0 16px 40px rgba(4, 8, 54, 0.12);
+     transform: translateX(-50%) translateY(-4px) scale(0.98);
+     transform-origin: top center;
+ }
+
+ .navbar-container .dropdown:focus-within .services-menu {
+     transform: translateX(-50%);
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .dropdown:hover .services-menu {
+         transform: translateX(-50%);
+     }
+ }
+
+ .services-menu ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ }
+
+ .services-menu-label {
+     margin: 0;
+     padding: 8px 12px 6px;
+     font-size: 12px;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     color: #5b6275;
+ }
+
+ .navbar-container .services-menu .dropdown-item {
+     display: block;
+     padding: 9px 12px;
+     border-radius: 8px;
+     font-size: 15px;
+     font-weight: 500;
+     line-height: 1.35;
+     color: #040836;
+     white-space: normal;
+     transition: background-color 120ms ease, color 120ms ease;
+ }
+
+ .navbar-container .services-menu .dropdown-item:focus-visible,
+ .navbar-container .services-menu .dropdown-item[aria-current="page"] {
+     background: #eef3fb;
+     color: #00357a;
+ }
+
+ .navbar-container .services-menu .dropdown-item:active {
+     background: #e2eaf6;
+     color: #00357a;
+ }
+
+ .services-menu-all {
+     grid-column: 1 / -1;
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     margin-top: 6px;
+     padding: 12px 12px 8px;
+     border-top: 1px solid rgba(4, 8, 54, 0.08);
+     font-size: 14px;
+     font-weight: 600;
+     color: #00357a;
+ }
+
+ .services-menu-all span {
+     transition: transform 150ms var(--ease-out);
+ }
+
+ .navbar-container .dropdown-toggle::after {
+     transition: transform 150ms var(--ease-out);
+ }
+
+ .navbar-container .dropdown:focus-within .dropdown-toggle::after {
+     transform: rotate(180deg);
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .services-menu .dropdown-item:hover {
+         background: #eef3fb;
+         color: #00357a;
+     }
+
+     .services-menu-all:hover span {
+         transform: translateX(3px);
+     }
+
+     .navbar-container .dropdown:hover .dropdown-toggle::after {
+         transform: rotate(180deg);
+     }
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .navbar-container .dropdown .services-menu {
+         background: var(--tm-surface);
+         border-color: var(--tm-border);
+         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+     }
+
+     :root .services-menu-label {
+         color: var(--tm-muted);
+     }
+
+     :root .navbar-container .services-menu .dropdown-item {
+         color: var(--tm-text);
+     }
+
+     :root .navbar-container .services-menu .dropdown-item:focus-visible,
+     :root .navbar-container .services-menu .dropdown-item[aria-current="page"],
+     :root .navbar-container .services-menu .dropdown-item:active {
+         background: var(--tm-surface-2);
+         color: #fff;
+     }
+
+     :root .services-menu-all {
+         color: var(--tm-link);
+         border-top-color: var(--tm-border);
+     }
+
+     :root .navbar-container .nav-link.active {
+         color: var(--tm-link) !important;
+     }
+
+     :root .navbar-container .nav-link.nav-sublink {
+         color: var(--tm-muted) !important;
+     }
+
+     :root .text-container.text1 {
+         color: var(--tm-text);
+     }
+
+     :root .text-container.text2 {
+         color: var(--tm-muted);
+     }
+
+     /* the banner blob is a JPEG on white: invert it and screen-blend it so only the blue glow remains */
+     :root .common-banner .common-banner-img {
+         filter: invert(1) hue-rotate(180deg);
+         mix-blend-mode: screen;
+     }
+
+     :root .hero-btn-secondary {
+         background-color: rgba(11, 15, 30, 0.75);
+         border-color: var(--tm-border);
+         color: var(--tm-text);
+     }
+ }
+
+ @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+     :root .navbar-container .services-menu .dropdown-item:hover {
+         background: var(--tm-surface-2);
+         color: #fff;
      }
  }

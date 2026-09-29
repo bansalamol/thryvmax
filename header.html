@@ -18,102 +18,68 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                        <a class="nav-link" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/aboutus.html">About Us</a>
                     </li>
 
+                    <!-- Desktop: grouped services menu (opens on hover and on keyboard focus) -->
                     <li class="nav-item d-none d-lg-block">
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="/services.html">
-                                Services
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="/services.html">Services</a>
 
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class=" dropdown-item" href="/custom-erp-crm-software-development.html">ERP /
-                                        CRM</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                        href="/custom-web-application-software-development.html">Web Development</a>
-                                </li>
-								<li>
-                                    <a class="dropdown-item"
-                                        href="/custom-buisness-automation-solutions.html">Business Automation
-                            Solution</a>
-                                </li>
-
-								
-								
-                                <li>
-                                    <a class="dropdown-item" href="/mobile-application-development.html">
-                                        Mobile Application Development
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item" href="/zoho-one-implementation-partner.html">
-                                        ZOHO Implementation Partner
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a class="dropdown-item" href="/zoho-customization-services.html">
-                                        ZOHO Customisation Partner
-                                    </a>
-                                </li>
-
-
-                                <li>
-                                    <a class="dropdown-item" href="/seo-digital-marketing-services.html">
-                                        SEO & Digital Marketing Solutions</a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item" href="/odoo-customization-services.html">
-                                        ODOO Customisation Partner</a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu services-menu">
+                                <div class="services-menu-group">
+                                    <p class="services-menu-label">Development</p>
+                                    <ul>
+                                        <li><a class="dropdown-item" href="/custom-erp-crm-software-development.html">ERP / CRM Development</a></li>
+                                        <li><a class="dropdown-item" href="/custom-web-application-software-development.html">Web Development</a></li>
+                                        <li><a class="dropdown-item" href="/mobile-application-development.html">Mobile Application Development</a></li>
+                                        <li><a class="dropdown-item" href="/custom-buisness-automation-solutions.html">Business Automation Solution</a></li>
+                                    </ul>
+                                </div>
+                                <div class="services-menu-group">
+                                    <p class="services-menu-label">Zoho, Odoo &amp; Marketing</p>
+                                    <ul>
+                                        <li><a class="dropdown-item" href="/zoho-one-implementation-partner.html">Zoho Implementation Partner</a></li>
+                                        <li><a class="dropdown-item" href="/zoho-customization-services.html">Zoho Customisation Partner</a></li>
+                                        <li><a class="dropdown-item" href="/odoo-customization-services.html">Odoo Customisation Partner</a></li>
+                                        <li><a class="dropdown-item" href="/seo-digital-marketing-services.html">SEO & Digital Marketing Solutions</a></li>
+                                    </ul>
+                                </div>
+                                <a class="services-menu-all" href="/services.html">View all services <span aria-hidden="true">→</span></a>
+                            </div>
                         </div>
                     </li>
-                    <li class="nav-item d-lg-none">
-                        <a class=" nav-link" href="/services.html">Services</a>
-                    </li>
 
-
+                    <!-- Mobile: services listed under their parent -->
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/custom-erp-crm-software-development.html">ERP / CRM</a>
-                    </li>
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/custom-web-application-software-development.html">Web
-                            Development</a>
+                        <a class="nav-link" href="/services.html">Services</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/custom-buisness-automation-solutions.html">Business Automation
-                            Solution</a>
+                        <a class="nav-link nav-sublink" href="/custom-erp-crm-software-development.html">ERP / CRM Development</a>
                     </li>
-					<li class="nav-item d-lg-none">
-                        <a class="nav-link"href="/mobile-application-development.html">
-                                        Mobile Application Development</a>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/custom-web-application-software-development.html">Web Development</a>
                     </li>
-					<li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/zoho-one-implementation-partner.html">
-                                        ZOHO Implementation Partner</a>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/mobile-application-development.html">Mobile Application Development</a>
                     </li>
-					<li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/zoho-customization-services.html">
-                                        ZOHO Customisation Partner</a>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/custom-buisness-automation-solutions.html">Business Automation Solution</a>
                     </li>
-					<li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/seo-digital-marketing-services.html">
-                                        SEO & Digital Marketing Solutions</a>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/zoho-one-implementation-partner.html">Zoho Implementation Partner</a>
                     </li>
-					<li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/odoo-customization-services.html">
-                                        ODOO Customisation Partner</a>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/zoho-customization-services.html">Zoho Customisation Partner</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/odoo-customization-services.html">Odoo Customisation Partner</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link nav-sublink" href="/seo-digital-marketing-services.html">SEO & Digital Marketing Solutions</a>
                     </li>
 
                     <li class="nav-item">
