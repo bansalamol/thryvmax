@@ -10,7 +10,7 @@
  }
 
  .main-head {
-     font-size: 1.1vw;
+     font-size: 14px;
      font-weight: 600;
      background-color: #00357a;
      color: white;
@@ -22,8 +22,9 @@
  }
 
  .sub-head {
-     font-size: 3vw;
-     font-weight: 600;
+     font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+     font-weight: 500;
+     line-height: 1.2;
  }
 
 
@@ -44,7 +45,7 @@
  }
 
  .banner-head {
-     font-size: 1vw;
+     font-size: 14px;
      font-weight: 600;
      /* background: #040836; */
      background-color: #00357a;
@@ -57,7 +58,21 @@
  }
 
  .banner-sub-head {
-     font-size: 4.2vw;
+     font-size: clamp(2rem, 1.2rem + 3.5vw, 3.75rem);
+     color: #040836;
+     line-height: 1.2;
+     margin-bottom: 0.5rem;
+ }
+
+ /* Label pills are paragraphs, not headings; keep the spacing they had as h2 */
+ .main-head,
+ .banner-head {
+     line-height: 1.2;
+ }
+
+ p.main-head,
+ p.banner-head {
+     margin-bottom: 0.5rem;
  }
 
 
@@ -117,7 +132,7 @@
 
  .marquee-text-left {
      display: inline-block;
-     font-size: 4vw;
+     font-size: clamp(1.5rem, 4vw, 3.6rem);
      padding-block: 10px;
      padding-right: 50px;
      background: #00357a;
@@ -193,7 +208,7 @@
 
  .navbar-container .nav-link {
      color: black !important;
-     font-size: 1.3vw;
+     font-size: 16px;
  }
 
  .navbar-container .logo {
@@ -205,7 +220,8 @@
      display: none;
  }
 
- .navbar-container .dropdown:hover .dropdown-menu {
+ .navbar-container .dropdown:hover .dropdown-menu,
+ .navbar-container .dropdown:focus-within .dropdown-menu {
      display: block;
  }
 
@@ -221,12 +237,23 @@
      background-color: #00357A;
  }
 
- .navbar-container button.btn {
-     border-radius: 7px;
+ .navbar-container .btn {
+     border-radius: 10px;
      padding: 7px 30px;
      background-color: #00357a;
      color: white;
 
+ }
+
+ .navbar-container .btn:hover {
+     background-color: #002a61;
+     color: white;
+ }
+
+ .navbar-container .btn:active {
+     background-color: #001f49;
+     border-color: transparent;
+     color: white;
  }
 
  .navbar-container.scrolled {
@@ -294,22 +321,10 @@
          height: 350px;
      }
 
-     .section-4 .cardd .content h6 {
-         font-size: 2.5vw !important;
-     }
-
-
-     .section-4 .cardd .content p {
-         font-size: 1.6vw !important;
-     }
-
      .navbar-container {
          background: white;
      }
 
-     .navbar-container .nav-link {
-         font-size: 2vw;
-     }
  }
 
 
@@ -318,27 +333,12 @@
          padding-top: 130px;
      }
 
-     .sub-head {
-         font-size: 3.5vw;
-     }
-
      /*  */
      .widning-image-section .img-container {
          height: 300px;
      }
 
 
-     .section-4 .cardd .content h6 {
-         font-size: 4vw !important;
-     }
-
-     .section-4 .cardd .content p {
-         font-size: 3vw !important;
-     }
-
-     .navbar-container .nav-link {
-         font-size: 3 vw;
-     }
  }
 
 
@@ -349,16 +349,323 @@
      }
 
 
-     .sub-head {
-         font-size: 5vw;
-     }
-
 
      .widning-image-section .img-container {
          height: 250px;
      }
 
-     .navbar-container .nav-link {
-         font-size: 4vw;
+ }
+
+ /* Touch devices: 44px minimum hit targets */
+ @media (pointer: coarse) {
+     footer li a {
+         display: inline-block;
+         padding-block: 10px;
+         min-width: 44px;
+     }
+
+     footer .social-icon {
+         padding: 7px;
+         box-sizing: content-box;
+     }
+
+     .navbar-toggler,
+     .navbar-container .btn,
+     .section-6 .btn {
+         min-height: 44px;
+     }
+ }
+
+ /* One corner radius for rounded images and cards (Bootstrap's rounded-3 is 8px, rounded-4 is 16px) */
+ .rounded-3,
+ .rounded-4 {
+     border-radius: 12px !important;
+ }
+
+ /* Respect the system Reduce Motion setting (every page loads this file) */
+ @media (prefers-reduced-motion: reduce) {
+     html {
+         scroll-behavior: auto;
+     }
+
+     *,
+     *::before,
+     *::after {
+         transition: none !important;
+         animation: none !important;
+     }
+ }
+
+ /* Dark buttons use the brand navy (all states, via Bootstrap's button variables) */
+ .btn-dark {
+     --bs-btn-bg: #00357a;
+     --bs-btn-border-color: #00357a;
+     --bs-btn-hover-bg: #002a61;
+     --bs-btn-hover-border-color: #002a61;
+     --bs-btn-active-bg: #001f49;
+     --bs-btn-active-border-color: #001f49;
+     --bs-btn-disabled-bg: #00357a;
+     --bs-btn-disabled-border-color: #00357a;
+ }
+
+ /* ================= Increase Contrast (system setting) ================= */
+ @media (prefers-contrast: more) {
+     :root footer a.text-white-50 {
+         color: #fff !important;
+     }
+
+     :root .section-5 p,
+     :root .section-5 .includes small {
+         color: #fff !important;
+         opacity: 1 !important;
+     }
+
+     :root .section-5 hr {
+         opacity: 0.6 !important;
+     }
+
+     :root .section-6 .circle-item span {
+         background: #fff;
+     }
+
+     :root .curve-container .top-head,
+     :root .curve-container-sm .top-head {
+         border-color: #333;
+     }
+
+     :root .accordion .accordion-item {
+         border-bottom-color: #555 !important;
+     }
+
+     :root .section-9 .side-list .item {
+         border-bottom-width: 2px;
+     }
+
+     :root .form-control,
+     :root .form-select {
+         border-color: #555;
+     }
+ }
+
+ /* ================= Dark Mode (system setting) =================
+    Photos, the home hero artwork and the brand-navy sections keep their look;
+    white and pale surfaces switch to a dark navy palette. */
+ @media (prefers-color-scheme: dark) {
+     :root {
+         color-scheme: dark;
+         --tm-bg: #0b0f1e;
+         --tm-surface: #151b30;
+         --tm-surface-2: #1c2440;
+         --tm-text: #e8eaf2;
+         --tm-muted: #b8bdd0;
+         --tm-link: #9dbcff;
+         --tm-border: #2e3656;
+         --bs-body-bg: var(--tm-bg);
+         --bs-body-color: var(--tm-text);
+         --bs-emphasis-color: #fff;
+         --bs-secondary-color: var(--tm-muted);
+         --bs-heading-color: var(--tm-text);
+         --bs-border-color: var(--tm-border);
+         --bs-tertiary-bg: var(--tm-surface);
+         --bs-secondary-bg: var(--tm-surface-2);
+         --bs-link-color: var(--tm-link);
+         --bs-link-hover-color: #c3d6ff;
+     }
+
+     :root body,
+     :root .remianin-sections,
+     :root .scroll-section,
+     :root .overlap-section,
+     :root .curve-container-sm {
+         background-color: var(--tm-bg);
+         color: var(--tm-text);
+     }
+
+     :root a {
+         color: var(--tm-link);
+     }
+
+     :root .btn,
+     :root .btn:hover {
+         color: var(--bs-btn-color);
+     }
+
+     /* Header */
+     :root .navbar-container,
+     :root .navbar-container.scrolled {
+         background-color: var(--tm-bg);
+         box-shadow: 0 1px 0 var(--tm-border);
+     }
+
+     :root .navbar-container .nav-link,
+     :root .navbar-container.scrolled .nav-link {
+         color: var(--tm-text) !important;
+     }
+
+     :root .navbar-toggler {
+         border-color: var(--tm-border);
+     }
+
+     :root .navbar-toggler-icon {
+         filter: invert(1);
+     }
+
+     :root .dropdown-menu {
+         --bs-dropdown-bg: var(--tm-surface);
+         --bs-dropdown-link-color: var(--tm-text);
+         --bs-dropdown-link-hover-bg: var(--tm-surface-2);
+         --bs-dropdown-link-hover-color: #fff;
+         --bs-dropdown-border-color: var(--tm-border);
+     }
+
+     /* Home */
+     :root .text-dark.section-sub-head {
+         color: var(--tm-text) !important;
+     }
+
+     :root .text-container {
+         color: var(--tm-text);
+     }
+
+     :root .motionPath {
+         fill: none;
+     }
+
+     :root .curve-container .top-head,
+     :root .curve-container-sm .top-head {
+         color: var(--tm-text);
+         border-color: var(--tm-border);
+     }
+
+     :root .curve-container-sm .swiper-slide-card {
+         background: var(--tm-surface);
+     }
+
+     :root .section-6 .tabs {
+         background-color: var(--tm-surface);
+     }
+
+     :root .section-6 .tabs button {
+         color: var(--tm-text);
+     }
+
+     :root .section-6 .tabs button.active {
+         color: #040836;
+     }
+
+     :root .parallax-section,
+     :root .parallax-sm-section {
+         background: var(--tm-surface);
+     }
+
+     :root .parallax-section .header,
+     :root .parallax-sm-section .header {
+         color: var(--tm-text);
+     }
+
+     :root .accordion {
+         --bs-accordion-bg: transparent;
+         --bs-accordion-color: var(--tm-text);
+         --bs-accordion-btn-color: var(--tm-text);
+         --bs-accordion-active-color: var(--tm-link);
+     }
+
+     :root .accordion-button,
+     :root .accordion-button.collapsed {
+         color: var(--tm-text);
+     }
+
+     :root .accordion-button:not(.collapsed) {
+         color: var(--tm-link);
+     }
+
+     :root .accordion-body {
+         color: var(--tm-muted);
+     }
+
+     :root .accordion .accordion-item {
+         border-bottom-color: var(--tm-border) !important;
+     }
+
+     :root .accordion-button:focus-visible {
+         outline-color: var(--tm-link);
+     }
+
+     /* Inner pages */
+     :root .banner-sub-head {
+         color: #fff;
+     }
+
+     :root .common-banner-text h2 {
+         background-image: linear-gradient(to bottom, #1a2140, #10152a);
+     }
+
+     :root .section-4 .cardd,
+     :root .feature-card,
+     :root .blogs .cardd,
+     :root .contact {
+         background: var(--tm-surface);
+         color: var(--tm-text);
+         box-shadow: none;
+     }
+
+     :root .icon-box {
+         background: var(--tm-surface-2);
+     }
+
+     :root .contact-us {
+         background-color: var(--tm-bg);
+     }
+
+     :root .contact .dropdown button {
+         border-color: var(--tm-border);
+         color: var(--tm-text);
+     }
+
+     :root .section-6 .cardd:not(:last-child) {
+         border-bottom-color: var(--tm-border);
+     }
+
+     :root .btn-close {
+         filter: invert(1) grayscale(100%) brightness(200%);
+     }
+ }
+
+ /* Dark Mode: a brighter brand blue so buttons and pills keep their shape on dark surfaces
+    (white text on #2563c9 is 5.7:1; the fill is 3:1+ against the page and cards) */
+ @media (prefers-color-scheme: dark) {
+     :root .btn-dark {
+         --bs-btn-bg: #2563c9;
+         --bs-btn-border-color: #2563c9;
+         --bs-btn-hover-bg: #1f56b0;
+         --bs-btn-hover-border-color: #1f56b0;
+         --bs-btn-active-bg: #1a4a99;
+         --bs-btn-active-border-color: #1a4a99;
+     }
+
+     :root .navbar-container .btn,
+     :root .contact button,
+     :root .main-head,
+     :root .banner-head,
+     :root .section-4 .cardd .arrow,
+     :root .swiper-button-prev,
+     :root .swiper-button-next {
+         background-color: #2563c9;
+     }
+
+     :root .navbar-container .btn:hover {
+         background-color: #1f56b0;
+     }
+
+     :root .navbar-container .btn:active {
+         background-color: #1a4a99;
+     }
+
+     :root .contact .btn-dark:hover {
+         background-color: #1f56b0;
+     }
+
+     :root .contact .btn-dark:active {
+         background-color: #1a4a99;
      }
  }

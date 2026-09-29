@@ -2,6 +2,7 @@
 
 window.addEventListener("scroll", function () {
     const nav = document.getElementById("navcontainer");
+    if (!nav) return; // header.html is injected after load
     if (window.scrollY > 80) {
         nav.classList.add("scrolled");
     } else {
@@ -11,50 +12,62 @@ window.addEventListener("scroll", function () {
 
 gsap.registerPlugin(ScrollTrigger);
 
-//Lenis
-const lenis = new Lenis({
-    duration: 3,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    smoothTouch: false,
-    autoRaf: false
-})
+// Respect the system Reduce Motion setting: keep fades, drop movement, scaling and rotation
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motion = (props) => (reduceMotion ? {} : props);
 
-function raf(time) {
-    lenis.raf(time)
+//Lenis
+if (!reduceMotion) {
+    const lenis = new Lenis({
+        duration: 3,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: false,
+        autoRaf: false
+    })
+
+    function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+    }
     requestAnimationFrame(raf)
 }
-requestAnimationFrame(raf)
 
 // PAERALEX
-const tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-    }
-});
+if (!reduceMotion) {
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+        }
+    });
 
-gsap.utils.toArray(".parallax").forEach(layer => {
-    const depth = layer.dataset.depth;
-    const movement = -(layer.offsetHeight * depth)
-    tl.to(layer, { y: movement, ease: "none" }, 0)
-});
+    gsap.utils.toArray(".parallax").forEach(layer => {
+        const depth = layer.dataset.depth;
+        const movement = -(layer.offsetHeight * depth)
+        tl.to(layer, { y: movement, ease: "none" }, 0)
+    });
+}
 
 // TEXT REVEAL
 gsap.fromTo(".Ban-text",
     {
         opacity: 0,
-        y: 10,
-        rotationX: 90,         // flipped forward
-        transformPerspective: 800, // depth effect
-        transformOrigin: "center top" // pivot point
+        ...motion({
+            y: 10,
+            rotationX: 90,         // flipped forward
+            transformPerspective: 800, // depth effect
+            transformOrigin: "center top" // pivot point
+        })
     },
     {
         opacity: 1,
-        y: 0,
-        rotationX: 0,          // flat/normal
+        ...motion({
+            y: 0,
+            rotationX: 0          // flat/normal
+        }),
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
@@ -68,11 +81,10 @@ gsap.fromTo(".Ban-text",
 
 //  BANNER HEAD + SUBHEAD
 gsap.fromTo(".main-banner-head, .main-banner-sub-head",
-    { opacity: 0, y: 100, scale: 0.5 },
+    { opacity: 0, ...motion({ y: 100, scale: 0.5 }) },
     {
         opacity: 1,
-        y: 0,
-        scale: 1,
+        ...motion({ y: 0, scale: 1 }),
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
@@ -101,10 +113,9 @@ gsap.fromTo(".main-banner-head, .main-banner-sub-head",
 // );
 
 // SECOND SEC
-// Rotate the center image continuously while pinned
+// Rotate the center image continuously while pinned (the pin stays under Reduce Motion so the text sequence keeps its scroll distance)
 gsap.to(".center-image", {
-    rotation: 180,
-    scale: 1.6,
+    ...motion({ rotation: 180, scale: 1.6 }),
     ease: "none",
     scrollTrigger: {
         trigger: ".scroll-section",
@@ -128,23 +139,23 @@ const sec2 = gsap.timeline({
 // First text reveal
 sec2.fromTo(
     ".text1",
-    { opacity: 0, y: 50, scale: 0.8, rotation: -5 },
-    { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 1.5, ease: "back.out(1.7)" }
+    { opacity: 0, ...motion({ y: 50, scale: 0.8, rotation: -5 }) },
+    { opacity: 1, ...motion({ y: 0, scale: 1, rotation: 0 }), duration: 1.5, ease: "back.out(1.7)" }
 )
     .to(
         ".text1",
-        { opacity: 0, y: -50, scale: 0.8, rotation: 5, duration: 1, delay: 1, ease: "power1.in" }
+        { opacity: 0, ...motion({ y: -50, scale: 0.8, rotation: 5 }), duration: 1, delay: 1, ease: "power1.in" }
     );
 
 // Second text reveal
 sec2.fromTo(
     ".text2",
-    { opacity: 0, y: 50, scale: 0.8, rotation: -5 },
-    { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 1.5, ease: "back.out(1.7)" }
+    { opacity: 0, ...motion({ y: 50, scale: 0.8, rotation: -5 }) },
+    { opacity: 1, ...motion({ y: 0, scale: 1, rotation: 0 }), duration: 1.5, ease: "back.out(1.7)" }
 )
     .to(
         ".text2",
-        { opacity: 0, y: -50, scale: 0.8, rotation: 5, duration: 1, delay: 1, ease: "power1.in" }
+        { opacity: 0, ...motion({ y: -50, scale: 0.8, rotation: 5 }), duration: 1, delay: 1, ease: "power1.in" }
     );
 
 
@@ -163,11 +174,10 @@ ScrollTrigger.create({
 });
 
 gsap.fromTo(".pin-section .main-head , .pin-section .sub-head , .pin-section p",
-    { opacity: 0, y: 100, scale: 0.5 },
+    { opacity: 0, ...motion({ y: 100, scale: 0.5 }) },
     {
         opacity: 1,
-        y: 0,
-        scale: 1,
+        ...motion({ y: 0, scale: 1 }),
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
@@ -179,128 +189,137 @@ gsap.fromTo(".pin-section .main-head , .pin-section .sub-head , .pin-section p",
     }
 );
 
-gsap.fromTo(".pin-section .main-head , .pin-section .sub-head , .pin-section p",
-    { y: 0 },
-    {
-        y: -30,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".pin-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true
+if (!reduceMotion) {
+    gsap.fromTo(".pin-section .main-head , .pin-section .sub-head , .pin-section p",
+        { y: 0 },
+        {
+            y: -30,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".pin-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true
+            }
         }
-    }
-);
+    );
 
-gsap.fromTo(" .pin-section img",
-    { y: 0, scale: 1 },
-    {
-        scale: 0.8,
-        y: -50,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".pin-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true
+    gsap.fromTo(" .pin-section img",
+        { y: 0, scale: 1 },
+        {
+            scale: 0.8,
+            y: -50,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".pin-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true
+            }
         }
-    }
-);
+    );
+}
 
-// 
+//
 // Header moves slower (small y shift)
 // Make section scroll slower (pin + longer end)
-ScrollTrigger.create({
-    trigger: ".parallax-section",
-    start: "top top",
-    end: "+=200%",   // <- extend scroll distance (slows section)
-    pin: true,
-    scrub: true
-});
-
-// Background/header moves slower
-gsap.to(".parallax-section .header", {
-    y: -100,
-    ease: "none",
-    scrollTrigger: {
+// Under Reduce Motion the CSS shows the static card grid (.parallax-sm-section) instead
+if (!reduceMotion) {
+    ScrollTrigger.create({
         trigger: ".parallax-section",
         start: "top top",
-        end: "+=200%", // must match pin distance
+        end: "+=200%",   // <- extend scroll distance (slows section)
+        pin: true,
         scrub: true
-    }
-});
+    });
 
-// Cards move faster
-gsap.to(".parallax-section .cards", {
-    y: -1000,
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".parallax-section",
-        start: "top top",
-        end: "+=200%",
-        scrub: true
-    }
-});
+    // Background/header moves slower
+    gsap.to(".parallax-section .header", {
+        y: -100,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".parallax-section",
+            start: "top top",
+            end: "+=200%", // must match pin distance
+            scrub: true
+        }
+    });
+
+    // Cards move faster
+    gsap.to(".parallax-section .cards", {
+        y: -1000,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".parallax-section",
+            start: "top top",
+            end: "+=200%",
+            scrub: true
+        }
+    });
+}
 
 // NEW ****************************
-const track = document.querySelector('.carousel-track');
-const cards = gsap.utils.toArray('.card');
+// Under Reduce Motion the logos stay still and the CSS wraps them into rows
+if (!reduceMotion) {
+    const track = document.querySelector('.carousel-track');
 
-// Duplicate cards for seamless looping
-track.innerHTML += track.innerHTML;
+    // Duplicate cards for seamless looping
+    track.innerHTML += track.innerHTML;
 
-const totalWidth = track.scrollWidth / 2; // width of original cards
+    const totalWidth = track.scrollWidth / 2; // width of original cards
 
-// Animate continuously from right to left
-const tween = gsap.to(track, {
-    x: -totalWidth,
-    ease: 'none',
-    duration: 20, // speed of animation
-    repeat: -1
-});
+    // Animate continuously from right to left
+    const tween = gsap.to(track, {
+        x: -totalWidth,
+        ease: 'none',
+        duration: 20, // speed of animation
+        repeat: -1
+    });
 
-// Stop on hover
-track.parentElement.addEventListener('mouseenter', () => tween.pause());
-track.parentElement.addEventListener('mouseleave', () => tween.resume());
+    // Stop on hover
+    track.parentElement.addEventListener('mouseenter', () => tween.pause());
+    track.parentElement.addEventListener('mouseleave', () => tween.resume());
+}
 
 
 // SECTION 5
-gsap.utils.toArray(".section-5 .sec-img").forEach((img) => {
-    gsap.fromTo(img,
-        { y: 40, scale: 0.9 },
-        {
-            scale: 1,
-            y: 0,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: img,
-                start: "top 80%",
-                end: "bottom 80%",
-                scrub: 2
+if (!reduceMotion) {
+    gsap.utils.toArray(".section-5 .sec-img").forEach((img) => {
+        gsap.fromTo(img,
+            { y: 40, scale: 0.9 },
+            {
+                scale: 1,
+                y: 0,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top 80%",
+                    end: "bottom 80%",
+                    scrub: 2
+                }
             }
-        }
-    );
-});
+        );
+    });
 
-gsap.utils.toArray(".section-5 .content h3 span h6").forEach((textAnim) => {
-    gsap.fromTo(textAnim,
-        { y: 80, scale: 0.9 },
-        {
-            y: 0,
-            scale: 1,
-            ease: "power2.out",
-            duration: 1, // optional but good to control timing
-            scrollTrigger: {
-                trigger: textAnim,
-                start: "top 95%",
-                toggleActions: "play none none reverse" // optional, smoother UX
+    gsap.utils.toArray(".section-5 .content h3 .step-line").forEach((textAnim) => {
+        gsap.fromTo(textAnim,
+            { y: 80, scale: 0.9 },
+            {
+                y: 0,
+                scale: 1,
+                ease: "power2.out",
+                duration: 1, // optional but good to control timing
+                scrollTrigger: {
+                    trigger: textAnim,
+                    start: "top 95%",
+                    toggleActions: "play none none reverse" // optional, smoother UX
+                }
             }
-        }
-    );
-});
+        );
+    });
+}
 
 
 
@@ -313,6 +332,8 @@ const tabs = document.querySelectorAll(".tabs button");
 const leftCircle = document.querySelector(".left .circle-content");
 const rightCircle = document.querySelector(".right .circle-content");
 const centerText = document.querySelector(".center-text");
+const turnDuration = reduceMotion ? 0 : 1;
+const fadeDuration = reduceMotion ? 0 : 0.4;
 
 // Example text data for each tab
 const tabData = {
@@ -342,10 +363,15 @@ arrangeCircleItems(leftCircle);
 // right starts at Math.PI to make first item on left
 arrangeCircleItems(rightCircle, 150, Math.PI);
 
-// --- INITIAL BLUR STATE ---
-gsap.set(".circle-item", { filter: "blur(2px)" });
-gsap.set(".left .circle-item:nth-child(1)", { filter: "blur(0px)" });
-gsap.set(".right .circle-item:nth-child(1)", { filter: "blur(0px)" });
+// --- ACTIVE STATE ---
+// The active item sits on the dark shape (white text); the others sit on white (navy text, see .circle-item in style.css)
+function setActiveItems(index) {
+    document.querySelectorAll(".section-6 .circle-item").forEach(item => item.classList.remove("is-active"));
+    document.querySelector(`.left .circle-item:nth-child(${index + 1})`).classList.add("is-active");
+    document.querySelector(`.right .circle-item:nth-child(${index + 1})`).classList.add("is-active");
+}
+
+setActiveItems(0);
 
 let leftRotation = 0;
 let rightRotation = 0;
@@ -373,48 +399,31 @@ tabs.forEach(tab => {
         leftRotation = -tabIndex * anglePerItem;
         rightRotation = tabIndex * anglePerItem;
 
-        gsap.to(leftCircle, { rotation: leftRotation, duration: 1, ease: "power2.inOut" });
-        gsap.to(rightCircle, { rotation: -rightRotation, duration: 1, ease: "power2.inOut" });
+        gsap.to(leftCircle, { rotation: leftRotation, duration: turnDuration, ease: "power2.inOut" });
+        gsap.to(rightCircle, { rotation: -rightRotation, duration: turnDuration, ease: "power2.inOut" });
 
         // Keep items upright
         gsap.to(".section-6 .left .circle-content .circle-item", {
             rotation: -leftRotation,
-            duration: 1,
+            duration: turnDuration,
             ease: "power2.inOut"
         });
         gsap.to(".section-6 .right .circle-content .circle-item", {
             rotation: rightRotation,
-            duration: 1,
+            duration: turnDuration,
             ease: "power2.inOut"
         });
 
-        // === BLUR EFFECT ===
-
-        // Blur all items
-        gsap.to(".circle-item", {
-            filter: "blur(1px)",
-            duration: 0.4,
-            ease: "power2.inOut"
-        });
-
-        // Remove blur from active items
-        gsap.to(`.left .circle-item:nth-child(${tabIndex + 1})`, {
-            filter: "blur(0px)",
-            duration: 0.4
-        });
-        gsap.to(`.right .circle-item:nth-child(${tabIndex + 1})`, {
-            filter: "blur(0px)",
-            duration: 0.4
-        });
+        setActiveItems(tabIndex);
 
         // Animate center text
         gsap.to(centerText, {
             opacity: 0,
-            y: -20,
-            duration: 0.4,
+            ...motion({ y: -20 }),
+            duration: fadeDuration,
             onComplete: () => {
                 centerText.textContent = tabData[key];
-                gsap.to(centerText, { opacity: 1, y: 0, duration: 0.4 });
+                gsap.to(centerText, { opacity: 1, ...motion({ y: 0 }), duration: fadeDuration });
             }
         });
     });
@@ -425,60 +434,63 @@ tabs.forEach(tab => {
 
 
 
-// 
-gsap.registerPlugin(MotionPathPlugin);
+//
+// Under Reduce Motion the CSS shows the swipe carousel (.curve-container-sm) instead of the scroll-driven wheel
+if (!reduceMotion) {
+    gsap.registerPlugin(MotionPathPlugin);
 
-const cards2 = document.querySelectorAll(".wheel__card"); // Select all cards2
-const path = "#path"; // Path selector
+    const cards2 = document.querySelectorAll(".wheel__card"); // Select all cards2
+    const path = "#path"; // Path selector
 
-const tlcurve = gsap.timeline({
-    defaults: {
-        ease: "none"
-    }
-});
-
-// Set motion paths for all cards2
-cards2.forEach((wheel__card, index) => {
-
-    const cardWidth = wheel__card.offsetWidth;
-    const totalDistance = cardWidth + 0;
-
-    gsap.set(wheel__card, {
-        motionPath: {
-            path: path,
-            align: path,
-            alignOrigin: [0.5, 1],
-            autoRotate: true,
-            start: 1,
-            end: 1,
+    const tlcurve = gsap.timeline({
+        defaults: {
+            ease: "none"
         }
     });
 
-    // Define the timeline animation for each card
-    tlcurve.to(wheel__card, {
-        motionPath: {
-            path: path,
-            align: path,
-            alignOrigin: [0.5, 1],
-            autoRotate: true,
-            start: 1,
-            end: 0,
-        },
-        immediateRender: true,
-    }, (totalDistance / 1000) * index / 3); // Adjust delay based on index
-});
+    // Set motion paths for all cards2
+    cards2.forEach((wheel__card, index) => {
 
-// Create the ScrollTrigger to control the timeline
-ScrollTrigger.create({
-    trigger: ".curve-slider",
-    start: "top 50%",
-    end: '+=1000',
-    scrub: 2,
-    animation: tlcurve,
-});
+        const cardWidth = wheel__card.offsetWidth;
+        const totalDistance = cardWidth + 0;
+
+        gsap.set(wheel__card, {
+            motionPath: {
+                path: path,
+                align: path,
+                alignOrigin: [0.5, 1],
+                autoRotate: true,
+                start: 1,
+                end: 1,
+            }
+        });
+
+        // Define the timeline animation for each card
+        tlcurve.to(wheel__card, {
+            motionPath: {
+                path: path,
+                align: path,
+                alignOrigin: [0.5, 1],
+                autoRotate: true,
+                start: 1,
+                end: 0,
+            },
+            immediateRender: true,
+        }, (totalDistance / 1000) * index / 3); // Adjust delay based on index
+    });
+
+    // Create the ScrollTrigger to control the timeline
+    ScrollTrigger.create({
+        trigger: ".curve-slider",
+        start: "top 50%",
+        end: '+=1000',
+        scrub: 2,
+        animation: tlcurve,
+    });
+}
 
 
-// 
+//
 var swiper = new Swiper(".cardSwiper", {
     slidesPerView: 3,
     spaceBetween: 20,

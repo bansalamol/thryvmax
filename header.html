@@ -3,7 +3,10 @@
     <nav class="navbar navbar-expand-lg navbar-white">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="/">
-                <img src="assets/images/logo.png" class="logo" alt="Logo">
+                <picture>
+                    <source srcset="assets/images/logo-dark.png" media="(prefers-color-scheme: dark)">
+                    <img src="assets/images/logo.png" class="logo" alt="Thryvmax home">
+                </picture>
             </a>
             <!-- <h6 class="text-white">Omkar</h6> -->
 
@@ -23,10 +26,8 @@
 
                     <li class="nav-item d-none d-lg-block">
                         <div class="dropdown">
-                            <a href="/services.html">
-                                <button class=" nav-link dropdown-toggle" type="button">
-                                    Services
-                                </button>
+                            <a class="nav-link dropdown-toggle" href="/services.html">
+                                Services
                             </a>
 
                             <ul class="dropdown-menu">
@@ -40,7 +41,7 @@
                                 </li>
 								<li>
                                     <a class="dropdown-item"
-                                        href="/custom-buisness-automation-solutions.html">Buisness Automation
+                                        href="/custom-buisness-automation-solutions.html">Business Automation
                             Solution</a>
                                 </li>
 
@@ -91,7 +92,7 @@
                             Development</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/custom-buisness-automation-solutions.html">Buisness Automation
+                        <a class="nav-link" href="/custom-buisness-automation-solutions.html">Business Automation
                             Solution</a>
                     </li>
 					<li class="nav-item d-lg-none">
@@ -104,7 +105,7 @@
                     </li>
 					<li class="nav-item d-lg-none">
                         <a class="nav-link" href="/zoho-customization-services.html">
-                                        ZOHO Customisation PartnerM</a>
+                                        ZOHO Customisation Partner</a>
                     </li>
 					<li class="nav-item d-lg-none">
                         <a class="nav-link" href="/seo-digital-marketing-services.html">
@@ -123,18 +124,13 @@
                     </li>
                 </ul>
                 <!-- Login Button small-->
-                <a class="nav-link" href="/contactus.html">
-                    <button href="#" class="btn d-block d-lg-none">Contact Us</button>
-                </a>
+                <a class="btn d-block d-lg-none" href="/contactus.html">Contact Us</a>
 
             </div>
 
 
             <!-- Login Button large-->
-            <a class="nav-link  d-none d-lg-block" href="/contactus.html">
-
-                <button href="#" class="btn ms-3">Contact Us</button>
-            </a>
+            <a class="btn ms-3 d-none d-lg-block" href="/contactus.html">Contact Us</a>
 
         </div>
     </nav>

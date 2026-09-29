@@ -83,10 +83,10 @@
      /* font-weight: 600; */
      line-height: 1.1;
      margin-bottom: 20px;
-     color: #001a3c;
+     color: #040836;
      font-weight: 500;
-     text-shadow: 0px 0px 5px #ffffff;
-     font-size: 2.5vw;
+     text-shadow: none;
+     font-size: clamp(1.75rem, 2.5vw, 3rem);
  }
 
  .banner .main-banner-sub-head {
@@ -261,7 +261,7 @@
      margin-top: 80px;
      margin-bottom: 2rem;
      position: relative;
-     color: #978d80;
+     color: #040836;
  }
 
  .parallax-section .cards {
@@ -272,13 +272,13 @@
  .parallax-section .card {
      background: crimson;
      color: white;
-     font-size: 14px;
-     border-radius: 10px;
+     font-size: 16px;
+     border-radius: 12px;
      position: absolute;
      width: 100%;
      max-width: 400px;
      margin-top: 00px;
-     padding: 20px;
+     padding: 32px;
      z-index: 2;
  }
 
@@ -307,7 +307,7 @@
  }
 
  .parallax-section .cards .card .btm-card {
-     margin-top: 100px;
+     margin-top: 24px;
  }
 
 
@@ -327,7 +327,7 @@
      font-size: 2.5rem;
      margin-bottom: 5rem;
      position: relative;
-     color: #978d80;
+     color: #040836;
  }
 
  .parallax-sm-section .cards {
@@ -338,11 +338,11 @@
 
  .parallax-sm-section .card {
      color: white;
-     font-size: 14px;
-     border-radius: 10px;
+     font-size: 16px;
+     border-radius: 12px;
      width: 100%;
      margin-top: 00px;
-     padding: 20px;
+     padding: 32px;
      z-index: 2;
      background: #00357a;
 
@@ -351,7 +351,7 @@
 
 
  .parallax-sm-section .cards .card .btm-card {
-     margin-top: 100px;
+     margin-top: 24px;
  }
 
 
@@ -364,19 +364,31 @@
  }
 
  .section-5 p {
-     font-size: 13px;
+     font-size: 15px;
      color: lightgray;
+ }
+
+ .section-5 p.lead {
+     font-size: 17px;
+     font-weight: 400;
+     line-height: 1.6;
  }
 
  .section-5 .content h3 span {
      height: fit-content;
      overflow: hidden;
      display: inline-block;
+     vertical-align: top;
  }
 
- .section-5 .content h3 span h6 {
-     line-height: 50px;
+ .section-5 .content h3 .step-line {
+     line-height: 1.15;
      margin-bottom: 0px;
+ }
+
+ .section-5 hr {
+     opacity: 0.2 !important;
+     border-top: 1px solid #fff !important;
  }
 
 
@@ -384,6 +396,10 @@
  .section-6 {
      padding-block: 100px;
      text-align: center;
+ }
+
+ .section-6 .header small {
+     font-size: 16px;
  }
 
  .section-6 .tabs {
@@ -396,12 +412,12 @@
      font-size: 14px;
      margin: 20px auto;
      padding: 5px 20px;
-     border-radius: 30px;
+     border-radius: 999px;
  }
 
  .section-6 .tabs button {
      padding: 8px 16px;
-     border-radius: 20px;
+     border-radius: 999px;
      border: none;
      cursor: pointer;
      background-color: transparent;
@@ -410,7 +426,7 @@
 
  .section-6 .tabs button.active {
      background-color: #f5b324;
-     border-radius: 20px;
+     border-radius: 999px;
  }
 
  .section-6 .container {
@@ -461,7 +477,7 @@
      translate: -50% -50%;
      background: #f5b324;
      padding: 7px 20px;
-     border-radius: 7px;
+     border-radius: 999px;
      box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.238);
 
 
@@ -469,6 +485,7 @@
 
  .section-6 .left .left-info h6 {
      font-size: 12px !important;
+     color: #040836;
  }
 
  .section-6 .right {
@@ -500,12 +517,13 @@
      translate: 50% -50%;
      background: #f5b324;
      padding: 7px 20px;
-     border-radius: 7px;
+     border-radius: 999px;
      box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.238);
  }
 
  .section-6 .right .right-info h6 {
      font-size: 12px !important; 
+     color: #040836;
  }
 
  .section-6 .circle-content {
@@ -525,7 +543,26 @@
      transform: translate(-50%, -50%);
      font-size: 14px;
      white-space: nowrap;
-     text-shadow: 0px 0px 1px rgb(0, 0, 0);
+     color: #040836;
+     transition: color 0.4s ease;
+ }
+
+ /* The active item sits on the dark shape; the others can land on its fading edge, so they get a light chip */
+ .section-6 .circle-item.is-active {
+     color: #fff;
+     opacity: 1;
+ }
+
+ .section-6 .circle-item span {
+     padding: 4px 10px;
+     border-radius: 12px;
+     background: rgba(255, 255, 255, 0.85);
+     text-align: center;
+     transition: background-color 0.4s ease;
+ }
+
+ .section-6 .circle-item.is-active span {
+     background: transparent;
  }
 
 
@@ -540,8 +577,8 @@
     max-width: 200px;
     padding: 10px 20px;
     background: #F5B324;
-    color: white;
-    border-radius: 20px;
+    color: #040836;
+    border-radius: 999px;
     position: relative;
     z-index: 10;
     font-size: 14px;
@@ -558,39 +595,44 @@
  .section-9 .hero-card {
      overflow: hidden;
      transition: all 0.3s ease;
-     border-radius: 20px;
- }
-
- .section-9 .hero-card:hover {
-     scale: 0.9;
+     border-radius: 12px;
  }
 
  .section-9 .hero-card img {
      transition: transform 0.5s ease;
+     border-radius: 12px !important;
  }
 
- .section-9 .hero-card:hover img {
-     transform: scale(1.1);
+ .section-5 .sec-img {
+     border-radius: 12px !important;
  }
 
 
  .section-9 .side-list .item {
      border-bottom: 1px solid rgb(255, 255, 255);
      padding-block: 20px;
-     transition: margin-left 0.3s ease;
+     transition: transform 0.3s ease;
  }
 
- .section-9 .side-list .item:hover {
-     margin-left: 10px;
+ .section-9 .side-list a:hover .item,
+ .section-9 .side-list a:focus-visible .item {
+     transform: translateX(10px);
  }
 
  .section-9 .side-list .item h6 {
      color: #fafafa;
+     font-size: 13px;
+     letter-spacing: .06em;
+     text-transform: uppercase;
  }
 
 
  .section-9 .side-list .item p {
      margin-bottom: 0;
+ }
+
+ .section-9 .side-list a {
+     color: inherit;
  }
 
  /*  */
@@ -620,11 +662,11 @@
      height: auto;
      margin: 0;
      border: none;
-     cursor: pointer;
+     cursor: default;
  }
 
  .section-10 .top-btm-text {
-     font-size: 2.5vw;
+     font-size: clamp(1.5rem, 2.5vw, 2.25rem);
      font-weight: 500;
  }
 
@@ -704,12 +746,13 @@
  .curve-container .top-head {
      width: fit-content;
      margin-bottom: 20px;
-     font-size: 1.1vw;
+     font-size: 14px;
      font-weight: 500;
      color: #171717;
      border: 1px solid #b6b6b6;
      padding: 8px 20px;
-     border-radius: 30px;
+     border-radius: 999px;
+     line-height: 1.2;
  }
 
  .curve-container svg {
@@ -720,7 +763,7 @@
      width: 260px;
      height: 320px;
      margin: 0px 30px;
-     border-radius: 10px;
+     border-radius: 12px;
      overflow: hidden;
  }
 
@@ -741,12 +784,13 @@
  .curve-container-sm .top-head {
      width: fit-content;
      margin-bottom: 20px;
-     font-size: 1.1vw;
+     font-size: 14px;
      font-weight: 500;
      color: #171717;
      border: 1px solid #b6b6b6;
      padding: 8px 20px;
-     border-radius: 30px;
+     border-radius: 999px;
+     line-height: 1.2;
  }
 
 
@@ -758,11 +802,10 @@
 
  .curve-container-sm .swiper-slide-card {
      background: #fff;
-     border-radius: 16px;
+     border-radius: 12px;
      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
      font-size: 22px;
      font-weight: 600;
-     border-radius: 20px;
      overflow: hidden;
  }
 
@@ -783,8 +826,8 @@
 
  /* Left big heading */
  .faq-hero {
-     font-family: 'Playfair Display', serif;
-     font-weight: 400;
+     font-family: inherit;
+     font-weight: 500;
      line-height: 1;
      padding-top: 0.4rem;
  }
@@ -842,9 +885,15 @@
      box-shadow: none;
  }
 
+ .accordion-button:focus-visible {
+     outline: 2px solid #00357a;
+     outline-offset: 2px;
+ }
+
  .accordion-button:not(.collapsed) {
      background: transparent;
      box-shadow: none;
+     color: #00357a;
  }
 
  /* right-aligned icon (plus / minus) */
@@ -922,10 +971,6 @@
          color: white;
      }
 
-     .Ban-text h6 {
-         font-size: 1.6vw;
-     }
-
      .layer-1 {
          background-position: center 40% !important;
      }
@@ -955,10 +1000,6 @@
          color: white;
      }
 
-     .Ban-text h6 {
-         font-size: 4vw;
-     }
-
      .layer-1 {
          background-image: url('./images/home/man-standing-image.webp');
          background-position: center 40% !important;
@@ -970,10 +1011,6 @@
          background-size: 180% auto;
          background-position: center top !important;
 
-     }
-
-     .banner .main-banner-head {
-         font-size: 5vw;
      }
 
 
@@ -991,10 +1028,6 @@
          font-size: 6vw;
      }
 
-     .section-10 .top-btm-text {
-         font-size: 4vw;
-     }
-
 
 
 
@@ -1002,3 +1035,57 @@
 
 
  /*  */
+ /* Section titles: one shared size / weight / leading */
+ .pin-section .sub-head,
+ .overlap-section .section-sub-head,
+ .curve-container-sm .section-sub-head,
+ .section-5 h2,
+ .section-6 .section-sub-head,
+ .parallax-section .header,
+ .parallax-sm-section .header,
+ .section-10 h2.top-btm-text,
+ .section-9 h2,
+ .section-11 .faq-hero {
+     font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+     font-weight: 500 !important;
+     line-height: 1.2;
+ }
+
+ /* Touch devices: 44px minimum hit targets */
+ @media (pointer: coarse) {
+     .swiper-button-prev,
+     .swiper-button-next {
+         height: 44px;
+         width: 44px;
+     }
+ }
+
+ /* Tablet: stack the three hero feature labels so each keeps its two lines */
+ @media (min-width: 768px) and (max-width: 991.98px) {
+     .first-section > .d-md-flex {
+         flex-direction: column;
+         gap: 16px;
+     }
+ }
+
+ /* Reduce Motion: show the static layouts instead of the scroll-driven ones */
+ @media (prefers-reduced-motion: reduce) {
+     .overlap-section,
+     .parallax-section {
+         display: none !important;
+     }
+
+     .curve-container-sm,
+     .parallax-sm-section {
+         display: block !important;
+     }
+
+     .section-10 .carousel-wrapper .carousel-track {
+         flex-wrap: wrap;
+         justify-content: center;
+     }
+ }
+
+ .section-9 h2 {
+     margin-bottom: 30px;
+ }

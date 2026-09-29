@@ -29,17 +29,17 @@
 }
 
 .section-4 .cardd .content h6 {
-    font-size: 1.8vw;
+    font-size: clamp(1.25rem, 1rem + 0.75vw, 1.625rem);
     font-weight: 500;
 }
 
 .section-4 .cardd .content p {
-    font-size: 1vw;
+    font-size: 16px;
 }
 
 .section-4 .cardd .arrow {
-    width: 3.5vw;
-    height: 3.5vw;
+    width: 44px;
+    height: 44px;
     display: grid;
     place-items: center;
     text-decoration: none;
@@ -60,10 +60,10 @@
     padding-bottom: 100px;
 }
 
-.section-6 button {
+.section-6 .btn {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.274);
     padding: 7px 20px;
-    border-radius: 30px;
+    border-radius: 999px;
     margin-top: 20px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .section-6 .cardd img {
-    width: 4vw;
+    width: clamp(40px, 4vw, 58px);
 }
 
 .section-6 .cardd:first-child {
@@ -100,30 +100,12 @@
     .section-3 .img-container {
         height: 350px;
     }
-
-
-    .section-4 .cardd .content h6 {
-        font-size: 2.5vw;
-    }
-
-    .section-4 .cardd .content p {
-        font-size: 1.6vw;
-    }
-
 }
 
 
 @media screen and (max-width : 786px) {
     .section-3 .img-container {
         height: 300px;
-    }
-
-    .section-4 .cardd .content h6 {
-        font-size: 4vw;
-    }
-
-    .section-4 .cardd .content p {
-        font-size: 3vw;
     }
 }
 

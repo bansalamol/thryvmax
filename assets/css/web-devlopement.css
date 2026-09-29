@@ -22,10 +22,6 @@
     transition: all .3s ease;
 }
 
-.section-4 .cardd:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 70px rgba(52, 52, 52, 0.537);
-}
 
 .section-4 .cardd .img-container {
     background-color: white;
@@ -46,12 +42,12 @@
 .section-4 .cardd .content {}
 
 .section-4 .cardd .content h6 {
-    font-size: 1.4vw;
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
     font-weight: 500;
 }
 
 .section-4 .cardd .content p {
-    font-size: 1vw;
+    font-size: 16px;
 }
 
 .section-4 .cardd .arrow {
@@ -77,10 +73,10 @@
     padding-bottom: 100px;
 }
 
-.section-6 button {
+.section-6 .btn {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.274);
     padding: 7px 20px;
-    border-radius: 30px;
+    border-radius: 999px;
     margin-top: 20px;
 }
 
@@ -89,7 +85,7 @@
 }
 
 .section-6 .cardd img {
-    width: 4vw;
+    width: clamp(40px, 4vw, 58px);
 }
 
 .section-6 .cardd:first-child {
