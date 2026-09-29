@@ -4,9 +4,9 @@
 
 .blogs .cardd {
     background-color: white;
-    border-radius: 5px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.09);
+    box-shadow: var(--shadow-card);
 }
 
 .blogs .cardd img {
@@ -14,11 +14,13 @@
     width: 100%;
     object-fit: cover;
     display: block;
-    transition: all 0.2s linear; 
+    transition: transform 300ms var(--ease-out);
 }
 
-.blogs .cardd:hover img { 
-    transform: scale(1.1); 
+@media (hover: hover) and (pointer: fine) {
+    .blogs .cardd:hover img {
+        transform: scale(1.03);
+    }
 }
 
 .blogs .cardd .content {

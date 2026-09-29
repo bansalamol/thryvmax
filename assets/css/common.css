@@ -1,4 +1,76 @@
- @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
+ /* ================= Motion + interaction tokens (Emil Kowalski-style curves) ================= */
+ :root {
+     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+     --shadow-card: 0 1px 2px rgba(4, 8, 54, 0.06), 0 8px 24px rgba(4, 8, 54, 0.06);
+     --focus-ring: #2563c9;
+ }
+
+ html {
+     -webkit-tap-highlight-color: transparent;
+     -webkit-text-size-adjust: 100%;
+ }
+
+ /* no double-tap-zoom delay on controls */
+ a,
+ button,
+ [role="button"],
+ summary {
+     touch-action: manipulation;
+ }
+
+ /* controls: no text selection or callout on long-press */
+ .btn,
+ .navbar-toggler,
+ .accordion-button,
+ .section-6 .tabs button,
+ .arrow {
+     -webkit-user-select: none;
+     user-select: none;
+     -webkit-touch-callout: none;
+ }
+
+ /* press feedback: the interface answers on press, not on release */
+ .btn,
+ .section-6 .tabs button,
+ .arrow {
+     transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+ }
+
+ .btn:active,
+ .section-6 .tabs button:active,
+ .arrow:active {
+     transform: scale(0.97);
+ }
+
+ /* one keyboard focus ring everywhere */
+ a:focus-visible,
+ button:focus-visible,
+ .btn:focus-visible,
+ [tabindex]:focus-visible,
+ summary:focus-visible {
+     outline: 2px solid var(--focus-ring);
+     outline-offset: 2px;
+     box-shadow: none;
+ }
+
+ .form-control:focus-visible,
+ .form-select:focus-visible {
+     outline: 2px solid var(--focus-ring);
+     outline-offset: 1px;
+     box-shadow: none;
+ }
+
+ /* forms: show invalid fields only after the user has interacted */
+ .form-control:user-invalid,
+ .form-select:user-invalid {
+     border-color: #c02b2b;
+ }
+
+ .btn[aria-busy="true"] {
+     opacity: 0.7;
+     cursor: progress;
+ }
 
  *:not(i) {
      font-family: "Poppins", sans-serif;
@@ -10,7 +82,7 @@
  }
 
  .main-head {
-     font-size: 1.1vw;
+     font-size: 14px;
      font-weight: 600;
      background-color: #00357a;
      color: white;
@@ -22,8 +94,9 @@
  }
 
  .sub-head {
-     font-size: 3vw;
-     font-weight: 600;
+     font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+     font-weight: 500;
+     line-height: 1.2;
  }
 
 
@@ -44,7 +117,7 @@
  }
 
  .banner-head {
-     font-size: 1vw;
+     font-size: 14px;
      font-weight: 600;
      /* background: #040836; */
      background-color: #00357a;
@@ -57,7 +130,21 @@
  }
 
  .banner-sub-head {
-     font-size: 4.2vw;
+     font-size: clamp(2rem, 1.2rem + 3.5vw, 3.75rem);
+     color: #040836;
+     line-height: 1.2;
+     margin-bottom: 0.5rem;
+ }
+
+ /* Label pills are paragraphs, not headings; keep the spacing they had as h2 */
+ .main-head,
+ .banner-head {
+     line-height: 1.2;
+ }
+
+ p.main-head,
+ p.banner-head {
+     margin-bottom: 0.5rem;
  }
 
 
@@ -79,18 +166,9 @@
  }
 
  .common-banner .circle-container .circle-img-2 {
-     animation: rotateInfinite 10s linear infinite;
+     will-change: transform;
  }
 
- @keyframes rotateInfinite {
-     0% {
-         transform: rotate(0deg);
-     }
-
-     100% {
-         transform: rotate(360deg);
-     }
- }
 
  /*  */
  .common-banner-text {
@@ -117,7 +195,8 @@
 
  .marquee-text-left {
      display: inline-block;
-     font-size: 4vw;
+     font-size: clamp(1.5rem, 4vw, 3.6rem);
+     font-weight: 500;
      padding-block: 10px;
      padding-right: 50px;
      background: #00357a;
@@ -152,6 +231,7 @@
      background-position: top;
      width: 100%;
      height: 80vh;
+     height: 80svh;
  }
 
  .widning-image-section .img-container-mobile-application {
@@ -181,6 +261,7 @@
 
  /* NAVBAR */
  .navbar-container {
+     transition: background-color 200ms ease, box-shadow 200ms ease;
      width: 100%;
      position: fixed;
      padding: 7px 20px;
@@ -193,7 +274,7 @@
 
  .navbar-container .nav-link {
      color: black !important;
-     font-size: 1.3vw;
+     font-size: 16px;
  }
 
  .navbar-container .logo {
@@ -201,12 +282,38 @@
  }
 
  .navbar-container .dropdown .dropdown-menu {
-
-     display: none;
+     display: block;
+     visibility: hidden;
+     opacity: 0;
+     transform: translateY(-4px) scale(0.98);
+     transform-origin: top left;
+     transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms;
  }
 
- .navbar-container .dropdown:hover .dropdown-menu {
-     display: block;
+ /* keeps the menu open while the pointer crosses the gap below the trigger */
+ .navbar-container .dropdown .dropdown-menu::before {
+     content: "";
+     position: absolute;
+     left: 0;
+     right: 0;
+     top: -10px;
+     height: 10px;
+ }
+
+ .navbar-container .dropdown:focus-within .dropdown-menu {
+     visibility: visible;
+     opacity: 1;
+     transform: none;
+     transition-delay: 0s;
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .dropdown:hover .dropdown-menu {
+         visibility: visible;
+         opacity: 1;
+         transform: none;
+         transition-delay: 0s;
+     }
  }
 
 
@@ -215,23 +322,32 @@
      flex-grow: 0;
  }
 
- .navbar-container .dropdown-item:active {
-     color: var(--bs-dropdown-link-active-color);
-     text-decoration: none;
-     background-color: #00357A;
- }
 
- .navbar-container button.btn {
-     border-radius: 7px;
+
+ .navbar-container .btn {
+     border-radius: 10px;
      padding: 7px 30px;
      background-color: #00357a;
      color: white;
 
  }
 
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .btn:hover {
+         background-color: #002a61;
+         color: white;
+     }
+ }
+
+ .navbar-container .btn:active {
+     background-color: #001f49;
+     border-color: transparent;
+     color: white;
+ }
+
  .navbar-container.scrolled {
      background-color: white;
-     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+     box-shadow: 0 1px 0 rgba(4, 8, 54, 0.08);
  }
 
 
@@ -247,7 +363,6 @@
      background-color: #040836;
      background-image: url(https://crafto.themezaa.com/marketing/wp-content/uploads/sites/10/2023/11/demo-marketing-footer-dot.svg);
      color: #fff;
-     font-family: 'Segoe UI', sans-serif;
      padding-top: 80px;
 
  }
@@ -294,22 +409,10 @@
          height: 350px;
      }
 
-     .section-4 .cardd .content h6 {
-         font-size: 2.5vw !important;
-     }
-
-
-     .section-4 .cardd .content p {
-         font-size: 1.6vw !important;
-     }
-
      .navbar-container {
          background: white;
      }
 
-     .navbar-container .nav-link {
-         font-size: 2vw;
-     }
  }
 
 
@@ -318,27 +421,12 @@
          padding-top: 130px;
      }
 
-     .sub-head {
-         font-size: 3.5vw;
-     }
-
      /*  */
      .widning-image-section .img-container {
          height: 300px;
      }
 
 
-     .section-4 .cardd .content h6 {
-         font-size: 4vw !important;
-     }
-
-     .section-4 .cardd .content p {
-         font-size: 3vw !important;
-     }
-
-     .navbar-container .nav-link {
-         font-size: 3 vw;
-     }
  }
 
 
@@ -349,16 +437,656 @@
      }
 
 
-     .sub-head {
-         font-size: 5vw;
-     }
-
 
      .widning-image-section .img-container {
          height: 250px;
      }
 
-     .navbar-container .nav-link {
-         font-size: 4vw;
+ }
+
+ /* Touch devices: 44px minimum hit targets */
+ @media (pointer: coarse) {
+     footer li a {
+         display: inline-block;
+         padding-block: 10px;
+         min-width: 44px;
+     }
+
+     footer .social-icon {
+         padding: 7px;
+         box-sizing: content-box;
+     }
+
+     .navbar-toggler,
+     .navbar-container .btn,
+     .section-6 .btn {
+         min-height: 44px;
+     }
+ }
+
+ /* One corner radius for rounded images and cards (Bootstrap's rounded-3 is 8px, rounded-4 is 16px) */
+ .rounded-3,
+ .rounded-4 {
+     border-radius: 12px !important;
+ }
+
+ /* Respect the system Reduce Motion setting (every page loads this file) */
+ @media (prefers-reduced-motion: reduce) {
+     html {
+         scroll-behavior: auto;
+     }
+
+     /* keep fades and colour changes (they aid comprehension); drop movement, scaling and height animation */
+     *,
+     *::before,
+     *::after {
+         animation: none !important;
+         transition-property: opacity, color, background-color, border-color, visibility !important;
+     }
+
+     .navbar-container .dropdown .dropdown-menu,
+     .modal.fade .modal-dialog {
+         transform: none !important;
+     }
+
+     .btn:active,
+     .section-6 .tabs button:active,
+     .arrow:active {
+         transform: none;
+     }
+ }
+
+ /* Dark buttons use the brand navy (all states, via Bootstrap's button variables) */
+ .btn-dark {
+     --bs-btn-bg: #00357a;
+     --bs-btn-border-color: #00357a;
+     --bs-btn-hover-bg: #002a61;
+     --bs-btn-hover-border-color: #002a61;
+     --bs-btn-active-bg: #001f49;
+     --bs-btn-active-border-color: #001f49;
+     --bs-btn-disabled-bg: #00357a;
+     --bs-btn-disabled-border-color: #00357a;
+ }
+
+ /* ================= Increase Contrast (system setting) ================= */
+ @media (prefers-contrast: more) {
+     :root footer a.text-white-50 {
+         color: #fff !important;
+     }
+
+     :root .section-5 p,
+     :root .section-5 .includes small {
+         color: #fff !important;
+         opacity: 1 !important;
+     }
+
+     :root .section-5 hr {
+         opacity: 0.6 !important;
+     }
+
+     :root .section-6 .circle-item span {
+         background: #fff;
+     }
+
+     :root .services-showcase .top-head {
+         border-color: #333;
+     }
+
+     :root .accordion .accordion-item {
+         border-bottom-color: #555 !important;
+     }
+
+     :root .section-9 .side-list .item {
+         border-bottom-width: 2px;
+     }
+
+     :root .form-control,
+     :root .form-select {
+         border-color: #555;
+     }
+ }
+
+ /* ================= Dark Mode (system setting) =================
+    Photos, the home hero artwork and the brand-navy sections keep their look;
+    white and pale surfaces switch to a dark navy palette. */
+ @media (prefers-color-scheme: dark) {
+     :root {
+         color-scheme: dark;
+         --tm-bg: #0b0f1e;
+         --tm-surface: #151b30;
+         --tm-surface-2: #1c2440;
+         --tm-text: #e8eaf2;
+         --tm-muted: #b8bdd0;
+         --tm-link: #9dbcff;
+         --tm-border: #2e3656;
+         --bs-body-bg: var(--tm-bg);
+         --bs-body-color: var(--tm-text);
+         --bs-emphasis-color: #fff;
+         --bs-secondary-color: var(--tm-muted);
+         --bs-heading-color: var(--tm-text);
+         --bs-border-color: var(--tm-border);
+         --bs-tertiary-bg: var(--tm-surface);
+         --bs-secondary-bg: var(--tm-surface-2);
+         --bs-link-color: var(--tm-link);
+         --bs-link-hover-color: #c3d6ff;
+     }
+
+     :root body,
+     :root .remianin-sections,
+     :root .scroll-section,
+     :root .services-showcase {
+         background-color: var(--tm-bg);
+         color: var(--tm-text);
+     }
+
+     :root a {
+         color: var(--tm-link);
+     }
+
+     :root .btn,
+     :root .btn:hover {
+         color: var(--bs-btn-color);
+     }
+
+     /* Header */
+     :root .navbar-container,
+     :root .navbar-container.scrolled {
+         background-color: var(--tm-bg);
+         box-shadow: 0 1px 0 var(--tm-border);
+     }
+
+     :root .navbar-container .nav-link,
+     :root .navbar-container.scrolled .nav-link {
+         color: var(--tm-text) !important;
+     }
+
+     :root .navbar-toggler {
+         border-color: var(--tm-border);
+     }
+
+     :root .navbar-toggler-icon {
+         filter: invert(1);
+     }
+
+     :root .dropdown-menu {
+         --bs-dropdown-bg: var(--tm-surface);
+         --bs-dropdown-link-color: var(--tm-text);
+         --bs-dropdown-link-hover-bg: var(--tm-surface-2);
+         --bs-dropdown-link-hover-color: #fff;
+         --bs-dropdown-border-color: var(--tm-border);
+     }
+
+     /* Home */
+     :root .text-dark.section-sub-head {
+         color: var(--tm-text) !important;
+     }
+
+     :root .text-container {
+         color: var(--tm-text);
+     }
+
+     :root .services-showcase .top-head {
+         color: var(--tm-text);
+         border-color: var(--tm-border);
+     }
+
+     :root .section-6 .tabs {
+         background-color: var(--tm-surface);
+     }
+
+     :root .section-6 .tabs button {
+         color: var(--tm-text);
+     }
+
+     :root .section-6 .tabs button.active {
+         color: #040836;
+     }
+
+     :root .parallax-sm-section {
+         background: var(--tm-surface);
+     }
+
+     :root .parallax-sm-section .header {
+         color: var(--tm-text);
+     }
+
+     :root .accordion {
+         --bs-accordion-bg: transparent;
+         --bs-accordion-color: var(--tm-text);
+         --bs-accordion-btn-color: var(--tm-text);
+         --bs-accordion-active-color: var(--tm-link);
+     }
+
+     :root .accordion-button,
+     :root .accordion-button.collapsed {
+         color: var(--tm-text);
+     }
+
+     :root .accordion-button:not(.collapsed) {
+         color: var(--tm-link);
+     }
+
+     :root .accordion-body {
+         color: var(--tm-muted);
+     }
+
+     :root .accordion .accordion-item {
+         border-bottom-color: var(--tm-border) !important;
+     }
+
+     :root .accordion-button:focus-visible {
+         outline-color: var(--tm-link);
+     }
+
+     /* Inner pages */
+     :root .banner-sub-head {
+         color: #fff;
+     }
+
+     :root .common-banner-text h2 {
+         background-image: linear-gradient(to bottom, #1a2140, #10152a);
+     }
+
+     :root .section-4 .cardd,
+     :root .feature-card,
+     :root .blogs .cardd,
+     :root .contact {
+         background: var(--tm-surface);
+         color: var(--tm-text);
+         box-shadow: none;
+     }
+
+     :root .icon-box {
+         background: var(--tm-surface-2);
+     }
+
+     :root .contact-us {
+         background-color: var(--tm-bg);
+     }
+
+     :root .contact .dropdown button {
+         border-color: var(--tm-border);
+         color: var(--tm-text);
+     }
+
+     :root .section-6 .cardd:not(:last-child) {
+         border-bottom-color: var(--tm-border);
+     }
+
+     :root .btn-close {
+         filter: invert(1) grayscale(100%) brightness(200%);
+     }
+ }
+
+ /* Dark Mode: a brighter brand blue so buttons and pills keep their shape on dark surfaces
+    (white text on #2563c9 is 5.7:1; the fill is 3:1+ against the page and cards) */
+ @media (prefers-color-scheme: dark) {
+     :root .btn-dark {
+         --bs-btn-bg: #2563c9;
+         --bs-btn-border-color: #2563c9;
+         --bs-btn-hover-bg: #1f56b0;
+         --bs-btn-hover-border-color: #1f56b0;
+         --bs-btn-active-bg: #1a4a99;
+         --bs-btn-active-border-color: #1a4a99;
+     }
+
+     :root .navbar-container .btn,
+     :root .contact button,
+     :root .main-head,
+     :root .banner-head,
+     :root .section-4 .cardd .arrow,
+     :root .hero-btn-primary {
+         background-color: #2563c9;
+     }
+
+     :root .navbar-container .btn:hover {
+         background-color: #1f56b0;
+     }
+
+     :root .navbar-container .btn:active {
+         background-color: #1a4a99;
+     }
+
+     :root .contact .btn-dark:hover {
+         background-color: #1f56b0;
+     }
+
+     :root .contact .btn-dark:active {
+         background-color: #1a4a99;
+     }
+ }
+
+ /* Disclosure (FAQ accordion, mobile menu): shorter, stronger curve than Bootstrap's 350ms ease */
+ .collapsing {
+     transition: height 200ms var(--ease-out);
+ }
+
+ /* Modal: settles in place (centred) instead of dropping 50px */
+ .modal.fade .modal-dialog {
+     transform: scale(0.97);
+     transition: transform 200ms var(--ease-out);
+ }
+
+ .modal.show .modal-dialog {
+     transform: none;
+ }
+
+ .modal.fade,
+ .modal-backdrop.fade {
+     transition: opacity 200ms var(--ease-out);
+ }
+
+ /* Pause control for endless marquees */
+ .marquee-container,
+ .section-10 .carousel-wrapper {
+     position: relative;
+ }
+
+ .motion-toggle {
+     position: absolute;
+     right: 12px;
+     bottom: 12px;
+     z-index: 5;
+     width: 44px;
+     height: 44px;
+     display: grid;
+     place-items: center;
+     border: 1px solid rgba(4, 8, 54, 0.15);
+     border-radius: 999px;
+     background: rgba(255, 255, 255, 0.9);
+     color: #040836;
+     cursor: pointer;
+     opacity: 0.75;
+     transition: opacity 150ms ease, transform 160ms var(--ease-out);
+ }
+
+ .motion-toggle svg {
+     fill: currentColor;
+ }
+
+ .motion-toggle .icon-play,
+ .motion-toggle[aria-pressed="true"] .icon-pause {
+     display: none;
+ }
+
+ .motion-toggle[aria-pressed="true"] .icon-play {
+     display: inline;
+ }
+
+ .motion-toggle:focus-visible {
+     opacity: 1;
+ }
+
+ .motion-toggle:active {
+     transform: scale(0.97);
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .motion-toggle:hover {
+         opacity: 1;
+     }
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .motion-toggle {
+         background: rgba(21, 27, 48, 0.9);
+         color: #e8eaf2;
+         border-color: #2e3656;
+     }
+ }
+
+ /* ================= Type scale: one family (Poppins), three weights =================
+    400 body · 500 headings, buttons · 600 labels, card titles */
+ b,
+ strong {
+     font-weight: 600;
+ }
+
+ .fw-bold {
+     font-weight: 600 !important;
+ }
+
+ .fw-light,
+ .fw-lighter {
+     font-weight: 400 !important;
+ }
+
+ .display-1,
+ .display-2,
+ .display-3,
+ .display-4,
+ .display-5,
+ .display-6 {
+     font-weight: 500;
+ }
+
+ .lead {
+     font-weight: 400;
+ }
+
+ .btn {
+     font-weight: 500;
+ }
+
+ /* page title (h1): the same size on the home hero and every inner page */
+ .banner .main-banner-head,
+ .banner-sub-head {
+     font-size: clamp(2rem, 1.2rem + 2.4vw, 3rem);
+     font-weight: 500;
+     line-height: 1.15;
+ }
+
+ /* card and list titles */
+ body .section-4 .cardd .content h6,
+ body .section-4 .cardd h6,
+ body .blogs .cardd .content h6,
+ body .section-6 .cardd h6,
+ body .feature-card h6,
+ body .contact-info h6 {
+     font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+     font-weight: 600;
+     line-height: 1.35;
+ }
+
+ /* "How it Works" step titles sit below the section title, not level with it */
+ body .section-5 .content h3 .step-line {
+     font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+     font-weight: 500;
+ }
+
+ body .accordion-button {
+     font-size: 1.125rem;
+     font-weight: 500;
+ }
+
+ footer h6 {
+     font-weight: 600;
+ }
+
+ /* ================= Navigation: current page ================= */
+ .navbar-container .nav-link.active {
+     color: #00357a !important;
+ }
+
+ @media (max-width: 991.98px) {
+     .navbar-container .nav-link.nav-sublink {
+         padding-left: 16px;
+         font-size: 15px;
+         color: #4a5068 !important;
+     }
+
+     .navbar-container .nav-link.nav-sublink[aria-current="page"] {
+         color: #00357a !important;
+     }
+ }
+
+ /* ================= Services menu: two labelled groups, centred under its trigger ================= */
+ .navbar-container .dropdown .services-menu {
+     top: calc(100% + 10px);
+     left: 50%;
+     width: 600px;
+     max-width: calc(100vw - 32px);
+     margin: 0;
+     padding: 10px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 2px 8px;
+     border: 1px solid rgba(4, 8, 54, 0.08);
+     border-radius: 14px;
+     background: #fff;
+     box-shadow: 0 4px 12px rgba(4, 8, 54, 0.06), 0 16px 40px rgba(4, 8, 54, 0.12);
+     transform: translateX(-50%) translateY(-4px) scale(0.98);
+     transform-origin: top center;
+ }
+
+ .navbar-container .dropdown:focus-within .services-menu {
+     transform: translateX(-50%);
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .dropdown:hover .services-menu {
+         transform: translateX(-50%);
+     }
+ }
+
+ .services-menu ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ }
+
+ .services-menu-label {
+     margin: 0;
+     padding: 8px 12px 6px;
+     font-size: 12px;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     color: #5b6275;
+ }
+
+ .navbar-container .services-menu .dropdown-item {
+     display: block;
+     padding: 9px 12px;
+     border-radius: 8px;
+     font-size: 15px;
+     font-weight: 500;
+     line-height: 1.35;
+     color: #040836;
+     white-space: normal;
+     transition: background-color 120ms ease, color 120ms ease;
+ }
+
+ .navbar-container .services-menu .dropdown-item:focus-visible,
+ .navbar-container .services-menu .dropdown-item[aria-current="page"] {
+     background: #eef3fb;
+     color: #00357a;
+ }
+
+ .navbar-container .services-menu .dropdown-item:active {
+     background: #e2eaf6;
+     color: #00357a;
+ }
+
+ .services-menu-all {
+     grid-column: 1 / -1;
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     margin-top: 6px;
+     padding: 12px 12px 8px;
+     border-top: 1px solid rgba(4, 8, 54, 0.08);
+     font-size: 14px;
+     font-weight: 600;
+     color: #00357a;
+ }
+
+ .services-menu-all span {
+     transition: transform 150ms var(--ease-out);
+ }
+
+ .navbar-container .dropdown-toggle::after {
+     transition: transform 150ms var(--ease-out);
+ }
+
+ .navbar-container .dropdown:focus-within .dropdown-toggle::after {
+     transform: rotate(180deg);
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .services-menu .dropdown-item:hover {
+         background: #eef3fb;
+         color: #00357a;
+     }
+
+     .services-menu-all:hover span {
+         transform: translateX(3px);
+     }
+
+     .navbar-container .dropdown:hover .dropdown-toggle::after {
+         transform: rotate(180deg);
+     }
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .navbar-container .dropdown .services-menu {
+         background: var(--tm-surface);
+         border-color: var(--tm-border);
+         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+     }
+
+     :root .services-menu-label {
+         color: var(--tm-muted);
+     }
+
+     :root .navbar-container .services-menu .dropdown-item {
+         color: var(--tm-text);
+     }
+
+     :root .navbar-container .services-menu .dropdown-item:focus-visible,
+     :root .navbar-container .services-menu .dropdown-item[aria-current="page"],
+     :root .navbar-container .services-menu .dropdown-item:active {
+         background: var(--tm-surface-2);
+         color: #fff;
+     }
+
+     :root .services-menu-all {
+         color: var(--tm-link);
+         border-top-color: var(--tm-border);
+     }
+
+     :root .navbar-container .nav-link.active {
+         color: var(--tm-link) !important;
+     }
+
+     :root .navbar-container .nav-link.nav-sublink {
+         color: var(--tm-muted) !important;
+     }
+
+     :root .text-container.text1 {
+         color: var(--tm-text);
+     }
+
+     :root .text-container.text2 {
+         color: var(--tm-muted);
+     }
+
+     /* the banner blob is a JPEG on white: invert it and screen-blend it so only the blue glow remains */
+     :root .common-banner .common-banner-img {
+         filter: invert(1) hue-rotate(180deg);
+         mix-blend-mode: screen;
+     }
+
+     :root .hero-btn-secondary {
+         background-color: rgba(11, 15, 30, 0.75);
+         border-color: var(--tm-border);
+         color: var(--tm-text);
+     }
+ }
+
+ @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+     :root .navbar-container .services-menu .dropdown-item:hover {
+         background: var(--tm-surface-2);
+         color: #fff;
      }
  }
