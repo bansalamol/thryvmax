@@ -17,6 +17,28 @@ gsap.registerPlugin(ScrollTrigger);
 // Respect the system Reduce Motion setting: skip movement, scaling and rotation
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Pause control for endless motion (WCAG 2.2.2): pauses on hover/focus and via a button
+function addMotionToggle(container, tween, label) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'motion-toggle';
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', 'Pause ' + label);
+    button.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect class="icon-pause" x="3" y="2" width="3.5" height="12" rx="1"/><rect class="icon-pause" x="9.5" y="2" width="3.5" height="12" rx="1"/><path class="icon-play" d="M4 2.5v11a.5.5 0 0 0 .76.43l9-5.5a.5.5 0 0 0 0-.86l-9-5.5A.5.5 0 0 0 4 2.5z"/></svg>';
+    let pausedByUser = false;
+    button.addEventListener('click', () => {
+        pausedByUser = !pausedByUser;
+        pausedByUser ? tween.pause() : tween.resume();
+        button.setAttribute('aria-pressed', String(pausedByUser));
+        button.setAttribute('aria-label', (pausedByUser ? 'Play ' : 'Pause ') + label);
+    });
+    container.addEventListener('pointerenter', () => tween.pause());
+    container.addEventListener('pointerleave', () => { if (!pausedByUser) tween.resume(); });
+    container.addEventListener('focusin', () => tween.pause());
+    container.addEventListener('focusout', () => { if (!pausedByUser) tween.resume(); });
+    container.appendChild(button);
+}
+
 //Lenis
 if (!reduceMotion) {
     const lenis = new Lenis({
@@ -35,51 +57,36 @@ if (!reduceMotion) {
 }
 
 if (!reduceMotion) {
-    // Flip-up animation for every .main-head
-    gsap.utils.toArray(".main-head").forEach((el) => {
-        gsap.from(el, {
-            duration: 0.5,
-            y: 8,
-            opacity: 0,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%",
-                once: true,
-            }
-        });
-    });
+    // One-time reveals for labels and section titles. IntersectionObserver reads live positions,
+    // so a reveal can't be left waiting on a trigger point that lazy images have since moved.
+    const revealOnView = (selector, offsetY, duration) => {
+        const elements = gsap.utils.toArray(selector);
+        if (!elements.length) return;
+        gsap.set(elements, { opacity: 0, y: offsetY });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                observer.unobserve(entry.target);
+                gsap.to(entry.target, { opacity: 1, y: 0, duration: duration, ease: "power3.out" });
+            });
+        }, { rootMargin: "0px 0px -10% 0px" });
+        elements.forEach((el) => observer.observe(el));
+    };
 
-    // Slide-up animation for every .sub-head
-    gsap.utils.toArray(".sub-head").forEach((el) => {
-        gsap.from(el, {
-            y: 16,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%",
-                once: true,
-            }
-        });
-    });
+    revealOnView(".main-head", 8, 0.5);
+    revealOnView(".sub-head", 16, 0.6);
+    revealOnView(".flip-up", 8, 0.5);
 
-
-
-    // FLIP UP
-    gsap.utils.toArray(".flip-up").forEach((el) => {
-        gsap.from(el, {
-            duration: 0.5,
-            y: 8,
-            opacity: 0,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%",
-                once: true,
-            }
-        });
+    // Banner badge: turns with the scroll instead of spinning forever
+    gsap.to('.common-banner .circle-container .circle-img-2', {
+        rotation: 120,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".common-banner",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+        }
     });
 
     // COMMON BVANNER IMAGE
@@ -117,9 +124,9 @@ if (!reduceMotion) {
     //
     if (document.querySelector('.widning-image-section .img-container')) {
         gsap.fromTo('.widning-image-section .img-container',
-            { width: '40%' },
+            { clipPath: 'inset(0% 30% 0% 30% round 12px)' },
             {
-                width: '90%',
+                clipPath: 'inset(0% 5% 0% 5% round 12px)',
                 ease: "none",
                 scrollTrigger: {
                     trigger: ".widning-image-section",
@@ -140,7 +147,7 @@ if (!reduceMotion) {
 
         marquee_left.innerHTML += marquee_left.innerHTML;
 
-        gsap.fromTo(
+        const marqueeTween = gsap.fromTo(
             marquee_left,
             { x: 0 },
             {
@@ -150,10 +157,12 @@ if (!reduceMotion) {
                 repeat: -1          // ♾️ infinite loop
             }
         );
+
+        addMotionToggle(marquee_left.parentElement, marqueeTween, 'scrolling text');
     }
 } else {
     // Show the widening image at its final width without the scroll animation
-    gsap.set('.widning-image-section .img-container', { width: '90%' });
+    gsap.set('.widning-image-section .img-container', { clipPath: 'inset(0% 5% 0% 5% round 12px)' });
 }
 
 
@@ -185,4 +194,14 @@ document.querySelectorAll('form[action$=".php"]').forEach((form) => {
         button.setAttribute('aria-busy', 'true');
         button.textContent = 'Sending…';
     });
+});
+
+// Lazy images change the page height after load; recalculate scroll-trigger positions when they arrive
+let scrollRefreshTimer;
+document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    if (img.complete) return;
+    img.addEventListener('load', () => {
+        clearTimeout(scrollRefreshTimer);
+        scrollRefreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+    }, { once: true });
 });

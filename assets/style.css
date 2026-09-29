@@ -1075,13 +1075,11 @@
 
  /* Reduce Motion: show the static layouts instead of the scroll-driven ones */
  @media (prefers-reduced-motion: reduce) {
-     .overlap-section,
-     .parallax-section {
+     .overlap-section {
          display: none !important;
      }
 
-     .curve-container-sm,
-     .parallax-sm-section {
+     .curve-container-sm {
          display: block !important;
      }
 

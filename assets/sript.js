@@ -51,42 +51,8 @@ if (!reduceMotion) {
     });
 }
 
-// TEXT REVEAL
-gsap.fromTo(".Ban-text",
-    {
-        opacity: 0,
-        ...motion({ y: 12 })
-    },
-    {
-        opacity: 1,
-        ...motion({ y: 0 }),
-        duration: 0.6,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: ".Ban-text",
-            start: "top 90%",
-            toggleActions: "play none none reverse"
-        }
-    }
-);
-
-
-//  BANNER HEAD + SUBHEAD
-gsap.fromTo(".main-banner-head, .main-banner-sub-head",
-    { opacity: 0, ...motion({ y: 24 }) },
-    {
-        opacity: 1,
-        ...motion({ y: 0 }),
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: ".banner",
-            start: "top 90%",
-            end: "bottom top",
-            toggleActions: "play none none reverse"
-        }
-    }
-);
+// The hero headline and feature labels are visible at first paint: no entrance animation,
+// so a deferred script can never hide content that is already on screen.
 
 // gsap.fromTo(".banner-head, .banner-sub-head",
 //     { y: 0, scale: 1 },
@@ -175,8 +141,7 @@ gsap.fromTo(".pin-section .main-head , .pin-section .sub-head , .pin-section p",
         scrollTrigger: {
             trigger: ".pin-section",
             start: "top 70%",
-            end: "bottom top",
-            toggleActions: "play none none reverse"
+            once: true
         }
     }
 );
@@ -214,42 +179,27 @@ if (!reduceMotion) {
     );
 }
 
-//
-// Header moves slower (small y shift)
-// Make section scroll slower (pin + longer end)
-// Under Reduce Motion the CSS shows the static card grid (.parallax-sm-section) instead
-if (!reduceMotion) {
-    ScrollTrigger.create({
-        trigger: ".parallax-section",
-        start: "top top",
-        end: "+=200%",   // <- extend scroll distance (slows section)
-        pin: true,
-        scrub: true
-    });
 
-    // Background/header moves slower
-    gsap.to(".parallax-section .header", {
-        y: -100,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".parallax-section",
-            start: "top top",
-            end: "+=200%", // must match pin distance
-            scrub: true
-        }
+// Pause control for endless motion (WCAG 2.2.2): pauses on hover/focus and via a button
+function addMotionToggle(container, tween, label) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'motion-toggle';
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', 'Pause ' + label);
+    button.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect class="icon-pause" x="3" y="2" width="3.5" height="12" rx="1"/><rect class="icon-pause" x="9.5" y="2" width="3.5" height="12" rx="1"/><path class="icon-play" d="M4 2.5v11a.5.5 0 0 0 .76.43l9-5.5a.5.5 0 0 0 0-.86l-9-5.5A.5.5 0 0 0 4 2.5z"/></svg>';
+    let pausedByUser = false;
+    button.addEventListener('click', () => {
+        pausedByUser = !pausedByUser;
+        pausedByUser ? tween.pause() : tween.resume();
+        button.setAttribute('aria-pressed', String(pausedByUser));
+        button.setAttribute('aria-label', (pausedByUser ? 'Play ' : 'Pause ') + label);
     });
-
-    // Cards move faster
-    gsap.to(".parallax-section .cards", {
-        y: -1000,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".parallax-section",
-            start: "top top",
-            end: "+=200%",
-            scrub: true
-        }
-    });
+    container.addEventListener('pointerenter', () => tween.pause());
+    container.addEventListener('pointerleave', () => { if (!pausedByUser) tween.resume(); });
+    container.addEventListener('focusin', () => tween.pause());
+    container.addEventListener('focusout', () => { if (!pausedByUser) tween.resume(); });
+    container.appendChild(button);
 }
 
 // NEW ****************************
@@ -257,8 +207,12 @@ if (!reduceMotion) {
 if (!reduceMotion) {
     const track = document.querySelector('.carousel-track');
 
-    // Duplicate cards for seamless looping
-    track.innerHTML += track.innerHTML;
+    // Duplicate cards for seamless looping (the copies are decorative, so screen readers skip them)
+    [...track.children].forEach((card) => {
+        const copy = card.cloneNode(true);
+        copy.setAttribute('aria-hidden', 'true');
+        track.appendChild(copy);
+    });
 
     const totalWidth = track.scrollWidth / 2; // width of original cards
 
@@ -270,9 +224,7 @@ if (!reduceMotion) {
         repeat: -1
     });
 
-    // Stop on hover
-    track.parentElement.addEventListener('mouseenter', () => tween.pause());
-    track.parentElement.addEventListener('mouseleave', () => tween.resume());
+    addMotionToggle(track.parentElement, tween, 'client logo animation');
 }
 
 
@@ -289,7 +241,7 @@ if (!reduceMotion) {
                     trigger: img,
                     start: "top 80%",
                     end: "bottom 80%",
-                    scrub: 2
+                    scrub: 0.5
                 }
             }
         );
@@ -305,7 +257,7 @@ if (!reduceMotion) {
                 scrollTrigger: {
                     trigger: textAnim,
                     start: "top 95%",
-                    toggleActions: "play none none reverse" // optional, smoother UX
+                    once: true
                 }
             }
         );
@@ -323,7 +275,7 @@ const tabs = document.querySelectorAll(".tabs button");
 const leftCircle = document.querySelector(".left .circle-content");
 const rightCircle = document.querySelector(".right .circle-content");
 const centerText = document.querySelector(".center-text");
-const turnDuration = reduceMotion ? 0 : 0.6;
+const turnDuration = reduceMotion ? 0 : 0.4;
 const fadeDuration = reduceMotion ? 0 : 0.18;
 
 // Example text data for each tab
@@ -390,19 +342,19 @@ tabs.forEach(tab => {
         leftRotation = -tabIndex * anglePerItem;
         rightRotation = tabIndex * anglePerItem;
 
-        gsap.to(leftCircle, { rotation: leftRotation, duration: turnDuration, ease: "power2.inOut" });
-        gsap.to(rightCircle, { rotation: -rightRotation, duration: turnDuration, ease: "power2.inOut" });
+        gsap.to(leftCircle, { rotation: leftRotation, duration: turnDuration, ease: "power3.inOut" });
+        gsap.to(rightCircle, { rotation: -rightRotation, duration: turnDuration, ease: "power3.inOut" });
 
         // Keep items upright
         gsap.to(".section-6 .left .circle-content .circle-item", {
             rotation: -leftRotation,
             duration: turnDuration,
-            ease: "power2.inOut"
+            ease: "power3.inOut"
         });
         gsap.to(".section-6 .right .circle-content .circle-item", {
             rotation: rightRotation,
             duration: turnDuration,
-            ease: "power2.inOut"
+            ease: "power3.inOut"
         });
 
         setActiveItems(tabIndex);
@@ -475,7 +427,7 @@ if (!reduceMotion) {
         trigger: ".curve-slider",
         start: "top 50%",
         end: '+=1000',
-        scrub: 2,
+        scrub: 0.5,
         animation: tlcurve,
     });
 }
@@ -505,4 +457,14 @@ var swiper = new Swiper(".cardSwiper", {
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 }
     }
+});
+
+// Lazy images change the page height after load; recalculate scroll-trigger positions when they arrive
+let scrollRefreshTimer;
+document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    if (img.complete) return;
+    img.addEventListener('load', () => {
+        clearTimeout(scrollRefreshTimer);
+        scrollRefreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+    }, { once: true });
 });
