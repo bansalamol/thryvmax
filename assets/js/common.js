@@ -20,7 +20,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 //Lenis
 if (!reduceMotion) {
     const lenis = new Lenis({
-        duration: 3,
+        duration: 1.1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothTouch: false,
         smoothWheel: true,
@@ -38,15 +38,14 @@ if (!reduceMotion) {
     // Flip-up animation for every .main-head
     gsap.utils.toArray(".main-head").forEach((el) => {
         gsap.from(el, {
-            duration: 1.2,
-            rotationX: 90,
+            duration: 0.5,
+            y: 8,
             opacity: 0,
-            ease: "back.out(1.7)",
+            ease: "power3.out",
             scrollTrigger: {
                 trigger: el,
-                start: "top 80%",
-                end: "bottom center",
-                toggleActions: "restart none none none",
+                start: "top 85%",
+                once: true,
             }
         });
     });
@@ -54,18 +53,14 @@ if (!reduceMotion) {
     // Slide-up animation for every .sub-head
     gsap.utils.toArray(".sub-head").forEach((el) => {
         gsap.from(el, {
-            duration: 1.2,
-            y: 20,
-            opacity: 0.4,
-            scale: 0.9,
-            duration: 2,
+            y: 16,
+            opacity: 0,
+            duration: 0.6,
             ease: "power3.out",
             scrollTrigger: {
                 trigger: el,
                 start: "top 85%",
-                end: "bottom center",
-                toggleActions: "restart none none none",
-
+                once: true,
             }
         });
     });
@@ -75,15 +70,14 @@ if (!reduceMotion) {
     // FLIP UP
     gsap.utils.toArray(".flip-up").forEach((el) => {
         gsap.from(el, {
-            duration: 1.2,
-            rotationX: 90,
+            duration: 0.5,
+            y: 8,
             opacity: 0,
-            ease: "back.out(1.7)",
+            ease: "power3.out",
             scrollTrigger: {
                 trigger: el,
-                start: "top 80%",
-                end: "bottom center",
-                // toggleActions: "play none none none",
+                start: "top 85%",
+                once: true,
             }
         });
     });
@@ -91,8 +85,8 @@ if (!reduceMotion) {
     // COMMON BVANNER IMAGE
     gsap.to('.common-banner-img', {
         ease: "none",
-        scale: 1.4,
-        y: -40,
+        scale: 1.15,
+        y: -24,
         scrollTrigger: {
             trigger: ".common-banner",
             start: "top 20%",   // when the section reaches viewport
@@ -180,3 +174,15 @@ if (!reduceMotion) {
 //     repeat: -1
 //   }
 // );
+
+
+// FORMS: show a busy state while the message is being sent, and prevent double submits
+document.querySelectorAll('form[action$=".php"]').forEach((form) => {
+    form.addEventListener('submit', () => {
+        const button = form.querySelector('button[type="submit"]');
+        if (!button || button.disabled) return;
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        button.textContent = 'Sending…';
+    });
+});

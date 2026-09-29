@@ -4,8 +4,6 @@
 
 
 
- @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
-
  *:not(i) {
      font-family: "Poppins", sans-serif;
  }
@@ -180,6 +178,7 @@
  .scroll-section {
      position: relative;
      height: 100vh;
+     height: 100svh;
      background: #ffffff;
      overflow: hidden;
      display: flex;
@@ -218,6 +217,7 @@
      position: relative;
      z-index: 1;
      height: 100vh;
+     height: 100svh;
      display: flex;
      align-items: center;
      justify-content: center;
@@ -249,6 +249,7 @@
  .parallax-section {
      position: relative;
      height: 100vh;
+     height: 100svh;
      overflow: hidden;
      background: #F1F7FF;
      color: #020202;
@@ -544,7 +545,7 @@
      font-size: 14px;
      white-space: nowrap;
      color: #040836;
-     transition: color 0.4s ease;
+     transition: color 250ms ease;
  }
 
  /* The active item sits on the dark shape; the others can land on its fading edge, so they get a light chip */
@@ -558,7 +559,7 @@
      border-radius: 12px;
      background: rgba(255, 255, 255, 0.85);
      text-align: center;
-     transition: background-color 0.4s ease;
+     transition: background-color 250ms ease;
  }
 
  .section-6 .circle-item.is-active span {
@@ -594,12 +595,10 @@
 
  .section-9 .hero-card {
      overflow: hidden;
-     transition: all 0.3s ease;
      border-radius: 12px;
  }
 
  .section-9 .hero-card img {
-     transition: transform 0.5s ease;
      border-radius: 12px !important;
  }
 
@@ -611,12 +610,17 @@
  .section-9 .side-list .item {
      border-bottom: 1px solid rgb(255, 255, 255);
      padding-block: 20px;
-     transition: transform 0.3s ease;
+     transition: transform 200ms var(--ease-out);
  }
 
- .section-9 .side-list a:hover .item,
  .section-9 .side-list a:focus-visible .item {
-     transform: translateX(10px);
+     transform: translateX(6px);
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .section-9 .side-list a:hover .item {
+         transform: translateX(6px);
+     }
  }
 
  .section-9 .side-list .item h6 {
@@ -710,6 +714,7 @@
  .curve-slider {
      position: relative;
      height: 100vh;
+     height: 100svh;
      width: 100vw;
      display: flex;
      flex-direction: column;
@@ -803,7 +808,7 @@
  .curve-container-sm .swiper-slide-card {
      background: #fff;
      border-radius: 12px;
-     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+     box-shadow: var(--shadow-card);
      font-size: 22px;
      font-weight: 600;
      overflow: hidden;

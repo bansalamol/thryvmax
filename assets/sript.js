@@ -19,7 +19,7 @@ const motion = (props) => (reduceMotion ? {} : props);
 //Lenis
 if (!reduceMotion) {
     const lenis = new Lenis({
-        duration: 3,
+        duration: 1.1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         smoothTouch: false,
@@ -55,21 +55,13 @@ if (!reduceMotion) {
 gsap.fromTo(".Ban-text",
     {
         opacity: 0,
-        ...motion({
-            y: 10,
-            rotationX: 90,         // flipped forward
-            transformPerspective: 800, // depth effect
-            transformOrigin: "center top" // pivot point
-        })
+        ...motion({ y: 12 })
     },
     {
         opacity: 1,
-        ...motion({
-            y: 0,
-            rotationX: 0          // flat/normal
-        }),
-        duration: 1,
-        ease: "power2.out",
+        ...motion({ y: 0 }),
+        duration: 0.6,
+        ease: "power3.out",
         scrollTrigger: {
             trigger: ".Ban-text",
             start: "top 90%",
@@ -81,12 +73,12 @@ gsap.fromTo(".Ban-text",
 
 //  BANNER HEAD + SUBHEAD
 gsap.fromTo(".main-banner-head, .main-banner-sub-head",
-    { opacity: 0, ...motion({ y: 100, scale: 0.5 }) },
+    { opacity: 0, ...motion({ y: 24 }) },
     {
         opacity: 1,
-        ...motion({ y: 0, scale: 1 }),
-        duration: 1,
-        ease: "power2.out",
+        ...motion({ y: 0 }),
+        duration: 0.7,
+        ease: "power3.out",
         scrollTrigger: {
             trigger: ".banner",
             start: "top 90%",
@@ -115,7 +107,7 @@ gsap.fromTo(".main-banner-head, .main-banner-sub-head",
 // SECOND SEC
 // Rotate the center image continuously while pinned (the pin stays under Reduce Motion so the text sequence keeps its scroll distance)
 gsap.to(".center-image", {
-    ...motion({ rotation: 180, scale: 1.6 }),
+    ...motion({ rotation: 90, scale: 1.3 }),
     ease: "none",
     scrollTrigger: {
         trigger: ".scroll-section",
@@ -139,23 +131,23 @@ const sec2 = gsap.timeline({
 // First text reveal
 sec2.fromTo(
     ".text1",
-    { opacity: 0, ...motion({ y: 50, scale: 0.8, rotation: -5 }) },
-    { opacity: 1, ...motion({ y: 0, scale: 1, rotation: 0 }), duration: 1.5, ease: "back.out(1.7)" }
+    { opacity: 0, ...motion({ y: 24, scale: 0.96 }) },
+    { opacity: 1, ...motion({ y: 0, scale: 1 }), duration: 1.5, ease: "power2.out" }
 )
     .to(
         ".text1",
-        { opacity: 0, ...motion({ y: -50, scale: 0.8, rotation: 5 }), duration: 1, delay: 1, ease: "power1.in" }
+        { opacity: 0, ...motion({ y: -24, scale: 0.96 }), duration: 1, delay: 1, ease: "power2.inOut" }
     );
 
 // Second text reveal
 sec2.fromTo(
     ".text2",
-    { opacity: 0, ...motion({ y: 50, scale: 0.8, rotation: -5 }) },
-    { opacity: 1, ...motion({ y: 0, scale: 1, rotation: 0 }), duration: 1.5, ease: "back.out(1.7)" }
+    { opacity: 0, ...motion({ y: 24, scale: 0.96 }) },
+    { opacity: 1, ...motion({ y: 0, scale: 1 }), duration: 1.5, ease: "power2.out" }
 )
     .to(
         ".text2",
-        { opacity: 0, ...motion({ y: -50, scale: 0.8, rotation: 5 }), duration: 1, delay: 1, ease: "power1.in" }
+        { opacity: 0, ...motion({ y: -24, scale: 0.96 }), duration: 1, delay: 1, ease: "power2.inOut" }
     );
 
 
@@ -174,12 +166,12 @@ ScrollTrigger.create({
 });
 
 gsap.fromTo(".pin-section .main-head , .pin-section .sub-head , .pin-section p",
-    { opacity: 0, ...motion({ y: 100, scale: 0.5 }) },
+    { opacity: 0, ...motion({ y: 24 }) },
     {
         opacity: 1,
-        ...motion({ y: 0, scale: 1 }),
-        duration: 1,
-        ease: "power2.out",
+        ...motion({ y: 0 }),
+        duration: 0.7,
+        ease: "power3.out",
         scrollTrigger: {
             trigger: ".pin-section",
             start: "top 70%",
@@ -305,12 +297,11 @@ if (!reduceMotion) {
 
     gsap.utils.toArray(".section-5 .content h3 .step-line").forEach((textAnim) => {
         gsap.fromTo(textAnim,
-            { y: 80, scale: 0.9 },
+            { y: 40 },
             {
                 y: 0,
-                scale: 1,
-                ease: "power2.out",
-                duration: 1, // optional but good to control timing
+                ease: "power3.out",
+                duration: 0.6,
                 scrollTrigger: {
                     trigger: textAnim,
                     start: "top 95%",
@@ -332,8 +323,8 @@ const tabs = document.querySelectorAll(".tabs button");
 const leftCircle = document.querySelector(".left .circle-content");
 const rightCircle = document.querySelector(".right .circle-content");
 const centerText = document.querySelector(".center-text");
-const turnDuration = reduceMotion ? 0 : 1;
-const fadeDuration = reduceMotion ? 0 : 0.4;
+const turnDuration = reduceMotion ? 0 : 0.6;
+const fadeDuration = reduceMotion ? 0 : 0.18;
 
 // Example text data for each tab
 const tabData = {
@@ -419,7 +410,7 @@ tabs.forEach(tab => {
         // Animate center text
         gsap.to(centerText, {
             opacity: 0,
-            ...motion({ y: -20 }),
+            ...motion({ y: -6 }),
             duration: fadeDuration,
             onComplete: () => {
                 centerText.textContent = tabData[key];

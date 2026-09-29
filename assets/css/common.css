@@ -1,4 +1,82 @@
- @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
+ /* ================= Motion + interaction tokens (Emil Kowalski-style curves) ================= */
+ :root {
+     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+     --shadow-card: 0 1px 2px rgba(4, 8, 54, 0.06), 0 8px 24px rgba(4, 8, 54, 0.06);
+     --focus-ring: #2563c9;
+ }
+
+ html {
+     -webkit-tap-highlight-color: transparent;
+     -webkit-text-size-adjust: 100%;
+ }
+
+ /* no double-tap-zoom delay on controls */
+ a,
+ button,
+ [role="button"],
+ summary {
+     touch-action: manipulation;
+ }
+
+ /* controls: no text selection or callout on long-press */
+ .btn,
+ .navbar-toggler,
+ .accordion-button,
+ .section-6 .tabs button,
+ .swiper-button-prev,
+ .swiper-button-next,
+ .arrow {
+     -webkit-user-select: none;
+     user-select: none;
+     -webkit-touch-callout: none;
+ }
+
+ /* press feedback: the interface answers on press, not on release */
+ .btn,
+ .section-6 .tabs button,
+ .swiper-button-prev,
+ .swiper-button-next,
+ .arrow {
+     transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+ }
+
+ .btn:active,
+ .section-6 .tabs button:active,
+ .swiper-button-prev:active,
+ .swiper-button-next:active,
+ .arrow:active {
+     transform: scale(0.97);
+ }
+
+ /* one keyboard focus ring everywhere */
+ a:focus-visible,
+ button:focus-visible,
+ .btn:focus-visible,
+ [tabindex]:focus-visible,
+ summary:focus-visible {
+     outline: 2px solid var(--focus-ring);
+     outline-offset: 2px;
+     box-shadow: none;
+ }
+
+ .form-control:focus-visible,
+ .form-select:focus-visible {
+     outline: 2px solid var(--focus-ring);
+     outline-offset: 1px;
+     box-shadow: none;
+ }
+
+ /* forms: show invalid fields only after the user has interacted */
+ .form-control:user-invalid,
+ .form-select:user-invalid {
+     border-color: #c02b2b;
+ }
+
+ .btn[aria-busy="true"] {
+     opacity: 0.7;
+     cursor: progress;
+ }
 
  *:not(i) {
      font-family: "Poppins", sans-serif;
@@ -167,6 +245,7 @@
      background-position: top;
      width: 100%;
      height: 80vh;
+     height: 80svh;
  }
 
  .widning-image-section .img-container-mobile-application {
@@ -216,13 +295,38 @@
  }
 
  .navbar-container .dropdown .dropdown-menu {
-
-     display: none;
+     display: block;
+     visibility: hidden;
+     opacity: 0;
+     transform: translateY(-4px) scale(0.98);
+     transform-origin: top left;
+     transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms;
  }
 
- .navbar-container .dropdown:hover .dropdown-menu,
+ /* keeps the menu open while the pointer crosses the gap below the trigger */
+ .navbar-container .dropdown .dropdown-menu::before {
+     content: "";
+     position: absolute;
+     left: 0;
+     right: 0;
+     top: -10px;
+     height: 10px;
+ }
+
  .navbar-container .dropdown:focus-within .dropdown-menu {
-     display: block;
+     visibility: visible;
+     opacity: 1;
+     transform: none;
+     transition-delay: 0s;
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .dropdown:hover .dropdown-menu {
+         visibility: visible;
+         opacity: 1;
+         transform: none;
+         transition-delay: 0s;
+     }
  }
 
 
@@ -245,9 +349,11 @@
 
  }
 
- .navbar-container .btn:hover {
-     background-color: #002a61;
-     color: white;
+ @media (hover: hover) and (pointer: fine) {
+     .navbar-container .btn:hover {
+         background-color: #002a61;
+         color: white;
+     }
  }
 
  .navbar-container .btn:active {
@@ -258,7 +364,7 @@
 
  .navbar-container.scrolled {
      background-color: white;
-     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+     box-shadow: 0 1px 0 rgba(4, 8, 54, 0.08);
  }
 
 
@@ -393,6 +499,14 @@
      *::after {
          transition: none !important;
          animation: none !important;
+     }
+
+     .btn:active,
+     .section-6 .tabs button:active,
+     .swiper-button-prev:active,
+     .swiper-button-next:active,
+     .arrow:active {
+         transform: none;
      }
  }
 

@@ -13,8 +13,6 @@
 
 .feature-card {
     background: #f1f2fc;
-    /* light green shade */
-    transition: all 0.3s ease;
 }
 
 .feature-card p{
@@ -71,8 +69,6 @@
     width: 100%;
     object-fit: cover;
     display: block;
-    transition: all 0.4s linear;
-    scale: 1;
 }
 
 
