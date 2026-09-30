@@ -68,6 +68,7 @@
 
  .banner .section-head {
      position: absolute;
+     z-index: 2; /* above the #hero parallax layers, which come later in the DOM and would swallow clicks */
      left: 50%;
      top: 14%;
      transform: translate(-50%, 0%);
@@ -1006,5 +1007,30 @@
  @media (prefers-reduced-motion: reduce) {
      .service-tile:active {
          transform: none;
+     }
+ }
+
+ /* Services added after the tile artwork was made */
+ .services-also {
+     margin: 32px 0 0;
+     text-align: center;
+     font-size: 16px;
+     color: #4a5068;
+ }
+
+ .services-also a {
+     color: #00357a;
+     font-weight: 500;
+     text-decoration: underline;
+     text-underline-offset: 3px;
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .services-also {
+         color: var(--tm-muted);
+     }
+
+     :root .services-also a {
+         color: var(--tm-link);
      }
  }
