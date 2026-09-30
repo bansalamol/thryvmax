@@ -5,6 +5,9 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Renamed pages (spelling fixes) -> new URL, one hop from any host
+RewriteRule ^custom-buisness-automation-solutions\.html$ https://www.thryvmax.com/custom-business-automation-solutions.html [L,R=301,NC]
+
 # /index.html -> / (direct browser requests only, so the server can still serve index.html for /)
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://www.thryvmax.com/ [L,R=301]
