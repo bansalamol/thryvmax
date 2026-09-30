@@ -1090,3 +1090,312 @@
          color: #fff;
      }
  }
+
+ /* ================= Service / landing / article content blocks =================
+    who it's for · industries · FAQ (native <details>, no JS) · related links */
+ .svc-detail,
+ .svc-faq,
+ .svc-block {
+     padding-block: clamp(64px, 8vw, 104px);
+ }
+
+ .svc-faq,
+ .svc-block.tinted {
+     background: #f1f7ff;
+ }
+
+ .svc-list {
+     list-style: none;
+     margin: 24px 0 0;
+     padding: 0;
+     display: grid;
+     gap: 12px;
+ }
+
+ .svc-list li {
+     position: relative;
+     padding-left: 28px;
+     line-height: 1.6;
+ }
+
+ .svc-list li::before {
+     content: "";
+     position: absolute;
+     left: 0;
+     top: 0.55em;
+     width: 10px;
+     height: 10px;
+     border-radius: 999px;
+     background: #f5b324;
+ }
+
+ .svc-cards {
+     list-style: none;
+     margin: 24px 0 0;
+     padding: 0;
+     display: grid;
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+     gap: 16px;
+ }
+
+ .svc-cards.cols-3 {
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+ }
+
+ .svc-cards > li {
+     padding: 20px;
+     border: 1px solid rgba(4, 8, 54, 0.08);
+     border-radius: 12px;
+     background: #fff;
+     box-shadow: var(--shadow-card);
+ }
+
+ .svc-cards h3 {
+     margin-bottom: 6px;
+     font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+     font-weight: 600;
+     line-height: 1.35;
+ }
+
+ .svc-cards p {
+     margin: 0;
+     font-size: 15px;
+     line-height: 1.6;
+     color: #4a5068;
+ }
+
+ .svc-cards a {
+     color: #00357a;
+     font-weight: 500;
+ }
+
+ .svc-steps {
+     counter-reset: step;
+ }
+
+ .svc-steps > li {
+     counter-increment: step;
+ }
+
+ .svc-steps > li h3::before {
+     content: counter(step) ". ";
+     color: #00357a;
+ }
+
+ .faq-list {
+     border-top: 1px solid rgba(4, 8, 54, 0.12);
+ }
+
+ .faq-list details {
+     border-bottom: 1px solid rgba(4, 8, 54, 0.12);
+ }
+
+ .faq-list summary {
+     list-style: none;
+     cursor: pointer;
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     gap: 16px;
+     padding: 20px 0;
+     font-size: 1.125rem;
+     font-weight: 500;
+     line-height: 1.4;
+     color: #040836;
+ }
+
+ .faq-list summary::-webkit-details-marker {
+     display: none;
+ }
+
+ .faq-list summary::after {
+     content: "+";
+     flex: none;
+     font-size: 1.5rem;
+     line-height: 1;
+     color: #00357a;
+     transition: transform 200ms var(--ease-out);
+ }
+
+ .faq-list details[open] summary::after {
+     transform: rotate(45deg);
+ }
+
+ .faq-list details p {
+     margin: 0;
+     padding: 0 32px 20px 0;
+     line-height: 1.6;
+     color: #333;
+ }
+
+ .svc-related {
+     padding-block: 48px clamp(64px, 8vw, 96px);
+ }
+
+ .svc-related-title {
+     font-size: 1.25rem;
+     font-weight: 600;
+ }
+
+ .svc-related-list {
+     list-style: none;
+     margin: 16px 0 0;
+     padding: 0;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 12px;
+ }
+
+ .svc-related-list a {
+     display: inline-flex;
+     align-items: center;
+     min-height: 44px;
+     padding: 10px 18px;
+     border: 1px solid rgba(4, 8, 54, 0.15);
+     border-radius: 999px;
+     font-weight: 500;
+     color: #00357a;
+     transition: background-color 150ms ease, transform 160ms var(--ease-out);
+ }
+
+ .svc-related-list a:active {
+     transform: scale(0.97);
+ }
+
+ .svc-cta {
+     padding: clamp(32px, 5vw, 56px);
+     border-radius: 12px;
+     background: #00357a;
+     color: #fff;
+ }
+
+ .svc-cta h2 {
+     color: #fff;
+ }
+
+ .svc-cta p {
+     color: #e4e8f2;
+ }
+
+ .svc-cta .btn-light {
+     margin-right: 8px;
+     margin-top: 8px;
+ }
+
+ .svc-cta a.phone-link {
+     color: #fff;
+     text-decoration: underline;
+     text-underline-offset: 3px;
+ }
+
+ .svc-quote {
+     margin: 0;
+     padding: 24px;
+     border: 1px solid rgba(4, 8, 54, 0.08);
+     border-radius: 12px;
+     background: #fff;
+     box-shadow: var(--shadow-card);
+ }
+
+ .svc-quote blockquote {
+     margin: 0;
+ }
+
+ .svc-quote p {
+     margin: 0;
+     color: #333;
+     font-size: 16px;
+     line-height: 1.6;
+ }
+
+ .svc-quote figcaption {
+     margin-top: 16px;
+     color: #040836;
+     font-weight: 600;
+ }
+
+ .article-figure img {
+     width: 100%;
+     max-width: 640px;
+     aspect-ratio: 4 / 3;
+     object-fit: cover;
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .svc-related-list a:hover {
+         background: #eef3fb;
+     }
+ }
+
+ @media (max-width: 991.98px) {
+     .svc-cards.cols-3 {
+         grid-template-columns: repeat(2, minmax(0, 1fr));
+     }
+ }
+
+ @media (max-width: 575.98px) {
+     .svc-cards,
+     .svc-cards.cols-3 {
+         grid-template-columns: 1fr;
+     }
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .svc-faq,
+     :root .svc-block.tinted {
+         background: var(--tm-surface);
+     }
+
+     :root .svc-cards > li {
+         background: var(--tm-surface);
+         border-color: var(--tm-border);
+         box-shadow: none;
+     }
+
+     :root .svc-quote {
+         background: var(--tm-surface-2);
+         border-color: var(--tm-border);
+         box-shadow: none;
+     }
+
+     :root .svc-block.tinted .svc-cards > li {
+         background: var(--tm-surface-2);
+     }
+
+     :root .svc-cards p,
+     :root .faq-list details p,
+     :root .svc-quote p {
+         color: var(--tm-muted);
+     }
+
+     :root .svc-cards a,
+     :root .svc-steps > li h3::before,
+     :root .faq-list summary::after {
+         color: var(--tm-link);
+     }
+
+     :root .faq-list,
+     :root .faq-list details {
+         border-color: var(--tm-border);
+     }
+
+     :root .faq-list summary,
+     :root .svc-quote figcaption {
+         color: var(--tm-text);
+     }
+
+     :root .svc-related-list a {
+         color: var(--tm-link);
+         border-color: var(--tm-border);
+     }
+
+     :root .svc-cta {
+         background: var(--tm-surface-2);
+     }
+ }
+
+ @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+     :root .svc-related-list a:hover {
+         background: var(--tm-surface-2);
+     }
+ }

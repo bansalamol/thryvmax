@@ -1,0 +1,13 @@
+# Thryvmax — canonical host and URL redirects (Apache / LiteSpeed on Hostinger)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Bare domain -> https://www. (HTTP -> HTTPS itself is left to Hostinger's "Force HTTPS" setting,
+# so this can't loop behind the CDN, which may reach the origin over plain HTTP)
+RewriteCond %{HTTP_HOST} ^thryvmax\.com$ [NC]
+RewriteRule ^ https://www.thryvmax.com%{REQUEST_URI} [L,R=301]
+
+# /index.html -> / (only for direct browser requests, so the server can still serve index.html for /)
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [L,R=301]
+</IfModule>

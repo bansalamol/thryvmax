@@ -25,7 +25,7 @@ function markCurrentPage(header) {
     const current = fileOf(location.href);
     const serviceLinks = [...header.querySelectorAll('.dropdown-item, .nav-sublink')];
     const isServicePage = current === 'services.html' || serviceLinks.some((a) => fileOf(a.href) === current);
-    const blogPages = ['blogs.html', 'how-school-erp-crm-system-for-managing-student-data-easily.html', 'indias-government-email-migration-zoho.html', 'maharashtra-navudyojak-automation-journey-with-thryvmax.html', 'right-zoho-implementation-partner-makes-difference.html', 'zoho-one-supports-the-service-industry.html'];
+    const blogPages = ['blogs.html', 'how-school-erp-crm-system-for-managing-student-data-easily.html', 'indias-government-email-migration-zoho.html', 'maharashtra-navudyojak-automation-journey-with-thryvmax.html', 'right-zoho-implementation-partner-makes-difference.html', 'zoho-one-supports-the-service-industry.html', 'zoho-vs-odoo-for-small-business.html', 'custom-erp-vs-off-the-shelf-erp.html'];
 
     header.querySelectorAll('a[href]').forEach((link) => {
         const file = fileOf(link.href);
