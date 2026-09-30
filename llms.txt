@@ -1,6 +1,6 @@
 # Thryvmax System Private Limited
 
-> Software development and business systems company in Mundhwa, Pune, India. Thryvmax builds custom ERP, CRM, web and mobile software, modernises databases and moves systems to the cloud, automates business processes, implements and customises Zoho and Odoo, and provides SEO and digital marketing.
+> Software development and business systems company in Mundhwa, Pune, India. Thryvmax builds custom ERP, CRM, web and mobile software, modernises databases and moves systems to the cloud, automates business processes, builds AI agents and AI automation, implements and customises Zoho and Odoo, and provides SEO and digital marketing.
 
 Contact: +91 97080 81818, +91 90962 50998, info@thryvmax.com
 Address: Venkatesh Graffiti, C-204, Lonkar Nagar, Mundhwa, Pune, Maharashtra 411036, India
@@ -16,10 +16,15 @@ Every project follows three steps: understand the business, design the right sol
 - [Database Modernisation](https://www.thryvmax.com/database-modernization-services.html): old databases and spreadsheets moved to a fast, secure, well-structured system
 - [Cloud Migration](https://www.thryvmax.com/cloud-migration-services.html): office servers, files and applications moved to the cloud
 - [Business Automation](https://www.thryvmax.com/custom-business-automation-solutions.html): repeat data entry, reminders and manual reports replaced by workflows
+- [AI Agents & Automation](https://www.thryvmax.com/ai-automation-services.html): AI agents, document assistants and AI inside CRM, ERP and helpdesk tools, piloted on real work with human review
 - [Zoho Implementation](https://www.thryvmax.com/zoho-one-implementation-partner.html): Zoho One or individual Zoho apps set up, data migrated, team trained
 - [Zoho Customisation](https://www.thryvmax.com/zoho-customization-services.html): custom modules, Zoho Creator apps, Deluge scripts and integrations
 - [Odoo Customisation](https://www.thryvmax.com/odoo-customization-services.html): Odoo set up and extended with custom modules, reports and integrations
 - [SEO & Digital Marketing](https://www.thryvmax.com/seo-digital-marketing-services.html): search visibility and lead generation
+
+## Work
+
+- [Case Studies](https://www.thryvmax.com/case-studies.html): Zoho One implementations, custom CRM and ERP, business automation, a maritime ESG portal and a matrimonial web portal
 
 ## Pune
 
