@@ -117,35 +117,47 @@
 
 
     <!-- Bootstrap CSS -->
-    <!-- Fonts: only the weights the site uses, loaded in parallel -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts: self-hosted Poppins (400/500 preloaded, used above the fold) -->
+    <link rel="preload" href="assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/poppins-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/vendor/bootstrap.purged.min.css?v=1a9a9768">
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Bootstrap JS (collapse, modal); the site uses no Popper-based components -->
+    <script src="assets/vendor/bootstrap.min.js?v=d6f99f5f" defer></script>
 
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/aboutus.css">
-    <link rel="stylesheet" href="assets/css/blogs.css">
-    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/style.css?v=ec6f6ca5">
+    <link rel="stylesheet" href="assets/aboutus.css?v=9c33f7e8">
+    <link rel="stylesheet" href="assets/css/blogs.css?v=7ca5db0e">
+    <link rel="stylesheet" href="assets/css/common.css?v=fa697be6">
 	
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8TJYR2F78S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8TJYR2F78S');
-</script>
 
 
 
 
 
 
+    <!-- Google Analytics: queued immediately, library loaded after first interaction or 6s after load,
+         so it never competes with the page's own content -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8TJYR2F78S');
+      (function () {
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-8TJYR2F78S';
+          document.head.appendChild(s);
+        }
+        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+          window.addEventListener(e, loadGA, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () { setTimeout(loadGA, 6000); });
+      })();
+    </script>
 </head>
 
 <body>
@@ -157,11 +169,11 @@
 
     <!-- Blog BANNER -->
     <section class="about-banner common-banner">
-        <img src="assets/images/common/abstract-img.jpeg" class="common-banner-img d-none d-md-block" alt="">
+        <img width="670" height="670" src="assets/images/common/abstract-img.jpeg" class="common-banner-img d-none d-md-block" alt="">
 
         <div class="circle-container d-none d-sm-block">
-            <img src="	assets/images/ic/66.png" class="circle-img-1" alt="">
-            <img src="assets/images/oc/666.png" class="circle-img-2" alt="">
+            <img width="215" height="215" src="	assets/images/ic/66.png" class="circle-img-1" alt="">
+            <img width="215" height="215" src="assets/images/oc/666.png" class="circle-img-2" alt="">
         </div>
         <div class="container-lg">
             <div class="row">
@@ -209,7 +221,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <a href="/zoho-vs-odoo-for-small-business.html">
                         <div class="cardd">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/zohoi2.jpg" class="img-fluid"
+                            <img width="639" height="655" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/zohoi2.jpg" class="img-fluid"
                                 alt="Business dashboards with charts on a laptop and tablet">
 
                             <div class="content">
@@ -223,7 +235,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <a href="/custom-erp-vs-off-the-shelf-erp.html">
                         <div class="cardd">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/CRM.jpg" class="img-fluid"
+                            <img width="639" height="655" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/CRM.jpg" class="img-fluid"
                                 alt="A developer working on software at a multi-monitor desk">
 
                             <div class="content">
@@ -237,7 +249,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <a href="/maharashtra-navudyojak-automation-journey-with-thryvmax.html">
                         <div class="cardd">
-                            <img loading="lazy" decoding="async" src="assets/images/blog/blog1img.jpg" class="img-fluid"
+                            <img width="600" height="425" loading="lazy" decoding="async" src="assets/images/blog/blog1img.jpg" class="img-fluid"
                                 alt="Maharashtra Navudyojak’s move from manual work to business automation">
 
                             <div class="content">
@@ -250,7 +262,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <a href="/right-zoho-implementation-partner-makes-difference.html"> 
                     <div class="cardd">
-                        <img loading="lazy" decoding="async" src="assets/images/blog/zohoipartner1.jpg" class="img-fluid"
+                        <img width="600" height="425" loading="lazy" decoding="async" src="assets/images/blog/zohoipartner1.jpg" class="img-fluid"
                             alt="Choosing the right Zoho implementation partner">
 
                         <div class="content">
@@ -265,7 +277,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd">
 					    <a href="zoho-one-supports-the-service-industry.html"> 
-                        <img loading="lazy" decoding="async" src="assets/images/blog/zohoipartner5.jpg" class="img-fluid"
+                        <img width="600" height="425" loading="lazy" decoding="async" src="assets/images/blog/zohoipartner5.jpg" class="img-fluid"
                             alt="Zoho One for service businesses">
 
                         <div class="content">
@@ -281,7 +293,7 @@
                     
 					<a href="how-school-erp-crm-system-for-managing-student-data-easily.html">
 					<div class="cardd">
-                        <img loading="lazy" decoding="async" src="assets/images/blog/schoolerp.jpg" class="img-fluid"
+                        <img width="600" height="425" loading="lazy" decoding="async" src="assets/images/blog/schoolerp.jpg" class="img-fluid"
                             alt="">
 
                         <div class="content">
@@ -294,7 +306,7 @@
 				<div class="col-lg-4 col-sm-6">
                     <a href="indias-government-email-migration-zoho.html"> 
                     <div class="cardd">
-                        <img loading="lazy" decoding="async" src="assets/images/blog/emailmig.jpg" class="img-fluid"
+                        <img width="600" height="425" loading="lazy" decoding="async" src="assets/images/blog/emailmig.jpg" class="img-fluid"
                             alt="India’s government email moving to Zoho Mail">
 
                         <div class="content">
@@ -309,7 +321,7 @@
 				<div class="col-lg-4 col-sm-6">
                     <a href="how-school-erp-crm-system-for-managing-student-data-easily.html">
 					<div class="cardd">
-                        <img loading="lazy" decoding="async" src="assets/images/blog/schoolerp.jpg" class="img-fluid"
+                        <img width="600" height="425" loading="lazy" decoding="async" src="assets/images/blog/schoolerp.jpg" class="img-fluid"
                             alt="">
 
                         <div class="content">
@@ -329,12 +341,12 @@
     <div id="footer"></div>
 
 
-    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=d6725520" defer></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/ScrollSmoother.min.js" defer></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <script src="assets/js/common.js" defer></script>
-    <script src="assets/js/component-manage.js" defer></script>
+    <script src="assets/vendor/gsap.min.js?v=1c9885c9" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js?v=0b57c73b" defer></script>
+    <script src="assets/js/common.js?v=911f7894" defer></script>
+    <script src="assets/js/component-manage.js?v=4201089b" defer></script>
 
 
 </body>

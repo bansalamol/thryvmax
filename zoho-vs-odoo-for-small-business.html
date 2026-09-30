@@ -133,18 +133,39 @@
 </script>
     <link rel="icon" type="image/png" href="assets/images/fvicon.png">
 
-    <!-- Fonts: only the weights the site uses, loaded in parallel -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts: self-hosted Poppins (400/500 preloaded, used above the fold) -->
+    <link rel="preload" href="assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/poppins-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/vendor/bootstrap.purged.min.css?v=1a9a9768">
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Bootstrap JS (collapse, modal); the site uses no Popper-based components -->
+    <script src="assets/vendor/bootstrap.min.js?v=d6f99f5f" defer></script>
 
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/css/common-sub-blogs.css">
-    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/style.css?v=ec6f6ca5">
+    <link rel="stylesheet" href="assets/css/common-sub-blogs.css?v=1a585ed8">
+    <link rel="stylesheet" href="assets/css/common.css?v=fa697be6">
+    <!-- Google Analytics: queued immediately, library loaded after first interaction or 6s after load,
+         so it never competes with the page's own content -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8TJYR2F78S');
+      (function () {
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-8TJYR2F78S';
+          document.head.appendChild(s);
+        }
+        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+          window.addEventListener(e, loadGA, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () { setTimeout(loadGA, 6000); });
+      })();
+    </script>
 </head>
 
 <body>
@@ -155,11 +176,11 @@
     <main id="main">
 
     <section class="about-banner common-banner">
-        <img src="assets/images/common/abstract-img.jpeg" class="common-banner-img d-none d-md-block" alt="">
+        <img width="670" height="670" src="assets/images/common/abstract-img.jpeg" class="common-banner-img d-none d-md-block" alt="">
 
         <div class="circle-container d-none d-sm-block">
-            <img src="assets/images/ic/22.png" class="circle-img-1" alt="">
-            <img src="assets/images/oc/222.png" class="circle-img-2" alt="">
+            <img width="215" height="215" src="assets/images/ic/22.png" class="circle-img-1" alt="">
+            <img width="215" height="215" src="assets/images/oc/222.png" class="circle-img-2" alt="">
         </div>
         <div class="container-lg">
             <div class="row">
@@ -189,7 +210,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-4">
-                    <figure class="article-figure m-0"><img src="assets/images/SUBSERVICES/zohoi2.jpg" class="img-fluid rounded-4" width="639" height="655" alt="Business dashboards with charts on a laptop and tablet"></figure>
+                    <figure class="article-figure m-0"><img fetchpriority="high" src="assets/images/SUBSERVICES/zohoi2.jpg" class="img-fluid rounded-4" width="639" height="655" alt="Business dashboards with charts on a laptop and tablet"></figure>
                 </div>
                 <div class="col-12 mb-4 mt-5">
                     <h2 class="h3">Why this comparison matters</h2>
@@ -278,11 +299,11 @@
     <div id="footer"></div>
 
 
-    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <script src="assets/js/common.js" defer></script>
-    <script src="assets/js/component-manage.js" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=d6725520" defer></script>
+    <script src="assets/vendor/gsap.min.js?v=1c9885c9" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js?v=0b57c73b" defer></script>
+    <script src="assets/js/common.js?v=911f7894" defer></script>
+    <script src="assets/js/component-manage.js?v=4201089b" defer></script>
 </body>
 
 </html>

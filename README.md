@@ -31,6 +31,10 @@ couple of PHP mail handlers for the contact and career forms.
 │   │   └── SUBSERVICES/, crm-erp/, bussiness-automation/, section-2/, section-5/, section-9/, …
 │   ├── style.css, aboutus.css     Global / page-level styles
 │   └── sript.js                   Global script
+│   ├── vendor/                    Self-hosted Bootstrap (trimmed), GSAP, ScrollTrigger, Lenis
+│   └── fonts/                     Self-hosted Poppins (400/500/600)
+├── tools/version-assets.py        Stamps CSS/JS links with a content fingerprint (run before deploy)
+├── .htaccess                      Redirects (www, /index.html, renamed pages) and cache headers
 ├── robots.txt, sitemap.xml        SEO files
 └── .vscode/                       Editor settings
 ```
@@ -46,9 +50,18 @@ server works:
 3. `contactmail.php` and `careermail.php` send mail via PHPMailer — set SMTP
    credentials in those files before testing the contact/career forms.
 
+## Deploying
+
+1. Run `python3 tools/version-assets.py`. It adds a fingerprint (`?v=…`) to every local CSS/JS link,
+   so browsers fetch a changed file immediately even though `.htaccess` lets them cache CSS/JS for a year.
+2. Upload the changed files (and `.htaccess`).
+3. To replace an image, give the new image a new file name: images are cached for a year.
+
 ## Notes
 
 - `APR ZIP FILE.zip` is a raw archive checked into the repo root — confirm
   whether it should stay in version control or be removed.
 - No build step or package manager is used; assets are referenced directly by
-  the HTML pages.
+  the HTML pages. `assets/vendor/bootstrap.purged.min.css` is Bootstrap 5.3.3 with unused rules
+  removed (PurgeCSS). If you start using a Bootstrap class that isn't styled, add it back from the
+  full `bootstrap.min.css` or regenerate the trimmed file.

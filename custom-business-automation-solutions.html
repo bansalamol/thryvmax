@@ -202,38 +202,46 @@
      
 
     <!-- Bootstrap CSS -->
-    <!-- Fonts: only the weights the site uses, loaded in parallel -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts: self-hosted Poppins (400/500 preloaded, used above the fold) -->
+    <link rel="preload" href="assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/poppins-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/vendor/bootstrap.purged.min.css?v=1a9a9768">
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Bootstrap JS (collapse, modal); the site uses no Popper-based components -->
+    <script src="assets/vendor/bootstrap.min.js?v=d6f99f5f" defer></script>
 
-    <!-- FAWSOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- <link rel="stylesheet" href="assets/style.css"> -->
-    <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/buisness-automation.css">
+    <!-- <link rel="stylesheet" href="assets/style.css?v=ec6f6ca5"> -->
+    <link rel="stylesheet" href="assets/css/common.css?v=fa697be6">
+    <link rel="stylesheet" href="assets/css/buisness-automation.css?v=44c04971">
 	
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8TJYR2F78S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8TJYR2F78S');
-</script>
 
 
 
 
 
+    <!-- Google Analytics: queued immediately, library loaded after first interaction or 6s after load,
+         so it never competes with the page's own content -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8TJYR2F78S');
+      (function () {
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-8TJYR2F78S';
+          document.head.appendChild(s);
+        }
+        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+          window.addEventListener(e, loadGA, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () { setTimeout(loadGA, 6000); });
+      })();
+    </script>
 </head>
 
 <body>
@@ -246,11 +254,11 @@
 
     <!-- SERVICE BANNER -->
     <section class="service-banner common-banner">
-        <img src="assets/images/common/abstract-img.jpeg" class="common-banner-img d-none d-md-block" alt="">
+        <img width="670" height="670" src="assets/images/common/abstract-img.jpeg" class="common-banner-img d-none d-md-block" alt="">
 
         <div class="circle-container d-none d-sm-block">
-            <img src="	assets/images/ic/55.png" class="circle-img-1" alt="">
-            <img src="assets/images/oc/555.png" class="circle-img-2" alt="">
+            <img width="215" height="215" src="	assets/images/ic/55.png" class="circle-img-1" alt="">
+            <img width="215" height="215" src="assets/images/oc/555.png" class="circle-img-2" alt="">
         </div>
         <div class="container-lg">
             <div class="row">
@@ -298,7 +306,7 @@
 
             <div class="row">
                 <div class="col-sm-7 col-lg-5 mb-4 mb-lg-0">
-                    <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS.jpg" class="img-fluid rounded-3" alt="Hand holding a digital globe surrounded by network connections">
+                    <img width="639" height="655" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS.jpg" class="img-fluid rounded-3" alt="Hand holding a digital globe surrounded by network connections">
                 </div>
 
                 <div class=" col-lg-6 offset-lg-1 ">
@@ -313,22 +321,22 @@
 
                         <div class="pointers mt-4">
                             <div class="point d-flex gap-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Streamline complex processes across departments effortlessly.</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Reduce human errors and operational costs through intelligent automation.</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Improve team productivity with smooth, interconnected workflows.</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Scale operations easily as your business expands.</p>
                             </div>
                         </div>
@@ -355,27 +363,27 @@
 
                         <div class="pointers mt-4">
                             <div class="point d-flex gap-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Process Discovery & Consultation</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Automation Architecture & Planning</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Development & System Integration</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Testing & Optimization</p>
                             </div>
 
                             <div class="point d-flex gap-3 mt-3">
-                                <img loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
+                                <img width="16" height="12" loading="lazy" decoding="async" src="assets/images/services/point.svg" class="" alt="">
                                 <p>Deployment & Continuous Improvement</p>
                             </div>
                         </div>
@@ -383,7 +391,7 @@
                 </div>
 
                 <div class="col-sm-7 col-lg-5 offset-lg-1 order-lg-2 order-1 mb-4 mb-lg-0">
-                    <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS (2).jpg" class="img-fluid rounded-3" alt="Business process automation concept with gear and code icons">
+                    <img width="639" height="655" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS (2).jpg" class="img-fluid rounded-3" alt="Business process automation concept with gear and code icons">
                 </div>
             </div>
 
@@ -408,7 +416,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd h-100 d-flex gap-2 align-items-start">
                         <div class="img-container">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 1.png" class="img-fluid" alt="">
+                            <img width="60" height="60" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 1.png" class="img-fluid" alt="">
                         </div>
                         <div class="content">
                             <h3 class="h6">Workflow Automation</h3>
@@ -425,7 +433,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd h-100 d-flex gap-2 align-items-start">
                         <div class="img-container">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 2.png" class="img-fluid" alt="">
+                            <img width="60" height="60" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 2.png" class="img-fluid" alt="">
                         </div>
                         <div class="content">
                             <h3 class="h6">Smart Dashboards & Insights</h3>
@@ -440,7 +448,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd h-100 d-flex gap-2 align-items-start">
                         <div class="img-container">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 3.png" class="img-fluid" alt="">
+                            <img width="60" height="60" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 3.png" class="img-fluid" alt="">
                         </div>
                         <div class="content">
                             <h3 class="h6">Process Optimization</h3>
@@ -455,7 +463,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd h-100 d-flex gap-2 align-items-start">
                         <div class="img-container">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 4.png" class="img-fluid" alt="">
+                            <img width="60" height="60" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 4.png" class="img-fluid" alt="">
                         </div>
                         <div class="content">
                             <h3 class="h6">Seamless System Integration</h3>
@@ -470,7 +478,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd h-100 d-flex gap-2 align-items-start">
                         <div class="img-container">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 5.png" class="img-fluid" alt="">
+                            <img width="60" height="60" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 5.png" class="img-fluid" alt="">
                         </div>
                         <div class="content">
                             <h3 class="h6">AI-Driven Decision Support</h3>
@@ -486,7 +494,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="cardd h-100 d-flex gap-2 align-items-start">
                         <div class="img-container">
-                            <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 6.png" class="img-fluid" alt="">
+                            <img width="60" height="60" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/BAS 6.png" class="img-fluid" alt="">
                         </div>
                         <div class="content">
                             <h3 class="h6">Scalable & Secure Architecture</h3>
@@ -533,7 +541,7 @@
 
                 <div class="col-md-6 mt-5 mt-md-0">
                     <div class="cardd d-flex gap-4">
-                        <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Process Optimization.png" alt="">
+                        <img width="110" height="110" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Process Optimization.png" alt="">
 
                         <div>
                             <h3 class="h6">Process Optimization</h3>
@@ -544,7 +552,7 @@
                     </div>
 
                     <div class="cardd d-flex gap-4">
-                        <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Custom Automation Development.png" alt="">
+                        <img width="110" height="110" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Custom Automation Development.png" alt="">
 
                         <div>
                             <h3 class="h6">Custom Automation Development</h3>
@@ -555,7 +563,7 @@
                     </div>
 
                     <div class="cardd d-flex gap-4">
-                        <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Smart Data Insights.png" alt="">
+                        <img width="110" height="110" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Smart Data Insights.png" alt="">
 
                         <div>
                             <h3 class="h6">Smart Data Insights</h3>
@@ -566,7 +574,7 @@
                     </div>
 
                     <div class="cardd d-flex gap-4">
-                        <img loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Seamless System Integration.png" alt="">
+                        <img width="110" height="110" loading="lazy" decoding="async" src="assets/images/SUBSERVICES/wehy-chhose/BAS- Seamless System Integration.png" alt="">
 
                         <div>
                             <h3 class="h6">Seamless System Integration</h3>
@@ -696,15 +704,15 @@
     <div id="footer"></div>
 
 
-    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=d6725520" defer></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/ScrollSmoother.min.js" defer></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="assets/vendor/gsap.min.js?v=1c9885c9" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js?v=0b57c73b" defer></script>
 
 
-    <script src="assets/js/common.js" defer></script>
-    <script src="assets/js/component-manage.js" defer></script>
-    <script src="assets/js/service.js" defer></script>
+    <script src="assets/js/common.js?v=911f7894" defer></script>
+    <script src="assets/js/component-manage.js?v=4201089b" defer></script>
+    <script src="assets/js/service.js?v=49d0e762" defer></script>
 </body>
 
 </html>

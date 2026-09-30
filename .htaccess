@@ -16,3 +16,23 @@ RewriteRule ^index\.html$ https://www.thryvmax.com/ [L,R=301]
 RewriteCond %{HTTP_HOST} ^thryvmax\.com$ [NC]
 RewriteRule ^ https://www.thryvmax.com%{REQUEST_URI} [L,R=301]
 </IfModule>
+
+# ---------------------------------------------------------------------------------------------
+# Caching. CSS/JS links carry a content fingerprint (?v=..., stamped by tools/version-assets.py),
+# so they can be cached for a year and still update the moment they change. Fonts, vendor
+# libraries and images are cached for a year too: to replace an image, give it a new file name.
+# Pages are always revalidated, so a new deploy (and new fingerprints) is picked up at once.
+# ---------------------------------------------------------------------------------------------
+<IfModule mod_mime.c>
+AddType image/avif .avif
+AddType font/woff2 .woff2
+</IfModule>
+
+<IfModule mod_headers.c>
+<FilesMatch "\.(css|js|woff2|avif|webp|png|jpe?g|gif|svg|ico)$">
+Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+<FilesMatch "\.(html|xml|txt)$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
