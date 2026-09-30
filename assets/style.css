@@ -936,101 +936,248 @@
      color: #171717;
  }
 
- .services-grid {
-     list-style: none;
-     max-width: 1080px;
-     margin: 0 auto;
-     padding: 0;
+ /* Services: four grouped panels (inset grouped lists). Group, align, space consistently. */
+ .services-showcase .text-center {
+     max-width: 760px;
+     margin-inline: auto;
+ }
+
+ .services-showcase .section-sub-head,
+ .svc-groups-lede {
+     text-wrap: balance;
+ }
+
+ .svc-groups-lede {
+     margin: 16px auto 0;
+     font-size: 18px;
+     line-height: 1.6;
+     color: #4a5068;
+ }
+
+ .svc-groups {
      display: grid;
-     grid-template-columns: repeat(3, minmax(0, 1fr));
-     gap: 24px;
+     grid-template-columns: repeat(4, minmax(0, 1fr));
+     gap: 0 20px;
+     align-items: stretch;
  }
 
- .service-tile {
-     display: block;
+ /* Subgrid: title, description and list share rows across panels, so the lists line up */
+ .svc-group {
+     display: grid;
+     grid-row: span 3;
+     grid-template-rows: subgrid;
+     row-gap: 0;
+     align-content: start;
+     padding: 24px 8px 8px;
+     border-radius: 16px;
+     background: #f4f7fc;
+ }
+
+ .svc-group-title {
+     margin: 0;
+     padding-inline: 16px;
+     font-size: 14px;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     color: #00357a;
+ }
+
+ .svc-group-desc {
+     margin: 6px 0 16px;
+     padding-inline: 16px;
+     font-size: 15px;
+     line-height: 1.5;
+     color: #4a5068;
+ }
+
+ .svc-rows {
+     align-self: start;
+     list-style: none;
+     margin: 0;
+     padding: 0;
      border-radius: 12px;
+     background: #fff;
+     box-shadow: 0 1px 2px rgba(4, 8, 54, 0.06);
      overflow: hidden;
-     box-shadow: var(--shadow-card);
-     transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
  }
 
- .service-tile img {
+ .svc-rows li + li .svc-row::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 16px;
+     right: 0;
+     border-top: 1px solid rgba(4, 8, 54, 0.08);
+ }
+
+ .svc-row {
+     position: relative;
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     min-height: 72px;
+     padding: 14px 16px;
+     color: #040836;
+     text-decoration: none;
+     transition: background-color 150ms ease;
+ }
+
+ .svc-row-text {
+     flex: 1;
+     min-width: 0;
+ }
+
+ .svc-row-name {
      display: block;
-     width: 100%;
-     height: auto;
-     aspect-ratio: 1003 / 1283;
-     object-fit: cover;
+     font-size: 17px;
+     font-weight: 600;
+     line-height: 1.3;
  }
 
- .service-tile:active {
-     transform: scale(0.98);
+ .svc-row-line {
+     display: block;
+     margin-top: 4px;
+     font-size: 14px;
+     line-height: 1.45;
+     color: #4a5068;
+ }
+
+ .svc-row-chevron {
+     flex: none;
+     color: #9aa3b8;
+     transition: transform 150ms var(--ease-out), color 150ms ease;
+ }
+
+ .svc-row:active {
+     background: #e8eef8;
+ }
+
+ .svc-row:focus-visible {
+     outline: 3px solid var(--focus-ring);
+     outline-offset: -3px;
+     border-radius: 12px;
+ }
+
+ .svc-stack {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     gap: 16px;
+ }
+
+ .svc-group-help {
+     padding: 20px 16px 12px;
+ }
+
+ .svc-group-help p {
+     margin: 0 0 14px;
+     font-size: 15px;
+     line-height: 1.5;
+     color: #4a5068;
+ }
+
+ .svc-groups-all {
+     margin: 32px 0 0;
+     text-align: center;
+     font-size: 16px;
+ }
+
+ .svc-groups-all a {
+     display: inline-flex;
+     align-items: center;
+     gap: 6px;
+     min-height: 44px;
+     font-weight: 600;
+     color: #00357a;
+     text-decoration: none;
  }
 
  @media (hover: hover) and (pointer: fine) {
-     .service-tile:hover {
-         transform: translateY(-4px);
-         box-shadow: 0 2px 4px rgba(4, 8, 54, 0.08), 0 16px 32px rgba(4, 8, 54, 0.12);
+     .svc-row:hover {
+         background: #f4f7fc;
+     }
+
+     .svc-row:hover .svc-row-chevron {
+         color: #00357a;
+         transform: translateX(2px);
+     }
+
+     .svc-groups-all a:hover {
+         text-decoration: underline;
+         text-underline-offset: 3px;
      }
  }
 
- @media (max-width: 991.98px) {
-     .services-grid {
+ @media (max-width: 1199.98px) {
+     .svc-groups {
          grid-template-columns: repeat(2, minmax(0, 1fr));
-         gap: 16px;
+         row-gap: 20px;
      }
  }
 
- /* phones: a native, snapping swipe row instead of a JS carousel */
- @media (max-width: 575.98px) {
-     .services-grid {
-         grid-template-columns: none;
-         grid-auto-flow: column;
-         grid-auto-columns: 78%;
-         overflow-x: auto;
-         scroll-snap-type: x mandatory;
-         overscroll-behavior-x: contain;
-         margin-inline: -12px;
-         padding: 4px 12px 16px;
-         scroll-padding-inline: 12px;
-         scrollbar-width: none;
-     }
-
-     .services-grid::-webkit-scrollbar {
-         display: none;
-     }
-
-     .services-grid > li {
-         scroll-snap-align: start;
+ @media (max-width: 767.98px) {
+     .svc-groups {
+         grid-template-columns: 1fr;
+         row-gap: 16px;
      }
  }
 
  @media (prefers-reduced-motion: reduce) {
-     .service-tile:active {
+     .svc-row-chevron {
+         transition: color 150ms ease;
+     }
+
+     .svc-row:hover .svc-row-chevron {
          transform: none;
      }
  }
 
- /* Services added after the tile artwork was made */
- .services-also {
-     margin: 32px 0 0;
-     text-align: center;
-     font-size: 16px;
-     color: #4a5068;
- }
-
- .services-also a {
-     color: #00357a;
-     font-weight: 500;
-     text-decoration: underline;
-     text-underline-offset: 3px;
- }
-
  @media (prefers-color-scheme: dark) {
-     :root .services-also {
+     :root .svc-groups-lede,
+     :root .svc-group-desc,
+     :root .svc-group-help p,
+     :root .svc-row-line {
          color: var(--tm-muted);
      }
 
-     :root .services-also a {
+     :root .svc-group {
+         background: var(--tm-surface);
+     }
+
+     :root .svc-group-title,
+     :root .svc-groups-all a {
+         color: var(--tm-link);
+     }
+
+     :root .svc-rows {
+         background: var(--tm-surface-2);
+         box-shadow: none;
+     }
+
+     :root .svc-rows li + li .svc-row::before {
+         border-color: var(--tm-border);
+     }
+
+     :root .svc-row {
+         color: var(--tm-text);
+     }
+
+     :root .svc-row:active {
+         background: #26304f;
+     }
+
+     :root .svc-row-chevron {
+         color: var(--tm-muted);
+     }
+ }
+
+ @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+     :root .svc-row:hover {
+         background: #222b48;
+     }
+
+     :root .svc-row:hover .svc-row-chevron {
          color: var(--tm-link);
      }
  }
