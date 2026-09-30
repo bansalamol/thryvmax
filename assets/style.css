@@ -308,22 +308,6 @@
      line-height: 1.6;
  }
 
- .section-5 .content h3 span {
-     height: fit-content;
-     overflow: hidden;
-     display: inline-block;
-     vertical-align: top;
- }
-
- .section-5 .content h3 .step-line {
-     line-height: 1.15;
-     margin-bottom: 0px;
- }
-
- .section-5 hr {
-     opacity: 0.2 !important;
-     border-top: 1px solid #fff !important;
- }
 
 
  /* SECTION  6*/
@@ -535,9 +519,6 @@
      border-radius: 12px !important;
  }
 
- .section-5 .sec-img {
-     border-radius: 12px !important;
- }
 
 
  .section-9 .side-list .item {
@@ -838,6 +819,7 @@
  .pin-section .sub-head,
  .services-showcase .section-sub-head,
  .section-5 h2,
+ .process h2,
  .section-6 .section-sub-head,
  .parallax-sm-section .header,
  .section-10 h2.top-btm-text,
@@ -1179,5 +1161,242 @@
 
      :root .svc-row:hover .svc-row-chevron {
          color: var(--tm-link);
+     }
+ }
+
+ /* ================= Home: process (How it works) ================= */
+ .process {
+     padding-block: clamp(64px, 8vw, 112px);
+     background: #040836;
+     color: #fff;
+ }
+
+ .process-head {
+     max-width: 760px;
+     margin: 0 auto 56px;
+     text-align: center;
+ }
+
+ .process-kicker {
+     width: fit-content;
+     margin: 0 auto 16px;
+     padding: 6px 16px;
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     border-radius: 999px;
+     font-size: 14px;
+     font-weight: 600;
+     color: #fff;
+ }
+
+ .process h2 {
+     margin: 0;
+     color: #fff;
+     text-wrap: balance;
+ }
+
+ .process-summary {
+     margin: 16px auto 0;
+     font-size: 18px;
+     line-height: 1.6;
+     color: #c9cde0;
+     text-wrap: balance;
+ }
+
+ .process-steps {
+     position: relative;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     display: grid;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+     gap: 24px;
+ }
+
+ /* thin line from number 1 to number 3 (numbers sit 25px in from each card's edge, 44px wide) */
+ .process-steps::before {
+     content: "";
+     position: absolute;
+     top: 47px;
+     left: 69px;
+     right: calc(33.333% - 41px);
+     border-top: 1px dashed rgba(255, 255, 255, 0.3);
+ }
+
+ /* subgrid: number, title, description, lists and outcome line up across the three cards */
+ .process-step {
+     position: relative;
+     display: grid;
+     grid-row: span 6;
+     grid-template-rows: subgrid;
+     row-gap: 0;
+     align-content: start;
+     padding: 24px;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     border-radius: 16px;
+     background: rgba(255, 255, 255, 0.04);
+ }
+
+ .process-num {
+     position: relative;
+     align-self: start;
+     z-index: 1;
+     display: grid;
+     place-items: center;
+     width: 44px;
+     height: 44px;
+     margin-bottom: 20px;
+     border-radius: 999px;
+     background: #f5b324;
+     color: #040836;
+     font-size: 18px;
+     font-weight: 600;
+ }
+
+ .process-title {
+     margin: 0 0 10px;
+     font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
+     font-weight: 500;
+     line-height: 1.3;
+     color: #fff;
+ }
+
+ .process-desc {
+     margin: 0 0 20px;
+     font-size: 16px;
+     line-height: 1.6;
+     color: #c9cde0;
+ }
+
+ .process-label {
+     margin: 0 0 8px;
+     font-size: 12px;
+     font-weight: 600;
+     letter-spacing: 0.08em;
+     text-transform: uppercase;
+     color: #9dbcff;
+ }
+
+ .process-list {
+     align-self: start;
+     list-style: none;
+     margin: 0 0 20px;
+     padding: 0;
+     display: grid;
+     gap: 6px;
+ }
+
+ .process-list li {
+     position: relative;
+     padding-left: 24px;
+     font-size: 15px;
+     line-height: 1.5;
+     color: #e4e7f2;
+ }
+
+ .process-list li::before {
+     content: "";
+     position: absolute;
+     left: 2px;
+     top: 0.35em;
+     width: 12px;
+     height: 7px;
+     border-left: 2px solid #f5b324;
+     border-bottom: 2px solid #f5b324;
+     transform: rotate(-45deg);
+ }
+
+ .process-get {
+     align-self: end;
+     margin: 0;
+     padding-top: 16px;
+     border-top: 1px solid rgba(255, 255, 255, 0.12);
+     font-size: 15px;
+     line-height: 1.5;
+     color: #fff;
+ }
+
+ .process-get .process-label {
+     display: block;
+     margin-bottom: 4px;
+ }
+
+ .process-cta {
+     margin-top: 48px;
+     text-align: center;
+ }
+
+ .process-btn {
+     background: #fff;
+     border: 1px solid #fff;
+     color: #040836;
+ }
+
+ .process-btn:active {
+     background: #e8eef8;
+     color: #040836;
+ }
+
+ .process-cta p {
+     margin: 16px 0 0;
+     font-size: 15px;
+     color: #c9cde0;
+ }
+
+ .process-cta .tel-plain {
+     color: #fff;
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .process-btn:hover {
+         background: #e8eef8;
+         border-color: #e8eef8;
+         color: #040836;
+     }
+ }
+
+ @media (max-width: 991.98px) {
+     .process-step {
+         display: flex;
+         flex-direction: column;
+     }
+
+     .process-get {
+         margin-top: auto;
+     }
+
+     .process-steps {
+         grid-template-columns: 1fr;
+         max-width: 560px;
+         margin-inline: auto;
+         gap: 16px;
+     }
+
+     /* stacked cards: the numbers carry the order, a joining line would cross the text */
+     .process-steps::before {
+         display: none;
+     }
+ }
+
+ @media (prefers-contrast: more) {
+     .process-summary,
+     .process-desc,
+     .process-cta p {
+         color: #fff;
+     }
+ }
+
+ /* The process section is dark in both schemes; keep its own colours over the global dark-mode link and button rules */
+ @media (prefers-color-scheme: dark) {
+     :root .process {
+         background: #040836;
+     }
+
+     :root .process .process-btn,
+     :root .process .process-btn:active {
+         color: #040836;
+     }
+
+     :root .process .process-cta .tel-plain {
+         color: #fff;
      }
  }

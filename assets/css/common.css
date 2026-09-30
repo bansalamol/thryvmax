@@ -520,10 +520,6 @@
          opacity: 1 !important;
      }
 
-     :root .section-5 hr {
-         opacity: 0.6 !important;
-     }
-
      :root .section-6 .circle-item span {
          background: #fff;
      }
@@ -886,12 +882,6 @@
      font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
      font-weight: 600;
      line-height: 1.35;
- }
-
- /* "How it Works" step titles sit below the section title, not level with it */
- body .section-5 .content h3 .step-line {
-     font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
-     font-weight: 500;
  }
 
  body .accordion-button {

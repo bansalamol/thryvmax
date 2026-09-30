@@ -193,48 +193,6 @@ if (!reduceMotion) {
 }
 
 
-// SECTION 5
-if (!reduceMotion) {
-    gsap.utils.toArray(".section-5 .sec-img").forEach((img) => {
-        gsap.fromTo(img,
-            { y: 40, scale: 0.9 },
-            {
-                scale: 1,
-                y: 0,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: img,
-                    start: "top 80%",
-                    end: "bottom 80%",
-                    scrub: 0.5
-                }
-            }
-        );
-    });
-
-    gsap.utils.toArray(".section-5 .content h3 .step-line").forEach((textAnim) => {
-        gsap.fromTo(textAnim,
-            { y: 40 },
-            {
-                y: 0,
-                ease: "power3.out",
-                duration: 0.6,
-                scrollTrigger: {
-                    trigger: textAnim,
-                    start: "top 95%",
-                    once: true
-                }
-            }
-        );
-    });
-}
-
-
-
-
-
-
-
 // SECTION 6
 const tabs = document.querySelectorAll(".tabs button");
 const leftCircle = document.querySelector(".left .circle-content");
