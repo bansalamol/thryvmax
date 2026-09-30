@@ -1399,3 +1399,14 @@
          background: var(--tm-surface-2);
      }
  }
+
+ /* Links inside running text need more than colour to stand out (WCAG 1.4.1) */
+ .section-2 p a,
+ .faq-list details p a,
+ .svc-faq p a,
+ .svc-cards p a,
+ .svc-detail p a {
+     text-decoration: underline;
+     text-decoration-thickness: 1px;
+     text-underline-offset: 3px;
+ }
