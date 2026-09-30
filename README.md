@@ -34,6 +34,7 @@ couple of PHP mail handlers for the contact and career forms.
 │   ├── vendor/                    Self-hosted Bootstrap (trimmed), GSAP, ScrollTrigger, Lenis
 │   └── fonts/                     Self-hosted Poppins (400/500/600)
 ├── tools/version-assets.py        Stamps CSS/JS links with a content fingerprint (run before deploy)
+├── docs/PERFORMANCE.md            Performance status and roadmap to 90-100
 ├── .htaccess                      Redirects (www, /index.html, renamed pages) and cache headers
 ├── robots.txt, sitemap.xml        SEO files
 └── .vscode/                       Editor settings
