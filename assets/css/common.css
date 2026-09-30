@@ -1410,3 +1410,31 @@
      text-decoration-thickness: 1px;
      text-underline-offset: 3px;
  }
+
+ /* Phone numbers read as the surrounding text; underline shows they can be tapped */
+ .contact-info a,
+ a.tel-plain {
+     color: inherit;
+     text-decoration: none;
+ }
+
+ .contact-info a:focus-visible,
+ a.tel-plain:focus-visible {
+     text-decoration: underline;
+     text-underline-offset: 3px;
+ }
+
+ @media (hover: hover) and (pointer: fine) {
+     .contact-info a:hover,
+     a.tel-plain:hover {
+         text-decoration: underline;
+         text-underline-offset: 3px;
+     }
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .contact-info a,
+     :root a.tel-plain {
+         color: inherit;
+     }
+ }
