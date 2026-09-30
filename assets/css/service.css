@@ -29,7 +29,7 @@
     padding: 20px 30px;
 }
 
-.section-4 .cardd .content h6 {
+.section-4 .cardd .content h3 {
     font-size: clamp(1.25rem, 1rem + 0.75vw, 1.625rem);
     font-weight: 500;
 }

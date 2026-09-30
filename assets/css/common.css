@@ -226,7 +226,7 @@
  }
 
  .widning-image-section .img-container {
-     background-image: url('https://craftohtml.themezaa.com/images/demo-branding-studio-services-01.jpg');
+     background-image: url('../images/services/Services-main-img.jpg');
      background-size: cover;
      background-position: top;
      width: 100%;
@@ -361,7 +361,9 @@
  /* // FOOTER */
  footer {
      background-color: #040836;
-     background-image: url(https://crafto.themezaa.com/marketing/wp-content/uploads/sites/10/2023/11/demo-marketing-footer-dot.svg);
+     /* dot grid drawn in CSS (was a hotlinked theme image) */
+     background-image: radial-gradient(circle at 8.2px 8.2px, rgba(174, 163, 162, 0.08) 1.2px, transparent 1.3px);
+     background-size: 17px 17px;
      color: #fff;
      padding-top: 80px;
 
@@ -873,12 +875,12 @@
  }
 
  /* card and list titles */
- body .section-4 .cardd .content h6,
- body .section-4 .cardd h6,
- body .blogs .cardd .content h6,
- body .section-6 .cardd h6,
+ body .section-4 .cardd .content h3,
+ body .section-4 .cardd h3,
+ body .blogs .cardd .content h3,
+ body .section-6 .cardd h3,
  body .feature-card h6,
- body .contact-info h6 {
+ body .contact-info h3 {
      font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
      font-weight: 600;
      line-height: 1.35;
@@ -889,7 +891,7 @@
      font-weight: 500;
  }
 
- footer h6 {
+ footer h2.h6 {
      font-weight: 600;
  }
 
@@ -1426,5 +1428,32 @@
      :root .contact-info a,
      :root a.tel-plain {
          color: inherit;
+     }
+ }
+
+ /* Contact page icons: inline SVG, strokes follow the text colour */
+ .contact-info .contact-icon {
+     flex: none;
+     width: 60px;
+     height: 60px;
+     color: #1f2433;
+ }
+
+ @media (prefers-color-scheme: dark) {
+     :root .contact-info .contact-icon {
+         color: var(--tm-text);
+     }
+
+     :root .contact-info .contact-icon circle:first-child {
+         fill: rgba(253, 233, 230, 0.12);
+     }
+ }
+
+ /* Phones: Bootstrap's g-5 (3rem) gutters overhang the 12px container padding and cause sideways
+    scroll. Keep the vertical gap, narrow the horizontal one to match the container padding. */
+ @media (max-width: 575.98px) {
+     .row.g-5,
+     .row.g-lg-5 {
+         --bs-gutter-x: 1.5rem;
      }
  }
